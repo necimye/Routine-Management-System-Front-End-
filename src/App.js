@@ -32,7 +32,7 @@ function App() {
           height: '100vh',
         }}
       >
-        <h3 className="logo" style={{ textAlign: "center", color: "#fff" }}>Hello Peeps! It's your personalised TimeTable<span role="img" aria-label="daglo">😀</span></h3>
+        <h3 className="logo" style={{ textAlign: "center", color: "#fff" }}>Department of Electronics and Computer Engineering<span role="img" aria-label="daglo"></span></h3>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} style={{ fontSize: "20px" }}>
           <Menu.Item key="1" icon={<UserOutlined />}>
             <Link to="/">Lectures</Link>
