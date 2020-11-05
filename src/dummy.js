@@ -13,20 +13,6 @@ export var routine_data=
         "weekDay":"sunday",
         "__v": 0
     },
-    /*
-    group according to class group
-    074BCT528A -> { sunday -> {
-        starting period, noOfPeriod -> {
-            Operating System , Anil Verma
-        }
-    }
-
-        monday -> 
-        tuesday ->
-    }
-
-    074BCT528A
-     */
     {
         "_id": "5fa3b13bf95fb39ca8156df",
         "subjectName": "Database Management System",

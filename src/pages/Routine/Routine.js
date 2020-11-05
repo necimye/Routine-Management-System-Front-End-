@@ -7,12 +7,14 @@ import CardView from '../../components/CardView/CardView';
 import ListEdit from '../../components/ListEdit';
 import { Table } from 'antd';
 import ReactDOM from 'react-dom';
+import {routine_data} from '../../dummy'
 
 function Routine() {
 
   const [lectures, setLectures] = useState([]);
   const [labs, setLabs] = useState([]);
   const [filter, setFilter] = useState(true);
+
 
   async function foo() {
     const data1 = await ListEdit.getLectures("lectures", filter);
@@ -21,6 +23,8 @@ function Routine() {
     const data2 = await ListEdit.getLectures("labs", filter);
     setLabs(data2);
   }
+
+  //sunday arr -> 0
 
   const columns = [
     {
@@ -142,79 +146,78 @@ function Routine() {
     // },
   ];
 
-  const data = [
-    {
-      weekDay: 'Sunday',
-      period_1: 'Operating System',
-      period_2: 'Operating System',
-      period_3: 'Database Management System',
-      period_4: 'Database Management System',
-      period_5: 'BREAK',
-      period_6: 'Minor Project',
-      period_7: 'Minor Project',
-      period_8: 'Minor Project',
-    },
-    {
-      weekDay: 'Monday',
-      period_1: 'Object Oriented Analysis And Design',
-      period_2: 'Object Oriented Analysis And Design',
-      period_3: 'Object Oriented Analysis And Design',
-      period_4: 'BREAK',
-      period_5: 'Minor Project',
-      period_6: 'Operating System',
-      period_7: 'Operating System',
-      period_8: 'Operating System',
-    },
-    {
-      weekDay: 'Tuesday',
-      period_1: 'Operating System',
-      period_2: 'Artificial Intelligence',
-      period_3: '',
-      period_4: 'BREAK',
-      period_5: 'Embedded System',
-      period_6: 'Embedded System',
-      period_7: 'Database Management System',
-      period_8: 'Embedded System',
-    },
-    {
-      weekDay: 'Wednesday',
-      period_1: 'Object Oriented Analysis And Design',
-      period_2: 'Object Oriented Analysis And Design',
-      period_3: 'Database Management System',
-      period_4: 'Artificial Intelligence',
-      period_5: 'Operating System',
-      period_6: '',
-      period_7: '',
-      period_8: '',
-    },
-    {
-      weekDay: 'Thursday',
-      period_1: 'Embedded System',
-      period_2: 'Embedded System',
-      period_3: 'Engineering Economics',
-      period_4: 'Engineering Economics',
-      period_5: 'BREAK',
-      period_6: 'Operating System',
-      period_7: 'Operating System',
-      period_8: 'Operating System',
-    },
-    {
-      weekDay: 'Friday',
-      period_1: 'Artificial Intelligence',
-      period_2: 'Artificial Intelligence',
-      period_3: 'Engineering Economics',
-      period_4: 'Engineering Economics',
-      period_5: 'BREAK',
-      period_6: 'Artificial Intelligence',
-      period_7: 'Artificial Intelligence',
-      period_8: 'Artificial Intelligence',
-    }
-  ];
+//   const data = [
+//     {
+//       weekDay: 'Sunday',
+//       period_1: 'Operating System',
+//       period_2: 'Operating System',
+//       period_3: 'Database Management System',
+//       period_4: 'Database Management System',
+//       period_5: 'BREAK',
+//       period_6: 'Minor Project',
+//       period_7: 'Minor Project',
+//       period_8: 'Minor Project',
+//     },
+//     {
+//       weekDay: 'Monday',
+//       period_1: 'Object Oriented Analysis And Design',
+//       period_2: 'Object Oriented Analysis And Design',
+//       period_3: 'Object Oriented Analysis And Design',
+//       period_4: 'BREAK',
+//       period_5: 'Minor Project',
+//       period_6: 'Operating System',
+//       period_7: 'Operating System',
+//       period_8: 'Operating System',
+//     },
+//     {
+//       weekDay: 'Tuesday',
+//       period_1: 'Operating System',
+//       period_2: 'Artificial Intelligence',
+//       period_3: '',
+//       period_4: 'BREAK',
+//       period_5: 'Embedded System',
+//       period_6: 'Embedded System',
+//       period_7: 'Database Management System',
+//       period_8: 'Embedded System',
+//     },
+//     {
+//       weekDay: 'Wednesday',
+//       period_1: 'Object Oriented Analysis And Design',
+//       period_2: 'Object Oriented Analysis And Design',
+//       period_3: 'Database Management System',
+//       period_4: 'Artificial Intelligence',
+//       period_5: 'Operating System',
+//       period_6: '',
+//       period_7: '',
+//       period_8: '',
+//     },
+//     {
+//       weekDay: 'Thursday',
+//       period_1: 'Embedded System',
+//       period_2: 'Embedded System',
+//       period_3: 'Engineering Economics',
+//       period_4: 'Engineering Economics',
+//       period_5: 'BREAK',
+//       period_6: 'Operating System',
+//       period_7: 'Operating System',
+//       period_8: 'Operating System',
+//     },
+//     {
+//       weekDay: 'Friday',
+//       period_1: 'Artificial Intelligence',
+//       period_2: 'Artificial Intelligence',
+//       period_3: 'Engineering Economics',
+//       period_4: 'Engineering Economics',
+//       period_5: 'BREAK',
+//       period_6: 'Artificial Intelligence',
+//       period_7: 'Artificial Intelligence',
+//       period_8: 'Artificial Intelligence',
+//     }
+//   ];
 
   return (
     <>
-
-      <Table columns={columns} dataSource={data} bordered />
+      <Table columns={columns} dataSource={routine_data} bordered />
     </>
   );
 
