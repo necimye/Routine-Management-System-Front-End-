@@ -11,6 +11,8 @@ import AllThings from './pages/AllThings/AllThings';
 import ImpoExpo from './pages/ImpoExpo/ImpoExpo';
 import AddClass from './pages/AddClass/AddClass';
 import Routine from './pages/Routine/Routine';
+import Teacher from './components/AddTeacher/AddTeacher';
+import Program from './components/AddProgram/AddProgram';
 import ReactGa from 'react-ga';
 
 function App() {
@@ -49,6 +51,12 @@ function App() {
           <Menu.Item key="5" icon={<AppstoreAddOutlined />}>
             <Link to="/routine">Routine</Link>
           </Menu.Item>
+          <Menu.Item key="6" icon={<AppstoreAddOutlined />}>
+            <Link to="/teacher">Teacher</Link>
+          </Menu.Item>
+          <Menu.Item key="7" icon={<AppstoreAddOutlined />}>
+            <Link to="/program">Program</Link>
+          </Menu.Item>
           {/* <Menu.Item key="4" icon={<SwapOutlined />}>
             <Link to="/ie">Import/Export</Link>
           </Menu.Item>
@@ -73,6 +81,8 @@ function App() {
               <AddPage path="/edit" />
               <AddPage path="/add" />
               <ImpoExpo path="/ie" />
+              <Teacher path="/teacher" />
+              <Program path="/program" />
             </Router>
           </div>
         </Content>
