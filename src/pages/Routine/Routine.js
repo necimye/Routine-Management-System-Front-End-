@@ -22,74 +22,101 @@ function Routine() {
     setLabs(data2);
   }
 
-
-  const renderContent = (value, row, index) => {
-    const obj = {
-      children: value,
-      props: {},
-    };
-    if (index === 4) {
-      obj.props.colSpan = 0;
-    }
-    return obj;
-  };
-
   const columns = [
     {
       title: 'Week Day',
       dataIndex: 'weekDay',
-      render: renderContent,
-      //   render: (text, row, index) => {
-      //     if (index < 4) {
-      //       return <a>{text}</a>;
-      //     }
-      //     return {
-      //       children: <a>{text}</a>,
-      //       props: {
-      //         colSpan: 5,
-      //       },
-      //     };
-      //   },
     },
     {
       title: 'Period 1',
       dataIndex: 'period_1',
-      render: renderContent,
+      render : (text,row,index)=>{
+          if(index===0)
+          {
+            return {
+                children: <a>{text}</a>,
+                props: {
+                  colSpan: 2,
+                },
+              };
+          }
+          if(index===2)
+          {
+              return {
+                children: <a>{text}</a>,
+                props: {
+                  colSpan: 2,
+                },
+              };
+          }
+          if(index===3)
+            {
+                return {
+                    children: <a>{text}</a>,
+                    props: {
+                      colSpan: 0,
+                    },
+                  };
+            }
+          return <a>{text}</a>;
+      }
     },
     {
       title: 'Period 2',
       dataIndex: 'period_2',
-      render: renderContent,
+      render : (text,row,index)=>{
+        if(index===0)
+        {
+          return {
+              children: <a>{text}</a>,
+              props: {
+                colSpan: 0,
+              },
+            };
+        }
+    }
+      //render: renderContent,
     },
     {
       title: 'Period 3',
       dataIndex: 'period_3',
-      render: renderContent,
+      render : (text,row,index)=>{
+        if(index===0)
+        {
+          return {
+              children: <a>{text}</a>,
+              props: {
+                colSpan: 2,
+              },
+            };
+        }
+    }
+      //render: renderContent,
     },
     {
       title: 'Period 4',
       dataIndex: 'period_4',
-      render: renderContent,
+      //render: renderContent,
     },
     {
       title: 'Period 5',
       dataIndex: 'period_5',
-      render: renderContent,
+      //render: renderContent,
     },
     {
       title: 'Period 6',
       dataIndex: 'period_6',
-      render: renderContent,
+      //render: renderContent,
     },
     {
       title: 'Period 7',
       dataIndex: 'period_7',
-      render: renderContent,
+      //render: renderContent,
     },
     {
       title: 'Period 8',
       dataIndex: 'period_8',
-      render: renderContent,
+      //render: renderContent,
     },
     // {
     //   title: 'Period 2',
@@ -119,8 +146,8 @@ function Routine() {
     {
       weekDay: 'Sunday',
       period_1: 'Operating System',
-      // period_2: 'Operating System',
-      // period_3: 'Database Management System',
+      period_2: 'Operating System',
+      period_3: 'Database Management System',
       period_4: 'Database Management System',
       period_5: 'BREAK',
       period_6: 'Minor Project',
@@ -142,7 +169,7 @@ function Routine() {
       weekDay: 'Tuesday',
       period_1: 'Operating System',
       period_2: 'Artificial Intelligence',
-      period_3: 'Object Oriented Analysis And Design',
+      period_3: '',
       period_4: 'BREAK',
       period_5: 'Embedded System',
       period_6: 'Embedded System',
