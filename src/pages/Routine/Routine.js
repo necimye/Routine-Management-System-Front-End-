@@ -5,7 +5,8 @@ import { Link } from '@reach/router';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import CardView from '../../components/CardView/CardView';
 import ListEdit from '../../components/ListEdit';
-
+import { Table, Tag, Space } from 'antd';
+import ReactDOM from 'react-dom';
 
 function Routine() {
 
@@ -21,6 +22,72 @@ function Routine() {
         setLabs(data2);
     }
 
+    const columns = [
+        {
+          title: 'Period',
+          dataIndex: 'period',
+          key: 'period',
+        },
+        {
+          title: '1',
+          dataIndex: '1',
+          key: '1',
+        },
+        {
+          title: '2',
+          dataIndex: '2',
+          key: '2',
+        },
+        {
+            title: '3',
+            dataIndex: '3',
+            key: '3',
+          },
+          {
+            title: '4',
+            dataIndex: '4',
+            key: '4',
+          },
+          {
+            title: '5',
+            dataIndex: '5',
+            key: '5',
+          },
+          {
+            title: '6',
+            dataIndex: '6',
+            key: '6',
+          },
+          {
+            title: '7',
+            dataIndex: '7',
+            key: '7',
+          },
+          {
+            title: '8',
+            dataIndex: '8',
+            key: '8',
+          }
+      ];
+      
+      const data = [
+        {
+          key: '1',
+          period : 'SUNDAY',
+          1 : 'hfdho',
+          2: 'naof',
+          3: 'faosd',
+          4: 'BREAK',
+          5: 'foaijf',
+          6: 'jdsadf',
+          7: 'faof',
+          8: 'aiodf',
+        },
+      ];
+      
+      //ReactDOM.render(<Table columns={columns} dataSource={data} />);
+
+
     useEffect(() => {
         ListEdit.clearTemp();
         foo();
@@ -28,71 +95,8 @@ function Routine() {
 
     return (
         <>
-            <Switch
-                style={{ display: "inline-block" }}
-                onChange={(checked) => {
-                    setFilter(checked);
-                }}
-                checkedChildren={<CheckOutlined />}
-                unCheckedChildren={<CloseOutlined />}
-                defaultChecked />
-
-            <h3 style={{ marginBottom: "32px" }}>Filter Just Today's Labs and Lectures</h3>
-            <h1 style={{ fontSize: "24px" }}>● Lectures</h1>
-            <Divider orientation="left" />
-            <Row justify="space-between">
-                {
-                    lectures.length > 0 ?
-                        lectures.map((lecture, index) => {
-                            return (
-                                <Col xs={24} md={12} key={index} >
-                                    <CardView
-                                        list={lectures}
-                                        setList={setLectures}
-                                        uuid={lecture.UUID}
-                                        ccode={lecture.COURSE_CODE}
-                                        cname={lecture.COURSE_NAME}
-                                        link1={lecture.LINK1}
-                                        link2={lecture.LINK2}
-                                        link3={lecture.LINK3}
-                                        starttime={lecture.START_TIME}
-                                        endtime={lecture.END_TIME}
-                                        day={lecture.DAY}
-                                        type="lectures"
-                                    ></CardView>
-                                </Col>)
-                        }) :
-                        <Link to="/add"><div style={{ textAlign: "center", fontSize: "32px", color: "grey", margin: "16px" }}>Tap Here to Add Lectures</div></Link>
-                }
-            </Row>
-            <h1 style={{ fontSize: "24px" }}>● Labs</h1>
-            <Divider orientation="left" />
-            <Row justify="space-between">
-                {
-                    labs.length > 0 ?
-                        labs.map((lab, index) => {
-                            return (
-                                <Col xs={24} md={12} key={index} >
-                                    <CardView
-                                        id={index}
-                                        list={labs}
-                                        setList={setLabs}
-                                        uuid={lab.UUID}
-                                        ccode={lab.COURSE_CODE}
-                                        cname={lab.COURSE_NAME}
-                                        link1={lab.LINK1}
-                                        link2={lab.LINK2}
-                                        link3={lab.LINK3}
-                                        starttime={lab.START_TIME}
-                                        endtime={lab.END_TIME}
-                                        day={lab.DAY}
-                                        type="labs"
-                                    ></CardView>
-                                </Col>)
-                        }) :
-                        <Link to="/add"><div style={{ textAlign: "center", fontSize: "32px", color: "grey", margin: "16px" }}>Tap Here to Add Labs</div></Link>
-                }
-            </Row>
+            
+            <Table columns={columns} dataSource={data} />
         </>
     );
 
