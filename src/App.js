@@ -59,6 +59,12 @@ function App() {
           <Menu.Item key="7" icon={<AppstoreAddOutlined />}>
             <Link to="/program">Program</Link>
           </Menu.Item>
+          <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
+            <Link to="/addTeacher">Add Teacher</Link>
+          </Menu.Item>
+          <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
+            <Link to="/addProgram">Add Program</Link>
+          </Menu.Item>
           {/* <Menu.Item key="4" icon={<SwapOutlined />}>
             <Link to="/ie">Import/Export</Link>
           </Menu.Item>
