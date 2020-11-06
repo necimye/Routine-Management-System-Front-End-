@@ -11,8 +11,10 @@ import AllThings from './pages/AllThings/AllThings';
 import ImpoExpo from './pages/ImpoExpo/ImpoExpo';
 import AddClass from './pages/AddClass/AddClass';
 import Routine from './pages/Routine/Routine';
-import Teacher from './components/AddTeacher/AddTeacher';
-import Program from './components/AddProgram/AddProgram';
+import AddTeacher from './components/AddTeacher/AddTeacher';
+import AddProgram from './components/AddProgram/AddProgram';
+import Program from './pages/Program/Program';
+import Teacher from './pages/Teacher/Teacher';
 import ReactGa from 'react-ga';
 
 function App() {
@@ -81,8 +83,10 @@ function App() {
               <AddPage path="/edit" />
               <AddPage path="/add" />
               <ImpoExpo path="/ie" />
-              <Teacher path="/teacher" />
-              <Program path="/program" />
+              <Teacher path='/teacher' />
+              <Program path='/program' />
+              <AddTeacher path="/addTeacher" />
+              <AddProgram path="/addProgram" />
             </Router>
           </div>
         </Content>
