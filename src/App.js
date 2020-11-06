@@ -13,6 +13,7 @@ import AddClass from './pages/AddClass/AddClass';
 import Routine from './pages/Routine/Routine';
 import AddTeacher from './components/AddTeacher/AddTeacher';
 import AddProgram from './components/AddProgram/AddProgram';
+import EditProgram from './components/EditProgram/EditProgram';
 import Program from './pages/Program/Program';
 import Teacher from './pages/Teacher/Teacher';
 import ReactGa from 'react-ga';
@@ -62,15 +63,10 @@ function App() {
           <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
             <Link to="/addTeacher">Add Teacher</Link>
           </Menu.Item>
-          <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
+          {/* <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
             <Link to="/addProgram">Add Program</Link>
-          </Menu.Item>
-          {/* <Menu.Item key="4" icon={<SwapOutlined />}>
-            <Link to="/ie">Import/Export</Link>
-          </Menu.Item>
-          <Menu.Item key="5" icon={<GithubFilled />}>
-            <a href="https://github.com/HemangNakarani/Online-Lecture-Labs-TimeTable" rel="noopener noreferrer" target="_blank">Contribute</a>
           </Menu.Item> */}
+
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -93,10 +89,18 @@ function App() {
               <Program path='/program' />
               <AddTeacher path="/addTeacher" />
               <AddProgram path="/addProgram" />
+              <EditProgram path='/editProgram/:id' >
+                {/* {props => (
+                <div>
+                  {props.match
+                    ? props.match.id
+                    : "No match"}
+                </div>
+              )} */}
+              </EditProgram>
             </Router>
           </div>
         </Content>
-        {/* <Footer style={{ textAlign: 'center', fontSize: "16px" }}><b>Created with ❤ By <a href="https://hemangnakarani.github.io" rel="noopener noreferrer" target="_blank">Hemang Nakarani</a></b></Footer> */}
       </Layout>
     </Layout>
   );
