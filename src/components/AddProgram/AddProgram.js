@@ -68,7 +68,7 @@ export class AddProgram extends Component {
                                 part: ''
                             })
                             message.success("Programme Added Sucessfully");
-                            navigate('/all');
+                            navigate('/program');
                         }
                         else { message.error("Programme Cannot be Added"); }
                     }}>

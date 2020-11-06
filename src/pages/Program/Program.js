@@ -52,12 +52,12 @@ export class Program extends Component {
                 render: (text, record) => (
                     <Space size="middle">
                         <Link to={`/editProgram/${record._id}`} ><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link>
-                        <div onClick={() => {
+                        <a onClick={() => {
                             axios
                                 .delete(`http://localhost:5000/api/program/delete/${record._id}`)
                                 .then(message.success("Programme Deleted Sucessfully"))
                                 .then(this.getProgramData)
-                        }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></div>
+                        }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
                 ),
             },
