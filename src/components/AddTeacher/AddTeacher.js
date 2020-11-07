@@ -68,7 +68,7 @@ export class AddTeacher extends Component {
                                 designation: ''
                             })
                             message.success("Teacher Added Sucessfully");
-                            navigate('/all');
+                            navigate('/teacher');
                         }
                         else { message.error("Teacher Cannot be Added"); }
                     }}>
