@@ -14,7 +14,7 @@ import Routine from './pages/Routine/Routine';
 import AddTeacher from './components/AddTeacher/AddTeacher';
 import AddProgram from './components/AddProgram/AddProgram';
 import EditProgram from './components/EditProgram/EditProgram';
-import EditTeacher from './components/EditTeacher/EditTeacher'; 
+import EditTeacher from './components/EditTeacher/EditTeacher';
 import Program from './pages/Program/Program';
 import Teacher from './pages/Teacher/Teacher';
 import ReactGa from 'react-ga';
@@ -40,26 +40,26 @@ function App() {
       >
         <h3 className="logo" style={{ textAlign: "center", color: "#fff" }}>Department of Electronics and Computer Engineering<span role="img" aria-label="daglo"></span></h3>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} style={{ fontSize: "20px" }}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
+          {/* <Menu.Item key="1" icon={<UserOutlined />}>
             <Link to="/">Lectures</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             <Link to="/labs">Labs</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           {/* <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
             <Link to="/all">All Lectures/Labs</Link>
           </Menu.Item> */}
-          <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
-            <Link to="/addClass">Add Class</Link>
+          <Menu.Item key="1" icon={<AppstoreAddOutlined />}>
+            <Link to="/program">Program</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<AppstoreAddOutlined />}>
-            <Link to="/routine">Routine</Link>
-          </Menu.Item>
-          <Menu.Item key="6" icon={<AppstoreAddOutlined />}>
+          <Menu.Item key="2" icon={<AppstoreAddOutlined />}>
             <Link to="/teacher">Teacher</Link>
           </Menu.Item>
-          <Menu.Item key="7" icon={<AppstoreAddOutlined />}>
-            <Link to="/program">Program</Link>
+          <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
+            <Link to="/addClass">Add Class</Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
+            <Link to="/routine">Routine</Link>
           </Menu.Item>
           {/* <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
             <Link to="/addTeacher">Add Teacher</Link>
@@ -99,7 +99,7 @@ function App() {
                 </div>
               )} */}
               </EditProgram>
-              <EditTeacher path='/editTeacher/:id'>      
+              <EditTeacher path='/editTeacher/:id'>
               </EditTeacher>
             </Router>
           </div>
