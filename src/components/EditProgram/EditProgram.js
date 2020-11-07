@@ -44,7 +44,7 @@ export class EditProgram extends Component {
     }
 
     render() {
-        // console.log(this.props.id)
+        console.log(this.props.id)
         const paramsid = this.props.id;
         const { programName, year, part } = this.state;
         return (

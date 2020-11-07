@@ -14,6 +14,7 @@ import Routine from './pages/Routine/Routine';
 import AddTeacher from './components/AddTeacher/AddTeacher';
 import AddProgram from './components/AddProgram/AddProgram';
 import EditProgram from './components/EditProgram/EditProgram';
+import EditTeacher from './components/EditTeacher/EditTeacher'; 
 import Program from './pages/Program/Program';
 import Teacher from './pages/Teacher/Teacher';
 import ReactGa from 'react-ga';
@@ -45,9 +46,9 @@ function App() {
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             <Link to="/labs">Labs</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
+          {/* <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
             <Link to="/all">All Lectures/Labs</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
             <Link to="/addClass">Add Class</Link>
           </Menu.Item>
@@ -60,9 +61,9 @@ function App() {
           <Menu.Item key="7" icon={<AppstoreAddOutlined />}>
             <Link to="/program">Program</Link>
           </Menu.Item>
-          <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
+          {/* <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
             <Link to="/addTeacher">Add Teacher</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           {/* <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
             <Link to="/addProgram">Add Program</Link>
           </Menu.Item> */}
@@ -98,6 +99,8 @@ function App() {
                 </div>
               )} */}
               </EditProgram>
+              <EditTeacher path='/editTeacher/:id'>      
+              </EditTeacher>
             </Router>
           </div>
         </Content>
