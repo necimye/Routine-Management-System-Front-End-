@@ -10,7 +10,7 @@ const { Title } = Typography;
 
 
 export class Teacher extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             teacherData: {}
@@ -21,12 +21,12 @@ export class Teacher extends Component {
         this.getTeacherData();
     }
 
-    getTeacherData = async() => {
+    getTeacherData = async () => {
         let res = await axios.get('http://localhost:5000/api/teacher');
         let data = res.data;
         console.log(data);
-        this.setState({ teacherData:data });   
-    } 
+        this.setState({ teacherData: data });
+    }
 
     render() {
         const { teacherData } = this.state;
@@ -50,13 +50,13 @@ export class Teacher extends Component {
                 title: 'Action',
                 key: 'action',
                 render: (text, record) => (
-                    <Space size = "middle">
+                    <Space size="middle">
                         <Link to={`/editTeacher/${record._id}`}><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link>
-                        <a onClick = {() => {
+                        <a onClick={() => {
                             axios
                                 .delete(`http://localhost:5000/api/teacher/delete/${record._id}`)
                                 .then(message.success("Teacher Deleted Successfully"))
-                                .then(this.getTeacherData)                    
+                                .then(this.getTeacherData)
                         }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
                 ),
@@ -65,8 +65,8 @@ export class Teacher extends Component {
 
         return (
             <div>
-                <Link to='/addTeacher'><Button type = "primary">Add Teacher</Button></Link>
-                <Title className = "input" level={3}>All Teachers</Title>
+                <Link to='/addTeacher'><Button type="primary">Add Teacher</Button></Link>
+                <Title className="input" level={3}>All Teachers</Title>
                 <Table columns={columns} dataSource={teacherData.data} />
             </div>
         )

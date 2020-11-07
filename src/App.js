@@ -79,7 +79,7 @@ function App() {
           <div className="site-layout-background" style={{ padding: 24 }}>
             <Router primary={false}>
               <AllThings path="/all" />
-              <LecturePage path="/" />
+              <Program path="/" />
               <AddClass path="/addClass" />
               <Routine path="/routine" />
               <LabPage path="/labs" />
