@@ -9,7 +9,9 @@ import AddPage from './pages/AddPage/AddPage';
 import LecturePage from './pages/LecturePage/LecturePage';
 import AllThings from './pages/AllThings/AllThings';
 import ImpoExpo from './pages/ImpoExpo/ImpoExpo';
-import AddClass from './pages/AddClass/AddClass';
+// import AddClass from './pages/AddClass/AddClass';
+import Class from './pages/AddClass/AddClass';
+import AddClassForm from './components/AddClassForm/AddClassForm';
 import Routine from './pages/Routine/Routine';
 import AddTeacher from './components/AddTeacher/AddTeacher';
 import AddProgram from './components/AddProgram/AddProgram';
@@ -56,7 +58,7 @@ function App() {
             <Link to="/teacher">Teacher</Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
-            <Link to="/addClass">Add Class</Link>
+            <Link to="/class">Add Class</Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
             <Link to="/routine">Routine</Link>
@@ -80,7 +82,7 @@ function App() {
             <Router primary={false}>
               <AllThings path="/all" />
               <Program path="/" />
-              <AddClass path="/addClass" />
+              <Class path="/class" />
               <Routine path="/routine" />
               <LabPage path="/labs" />
               <AddPage path="/edit" />
@@ -90,6 +92,7 @@ function App() {
               <Program path='/program' />
               <AddTeacher path="/addTeacher" />
               <AddProgram path="/addProgram" />
+              <AddClassForm path="/addClass" />
               <EditProgram path='/editProgram/:id' >
                 {/* {props => (
                 <div>
