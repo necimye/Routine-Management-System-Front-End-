@@ -9,23 +9,6 @@ import { ExclamationCircleOutlined ,DeleteOutlined, EditOutlined, UserOutlined, 
 const { Title } = Typography;
 
 
-// function deleteWarning(){
-//     Modal.confirm ({
-//         title: 'Are you sure?',
-//         icon: <ExclamationCircleOutlined />,
-//         content: 'Do you really want to delete these records? This process cannot be undone.',
-//         okText: 'Confirm',
-//         okType: 'danger primary',
-//         cancelText: 'Cancel',
-//         onOk(){
-//             console.log("Ok Clicked");
-//         },
-//         onCancel(){
-//             console.log("Cancel Clicked");
-//         }
-//     });
-// }
-
 
 export class Teacher extends Component {
     constructor(props) {
@@ -35,10 +18,16 @@ export class Teacher extends Component {
         }
     }
 
+    intervalID;
+
     componentDidMount() {
         this.getTeacherData();
+        this.intervalID=setInterval(this.getTeacherData.bind(this), 400);
     }
 
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
     
 
     getTeacherData = async () => {
@@ -57,12 +46,11 @@ export class Teacher extends Component {
             okType: 'danger primary',
             cancelText: 'Cancel',
             onOk(){
-                // console.log("Ok Clicked");
                 axios
                     .delete(`http://localhost:5000/api/teacher/delete/${record._id}`)
-                    .then(message.success("Teacher Deleted Successfully"));
+                    .then(message.success("Teacher Deleted Successfully"))
+                    .then(navigate('/teacher'))
             },
-            
         });
     }
 

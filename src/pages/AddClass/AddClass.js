@@ -4,8 +4,8 @@ import { Router, Link } from '@reach/router';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import { navigate } from '@reach/router';
-import { Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
-import { DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
+import { Modal, Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
+import { ExclamationCircleOutlined, DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
 import { } from 'antd';
 import AddClassForm from '../../components/AddClassForm/AddClassForm';
 const { Title } = Typography;
@@ -29,15 +29,41 @@ export class Class extends Component {
         }
     }
 
+    intervalID;
+
     componentDidMount() {
         this.getClassData();
+        this.intervalID=setInterval(this.getClassData.bind(this), 400);
     }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
+
     getClassData = async() => {
         let res = await axios.get('http://localhost:5000/api/class');
         let data = res.data;
         console.log(data);
         this.setState({ classData: data});
     }
+
+    deleteWarning(record){
+        Modal.confirm ({
+            title: 'Are you sure?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Do you really want to delete these records? This process cannot be undone.',
+            okText: 'Confirm',
+            okType: 'danger primary',
+            cancelText: 'Cancel',
+            onOk(){
+                axios
+                .delete(`http://localhost:5000/api/class/delete/${record._id}`)
+                .then(message.success("Class Deleted Sucessfully"))
+                .then(navigate('/class'))
+            },
+        });
+    }
+
     render() {
         const { classData } = this.state;
         const columns = [
@@ -45,6 +71,7 @@ export class Class extends Component {
                 title: 'Routine For',
                 dataIndex: 'routineFor',
                 key: 'routineFor',
+                render: routineFor => (<>{routineFor ? routineFor.programName + "_" + routineFor.year + "year_" + routineFor.part + "part" : ''}</>)
             },
             {
                 title: 'Subject Name',
@@ -87,7 +114,9 @@ export class Class extends Component {
                 render: (text, record) => (
                     <Space size="middle">
                         <a><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></a>
-                        <a><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
+                        <a onClick={()=>{
+                            this.deleteWarning(record);
+                        }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
                 ),
             },

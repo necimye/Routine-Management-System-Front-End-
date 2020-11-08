@@ -4,8 +4,8 @@ import { Router, Link } from '@reach/router';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import { navigate } from '@reach/router';
-import { Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
-import { DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
+import { Modal, Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
+import { ExclamationCircleOutlined, DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 
 export class Program extends Component {
@@ -17,15 +17,39 @@ export class Program extends Component {
         }
     }
 
-    componentDidMount() {
+    intervalID;
 
+    componentDidMount() {
         this.getProgramData();
+        this.intervalID=setInterval(this.getProgramData.bind(this), 400);
     }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
+
     getProgramData = async () => {
         let res = await axios.get('http://localhost:5000/api/program');
         let data = res.data;
         console.log(data);
         this.setState({ programData: data })
+    }
+
+    deleteWarning(record){
+        Modal.confirm ({
+            title: 'Are you sure?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Do you really want to delete these records? This process cannot be undone.',
+            okText: 'Confirm',
+            okType: 'danger primary',
+            cancelText: 'Cancel',
+            onOk(){
+                axios
+                .delete(`http://localhost:5000/api/program/delete/${record._id}`)
+                .then(message.success("Programme Deleted Sucessfully"))
+                .then(navigate('/program'))
+            },
+        });
     }
 
     render() {
@@ -53,10 +77,7 @@ export class Program extends Component {
                     <Space size="middle">
                         <Link to={`/editProgram/${record._id}`} ><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link>
                         <a onClick={() => {
-                            axios
-                                .delete(`http://localhost:5000/api/program/delete/${record._id}`)
-                                .then(message.success("Programme Deleted Sucessfully"))
-                                .then(this.getProgramData)
+                            this.deleteWarning(record);
                         }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
                 ),
