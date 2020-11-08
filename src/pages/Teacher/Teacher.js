@@ -4,9 +4,27 @@ import { Router, Link } from '@reach/router';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import { navigate } from '@reach/router';
-import { Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
-import { DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
+import { Modal, Table, Tag, Space, Card, Input, TimePicker, Menu, Dropdown, Typography, Button, Radio, message } from 'antd';
+import { ExclamationCircleOutlined ,DeleteOutlined, EditOutlined, UserOutlined, VideoCameraOutlined, NumberOutlined, PushpinOutlined } from '@ant-design/icons';
 const { Title } = Typography;
+
+
+// function deleteWarning(){
+//     Modal.confirm ({
+//         title: 'Are you sure?',
+//         icon: <ExclamationCircleOutlined />,
+//         content: 'Do you really want to delete these records? This process cannot be undone.',
+//         okText: 'Confirm',
+//         okType: 'danger primary',
+//         cancelText: 'Cancel',
+//         onOk(){
+//             console.log("Ok Clicked");
+//         },
+//         onCancel(){
+//             console.log("Cancel Clicked");
+//         }
+//     });
+// }
 
 
 export class Teacher extends Component {
@@ -21,11 +39,31 @@ export class Teacher extends Component {
         this.getTeacherData();
     }
 
+    
+
     getTeacherData = async () => {
         let res = await axios.get('http://localhost:5000/api/teacher');
         let data = res.data;
         console.log(data);
         this.setState({ teacherData: data });
+    }
+
+    deleteWarning(record){
+        Modal.confirm ({
+            title: 'Are you sure?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Do you really want to delete these records? This process cannot be undone.',
+            okText: 'Confirm',
+            okType: 'danger primary',
+            cancelText: 'Cancel',
+            onOk(){
+                // console.log("Ok Clicked");
+                axios
+                    .delete(`http://localhost:5000/api/teacher/delete/${record._id}`)
+                    .then(message.success("Teacher Deleted Successfully"));
+            },
+            
+        });
     }
 
     render() {
@@ -52,12 +90,10 @@ export class Teacher extends Component {
                 render: (text, record) => (
                     <Space size="middle">
                         <Link to={`/editTeacher/${record._id}`}><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link>
-                        <a onClick={() => {
-                            axios
-                                .delete(`http://localhost:5000/api/teacher/delete/${record._id}`)
-                                .then(message.success("Teacher Deleted Successfully"))
-                                .then(this.getTeacherData)
-                        }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
+                        <a onClick={ () => {
+                                this.deleteWarning(record);
+                        }}>
+                        <DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
                 ),
             },
