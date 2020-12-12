@@ -17,6 +17,7 @@ import AddTeacher from './components/AddTeacher/AddTeacher';
 import AddProgram from './components/AddProgram/AddProgram';
 import EditProgram from './components/EditProgram/EditProgram';
 import EditTeacher from './components/EditTeacher/EditTeacher';
+import EditClass from './components/EditClass/EditClass';
 import Program from './pages/Program/Program';
 import Teacher from './pages/Teacher/Teacher';
 import ReactGa from 'react-ga';
@@ -104,6 +105,8 @@ function App() {
               </EditProgram>
               <EditTeacher path='/editTeacher/:id'>
               </EditTeacher>
+              <EditClass path='/editClass/:id'>
+              </EditClass>
             </Router>
           </div>
         </Content>

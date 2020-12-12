@@ -113,8 +113,8 @@ export class Class extends Component {
                 dataIndex: 'action',
                 render: (text, record) => (
                     <Space size="middle">
-                        <a><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></a>
-                        <a onClick={()=>{
+                        <Link to={`/editClass/${record._id}`} ><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link>
+                       <a onClick={()=>{
                             this.deleteWarning(record);
                         }}><DeleteOutlined style={{ fontSize: '22px', color: 'red' }} /></a>
                     </Space>
