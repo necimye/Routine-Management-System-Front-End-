@@ -315,8 +315,41 @@ export default function SpanningTable() {
   }, []);
   //routine.sunday.
   console.log(routine);
-  //const dummy={sunday:[1,2,3,4,5,6,7,8],monday:[1,2,3,4,5,6,7,8],tuesday:[1,2,3,4,5,6,7,8],wednesday:[1,2,3,4,5,6,7,8],thursday:[1,2,3,4,5,6,7,8],friday:[1,2,3,4,5,6,7,8]};
-  const dummy=[1,2,3,4,5,6,7,8];
+  const dum={sunday:[1,2,3,4,5,6,7,8],monday:[1,2,3,4,5,6,7,8],tuesday:[1,2,3,4,5,6,7,8],wednesday:[1,2,3,4,5,6,7,8],thursday:[1,2,3,4,5,6,7,8],friday:[1,2,3,4,5,6,7,8]};
+  
+  // for(let i=3;i<5;i++)
+  //     {
+  //       dum.sunday.splice(dum.sunday.indexOf(i),1);
+  //     }
+  //   console.log(dum);
+  console.log(routine);
+  if(routine){
+    Object.keys(routine).map((val,index)=>{
+      // // console.log(routine[val].startingPeriod);
+      // // for(let i=routine[val].startingPeriod+1;i<routine[val].startingPeriod+routine[val].numOfPeriod;i++)
+      // // {
+      // //   dum.val.splice(dum.val.indexOf(i),1);
+      // //   console.log(dum.val);
+      // // }
+      // console.log(routine[val]);
+
+      Object.keys(routine[val]).map((start,index)=>
+      {
+        //console.log(start);
+        for(var i=parseInt(start)+1;i<parseInt(start)+parseInt(routine[val][start].noOfPeriod);i++)
+        {
+          dum[val].splice(dum[val].indexOf(i),1);
+          //console.log(i);
+          //console.log(dum['sunday']);
+        }
+      })
+      
+   })
+  }
+
+  //const dummy=[1,2,3,4,5,6,7,8];
+  //dum.sunday.splice(dum.sunday.indexOf(4),1);
+  console.log(dum);
   const cur=1;
   return (
     <TableContainer component={Paper}>
@@ -341,25 +374,89 @@ export default function SpanningTable() {
           <TableRow className='relative'>
             <TableCell className='border' >SUNDAY</TableCell>
             {routine?
-              dummy.map((dum,index)=>{
-                console.log(routine.sunday[dum]);
-                
+              dum.sunday.map((temp,index)=>{
                 return(
-
-                  
-                  
-                    routine.sunday[dum]?
-                  <TableCell align="center" className='border' colSpan={routine.sunday[dum].noOfPeriod}>{routine.sunday[dum].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
-                  
-                  
+                    routine.sunday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.sunday[temp].noOfPeriod}>{routine.sunday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
-                
               }
               ):''
             }
-            
           </TableRow>
-          <TableRow>
+
+          <TableRow className='relative'>
+            <TableCell className='border' >MONDAY</TableCell>
+            {routine?
+              dum.monday.map((temp,index)=>{
+                return(
+                    routine.monday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.monday[temp].noOfPeriod}>{routine.monday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
+                )
+              }
+              ):''
+            }
+          </TableRow>
+
+          <TableRow className='relative'>
+            <TableCell className='border' >TUESDAY</TableCell>
+            {routine?
+              dum.tuesday.map((temp,index)=>{
+                return(
+                    routine.tuesday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.tuesday[temp].noOfPeriod}>{routine.tuesday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
+                )
+              }
+              ):''
+            }
+          </TableRow>
+
+          <TableRow className='relative'>
+            <TableCell className='border' >WEDNESDAY</TableCell>
+            {routine?
+              dum.wednesday.map((temp,index)=>{
+                return(
+                    routine.wednesday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.wednesday[temp].noOfPeriod}>{routine.wednesday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
+                )
+              }
+              ):''
+            }
+          </TableRow>
+
+          <TableRow className='relative'>
+            <TableCell className='border' >THURSDAY</TableCell>
+            {routine?
+              dum.thursday.map((temp,index)=>{
+                return(
+                    routine.thursday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.thursday[temp].noOfPeriod}>{routine.thursday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
+                )
+              }
+              ):''
+            }
+          </TableRow>
+
+          <TableRow className='relative'>
+            <TableCell className='border' >FRIDAY</TableCell>
+            {routine?
+              dum.friday.map((temp,index)=>{
+                return(
+                    routine.friday[temp]?
+                  <TableCell align="center" className='border' colSpan={routine.friday[temp].noOfPeriod}>{routine.friday[temp].subjectName}</TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
+                )
+              }
+              ):''
+            }
+          </TableRow>
+
+
+
+
+
+
+
+
+          {/* <TableRow>
             <TableCell className='border'>MONDAY</TableCell>
             <TableCell align="center" colSpan={3} className='border'>Object Oriented Analysis and Design</TableCell>
             <TableCell align="center" colSpan={1} className='border'>BREAK</TableCell>
@@ -382,7 +479,7 @@ export default function SpanningTable() {
             <TableCell align="center" colSpan={1} className='border'>Database Management System</TableCell>
             <TableCell align="center" colSpan={1} className='border'>Artificial Intelligence</TableCell>
             <TableCell align="center" colSpan={1} className='border'>Operating System</TableCell>
-          </TableRow>
+          </TableRow> */}
 
           {/* {rows.map((row) => (
             <TableRow key={row.desc}>
