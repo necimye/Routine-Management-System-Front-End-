@@ -8,7 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import './Routine.css'
+import './Routine.css';
+
 
 const useStyles = makeStyles({
   table: {
@@ -31,14 +32,17 @@ export default function SpanningTable() {
     console.log(data);
     if(data){
     data.data.map((item, index) => {
-            if (!datae[item.weekDay]) {
-              datae[item.weekDay] = {}
+            if (!datae[item.routineFor.programName]){
+              datae[item.routineFor.programName]={}
             }
-            if (!datae[item.weekDay][item.startingPeriod]) {
-              datae[item.weekDay][item.startingPeriod] = {}
+            if (!datae[item.routineFor.programName][item.weekDay]) {
+              datae[item.routineFor.programName][item.weekDay] = {}
             }
-            datae[item.weekDay][item.startingPeriod] = {}
-            datae[item.weekDay][item.startingPeriod]=item
+            if (!datae[item.routineFor.programName][item.weekDay][item.startingPeriod]) {
+              datae[item.routineFor.programName][item.weekDay][item.startingPeriod] = {}
+            }
+            datae[item.routineFor.programName][item.weekDay][item.startingPeriod] = {}
+            datae[item.routineFor.programName][item.weekDay][item.startingPeriod]=item
           })
         }
     console.log(data);
@@ -102,7 +106,7 @@ export default function SpanningTable() {
                 return(
                     routine.sunday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.sunday[temp].noOfPeriod}>{routine.sunday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.sunday[temp].teacherName)}<br></br>[{routine.sunday[temp].classCode}]
+                  ({loopTeacher(routine.sunday[temp].teacherName)})<br></br>[{routine.sunday[temp].classCode}]
                 </TableCell>
                     :<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
@@ -118,7 +122,7 @@ export default function SpanningTable() {
                 return(
                     routine.monday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.monday[temp].noOfPeriod}>{routine.monday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.monday[temp].teacherName)}<br></br>[{routine.monday[temp].classCode}]
+                  ({loopTeacher(routine.monday[temp].teacherName)})<br></br>[{routine.monday[temp].classCode}]
                   </TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
               }
@@ -133,7 +137,7 @@ export default function SpanningTable() {
                 return(
                     routine.tuesday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.tuesday[temp].noOfPeriod}>{routine.tuesday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.tuesday[temp].teacherName)}<br></br>[{routine.tuesday[temp].classCode}]
+                  ({loopTeacher(routine.tuesday[temp].teacherName)})<br></br>[{routine.tuesday[temp].classCode}]
                   </TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
               }
@@ -148,7 +152,7 @@ export default function SpanningTable() {
                 return(
                     routine.wednesday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.wednesday[temp].noOfPeriod}>{routine.wednesday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.wednesday[temp].teacherName)}<br></br>[{routine.wednesday[temp].classCode}]
+                  ({loopTeacher(routine.wednesday[temp].teacherName)})<br></br>[{routine.wednesday[temp].classCode}]
                   </TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
               }
@@ -163,7 +167,7 @@ export default function SpanningTable() {
                 return(
                     routine.thursday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.thursday[temp].noOfPeriod}>{routine.thursday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.thursday[temp].teacherName)}<br></br>[{routine.thursday[temp].classCode}]
+                  ({loopTeacher(routine.thursday[temp].teacherName)})<br></br>[{routine.thursday[temp].classCode}]
                   </TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
               }
@@ -178,7 +182,7 @@ export default function SpanningTable() {
                 return(
                     routine.friday[temp]?
                   <TableCell align="center" className='border' colSpan={routine.friday[temp].noOfPeriod}>{routine.friday[temp].subjectName}<br></br>
-                  {loopTeacher(routine.friday[temp].teacherName)}<br></br>[{routine.friday[temp].classCode}]
+                  ({loopTeacher(routine.friday[temp].teacherName)})<br></br>[{routine.friday[temp].classCode}]
                   </TableCell>:<TableCell align="center" className='border' colSpan={1}></TableCell>
                 )
               }
