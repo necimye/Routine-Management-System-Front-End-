@@ -68,7 +68,7 @@ export class AddClassForm extends Component {
                 routineFor: values.routineFor, subjectName: values.subjectName, teacherName: values.teacherName, classCode: values.classCode, classGroup: values.classGroup, startingPeriod: values.startingPeriod, noOfPeriod: values.noOfPeriod, courseCode: values.courseCode, link1: values.link1, weekDay: values.weekDay
             })
             .then(message.success("Class Added Sucessfully"))
-            .then(navigate('/routine'))
+            .then(navigate('/class'))
 
     };
 
