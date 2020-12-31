@@ -1,17 +1,11 @@
 
-## TimeTable For Managing online Lecture/Lab Links 
+## IOE Routine Management System 
 
-- This is Simple Timetable app for managing your everyday online Lecture and online Lab meeting Links - developed using React.js and [Ant-Design](https://ant.design/) Component Library. All data is saved in LocalStorage of your browser.
+- This is IOE Routine Management System for managing your everyday Lectures and Labs in IOE - developed using React.js and [Ant-Design](https://ant.design/) Component Library.
 
-- You can add lecture and Lab Events. It will show Todays Lectures and Labs on main page. You can also edit and delete any lecture/lab event.
+- You can database of teacher, class and groups. You can also edit and delete any lecture/lab classes.
 
-- If you are lazy and if your friend has set all links, you and your friend have same timings and links then you can ask him to give you a copy of his/her data. Then simply paste that data in your app. 
-
-![Screenshots](https://github.com/HemangNakarani/Online-Lecture-Labs-TimeTable/blob/master/src/display.png)
-
-## Development
-
-- Fork the repository, Clone it in your machine.
+## Installation
 
 - You need Node & Yarn to start the development environment. Download them here - [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com).
 
@@ -32,3 +26,7 @@ yarn start
 ```bash
 yarn build
 ```
+
+## Note
+
+- You also need to run the backend along with front end. For that open back-end folder separately and read the redme file.
