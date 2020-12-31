@@ -1,5 +1,5 @@
 
-## IOE Routine Management System 
+## IOE Routine Management System - Frontend
 
 - This is IOE Routine Management System for managing your everyday Lectures and Labs in IOE - developed using React.js and [Ant-Design](https://ant.design/) Component Library.
 
@@ -29,4 +29,4 @@ yarn build
 
 ## Note
 
-- You also need to run the backend along with front end. For that open back-end folder separately and read the redme file.
+- You also need to run the backend along with frontend. For that open backend folder separately and read the readme file.
