@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Router, Link } from "@reach/router";
 // import { withRouter } from 'react-router-dom';
-import "antd/dist/antd.css";
-import axios from "axios";
 import { navigate } from "@reach/router";
 import {
   Modal,
@@ -29,7 +27,9 @@ import {
   PushpinOutlined,
 } from "@ant-design/icons";
 import {} from "antd";
+import axios from "axios";
 import AddClassForm from "../../components/AddClassForm/AddClassForm";
+import "antd/dist/antd.css";
 
 const { Title } = Typography;
 

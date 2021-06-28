@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
+import "./Views.css";
 //import Item from 'antd/lib/list/Item';
 
 const items = [

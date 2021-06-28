@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Anchor, Drawer, Button } from "antd";
+import "./common.css";
 
 const { Link } = Anchor;
 
@@ -18,8 +19,8 @@ function AppHeader() {
     <div className="container-fluid">
       <div className="header">
         <div className="logo" />
-        <a href="https://www.assignmentpoint.com/business/management/routine-management-system-for-department-of-computer-science-and-engineering.html">
-          BE Routine Management
+        <a href="https://localhost:3000/">
+          <h1>BE Routine Management</h1>
         </a>
 
         <div className="mobileHidden">

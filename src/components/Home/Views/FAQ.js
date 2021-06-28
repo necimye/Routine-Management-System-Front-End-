@@ -1,5 +1,6 @@
 import React from "react";
 import { Collapse, Button } from "antd";
+import "./Views.css";
 
 const { Panel } = Collapse;
 

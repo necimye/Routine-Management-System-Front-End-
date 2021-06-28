@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel, Button } from "antd";
+import "./Views.css";
 
 const items = [
   {

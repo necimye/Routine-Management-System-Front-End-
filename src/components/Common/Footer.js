@@ -1,5 +1,6 @@
 import React from "react";
 import { BackTop } from "antd";
+import "./common.css";
 
 function AppFooter() {
   return (
@@ -7,7 +8,7 @@ function AppFooter() {
       <div className="footer">
         <div className="logo">
           <i className="fas fa-bolt"></i>
-          <a href="https://www.google.com">Routine Management</a>
+          <a href="https://localhost:3000/">Routine Management</a>
         </div>
         <ul className="socials">
           <li>

@@ -42,7 +42,7 @@ function App() {
 
   return (
     <Layout>
-      <Sider
+      {/* <Sider
         width="280px"
         breakpoint="lg"
         collapsedWidth="0"
@@ -53,23 +53,23 @@ function App() {
         <h3 className="logo" style={{ textAlign: "center", color: "#fff" }}>
           Department of Electronics and Computer Engineering
           <span role="img" aria-label="daglo"></span>
-        </h3>
-        <Menu
+        </h3> */}
+      {/* <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
           style={{ fontSize: "20px" }}
-        >
-          {/* <Menu.Item key="1" icon={<UserOutlined />}>
+        > */}
+      {/* <Menu.Item key="1" icon={<UserOutlined />}>
             <Link to="/">Lectures</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             <Link to="/labs">Labs</Link>
           </Menu.Item> */}
-          {/* <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
+      {/* <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
             <Link to="/all">All Lectures/Labs</Link>
           </Menu.Item> */}
-          <Menu.Item key="1" icon={<AppstoreAddOutlined />}>
+      {/* <Menu.Item key="1" icon={<AppstoreAddOutlined />}>
             <Link to="/program">Program</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<AppstoreAddOutlined />}>
@@ -80,41 +80,17 @@ function App() {
           </Menu.Item>
           <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
             <Link to="/routine">Routine</Link>
-          </Menu.Item>
-          {/* <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
+          </Menu.Item> */}
+      {/* <Menu.Item key="8" icon={<AppstoreAddOutlined />}>
             <Link to="/addTeacher">Add Teacher</Link>
           </Menu.Item> */}
-          {/* <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
+      {/* <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
             <Link to="/addProgram">Add Program</Link>
           </Menu.Item> */}
-        </Menu>
-      </Sider>
+      {/* </Menu> */}
+      {/* </Sider> */}
       <Layout className="site-layout">
-        <Header
-          className="site-layout-sub-header-background"
-          style={{
-            padding: 0,
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* <AppHeader /> */}
-          <h6 style={{ fontSize: "24px", color: "#fff", marginLeft: "24px" }}>
-            <b>Routine Management</b>
-            <span role="img" aria-label="books">
-              📚
-            </span>
-          </h6>
-          <Link to="/add">
-            <Button
-              style={{ marginRight: "24px", marginTop: "16px" }}
-              type="primary"
-              shape="circle"
-              icon={<PlusOutlined />}
-            />
-          </Link>
-        </Header>
+        <AppHeader />
         <Content
           style={{
             margin: "24px 16px 0",
@@ -125,20 +101,20 @@ function App() {
         >
           <div className="site-layout-background" style={{ padding: 24 }}>
             <Router primary={false}>
-              <AllThings path="/all" />
-              <Program path="/" />
-              <Class path="/class" />
+              <AppHome path="/" />
               <Routine path="/routine" />
-              <LabPage path="/labs" />
-              <AddPage path="/edit" />
-              <AddPage path="/add" />
               <ImpoExpo path="/ie" />
-              <Teacher path="/teacher" />
-              <Program path="/program" />
-              <AddTeacher path="/addTeacher" />
-              <AddProgram path="/addProgram" />
-              <AddClassForm path="/addClass" />
-              <EditProgram path="/editProgram/:id">
+              <AllThings path="/user/admin/all" />
+              <Class path="/user/admin/class" />
+              <LabPage path="/user/admin/labs" />
+              <AddPage path="/user/admin/edit" />
+              <AddPage path="/user/admin/add" />
+              <Teacher path="/user/admin/teacher" />
+              <Program path="/user/admin/program" />
+              <AddTeacher path="/user/admin/addTeacher" />
+              <AddProgram path="/user/admin/addProgram" />
+              <AddClassForm path="/user/admin/addClass" />
+              <EditProgram path="/user/admin/editProgram/:id">
                 {/* {props => (
                 <div>
                   {props.match
@@ -147,14 +123,12 @@ function App() {
                 </div>
               )} */}
               </EditProgram>
-              <EditTeacher path="/editTeacher/:id"></EditTeacher>
-              <EditClass path="/editClass/:id"></EditClass>
+              <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
+              <EditClass path="/user/admin/editClass/:id"></EditClass>
             </Router>
           </div>
         </Content>
-        {/* <Footer>
-          <AppFooter />
-        </Footer> */}
+        <AppFooter />
       </Layout>
     </Layout>
   );
