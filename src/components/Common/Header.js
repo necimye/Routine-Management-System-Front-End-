@@ -30,6 +30,11 @@ function AppHeader() {
             <Link href="#feature" title="Features" />
             <Link href="#faq" title="FAQ" />
             <Link href="#contact" title="Contact" />
+            <div className="btnHolder">
+                  <Button type="primary" size="large">
+                    Login
+                  </Button>
+                </div>
           </Anchor>
         </div>
 
@@ -50,6 +55,11 @@ function AppHeader() {
               <Link href="#feature" title="Features" />
               <Link href="#faq" title="FAQ" />
               <Link href="#contact" title="Contact" />
+              <div className="btnHolder">
+                  <Button type="primary" size="large">
+                    Login
+                  </Button>
+                </div>
             </Anchor>
           </Drawer>
         </div>
