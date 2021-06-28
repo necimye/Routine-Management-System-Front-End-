@@ -9,6 +9,7 @@ import {
   AppstoreAddOutlined,
   SwapOutlined,
 } from "@ant-design/icons";
+
 import LabPage from "./pages/LabPage/LabPage";
 import AddPage from "./pages/AddPage/AddPage";
 import LecturePage from "./pages/LecturePage/LecturePage";
@@ -32,16 +33,18 @@ import ReactGa from "react-ga";
 import "antd/dist/antd.css";
 import "./App.css";
 
-function App() {
-  const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer} = Layout;
 
-  useEffect(() => {
-    ReactGa.initialize("UA-174022278-1");
-    ReactGa.pageview("/");
-  });
+function App() {
+  
+
+  // useEffect(() => {
+  //   ReactGa.initialize("UA-174022278-1");
+  //   ReactGa.pageview("/");
+  // });
 
   return (
-    <Layout>
+    <Layout className = "mainLayout">
       {/* <Sider
         width="280px"
         breakpoint="lg"
@@ -89,15 +92,16 @@ function App() {
           </Menu.Item> */}
       {/* </Menu> */}
       {/* </Sider> */}
-      <Layout className="site-layout">
+      <Header>
         <AppHeader />
+      </Header>
         <Content
-          style={{
-            margin: "24px 16px 0",
-            height: "75vh",
-            overflowY: "scroll",
-            alignContent: "center",
-          }}
+          // style={{
+          //   margin: "24px 16px 0",
+          //   height: "75vh",
+          //   overflowY: "scroll",
+          //   alignContent: "center",
+          // }}
         >
           <div className="site-layout-background" style={{ padding: 24 }}>
             <Router primary={false}>
@@ -127,10 +131,14 @@ function App() {
               <EditClass path="/user/admin/editClass/:id"></EditClass>
             </Router>
           </div>
+         
         </Content>
+        
+      <Footer>
         <AppFooter />
+      </Footer>  
       </Layout>
-    </Layout>
+   
   );
 }
 

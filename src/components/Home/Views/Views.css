@@ -3,8 +3,8 @@ hero
 ---- 
 */
 .heroBlock {
-  /* background: url("../../../assets/images/bg-hero.jpg") no-repeat; */
-  background-position: 50% 100%;
+   background: url("../../../assets/images/campus1.jpeg") no-repeat; 
+  background-position: 50% 50%;
   background-size: cover;
   height: 100vh;
 }
@@ -50,7 +50,7 @@ hero
 
 .heroBlock .btnHolder button,
 .heroBlock .btnHolder .fas {
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 }
 
 /* 
