@@ -38,10 +38,10 @@ const { Header, Content, Footer} = Layout;
 function App() {
   
 
-  // useEffect(() => {
-  //   ReactGa.initialize("UA-174022278-1");
-  //   ReactGa.pageview("/");
-  // });
+  useEffect(() => {
+    ReactGa.initialize("UA-174022278-1");
+    ReactGa.pageview("/");
+  });
 
   return (
     <Layout className = "mainLayout">
@@ -96,13 +96,14 @@ function App() {
         <AppHeader />
       </Header>
         <Content
-          // style={{
-          //   margin: "24px 16px 0",
-          //   height: "75vh",
-          //   overflowY: "scroll",
-          //   alignContent: "center",
-          // }}
+          style={{
+            margin: "24px 16px 0",
+            height: "100vh",
+            overflowY: "scroll",
+            alignContent: "center",
+          }}
         >
+         
           <div className="site-layout-background" style={{ padding: 24 }}>
             <Router primary={false}>
               <AppHome path="/" />
@@ -130,13 +131,12 @@ function App() {
               <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
               <EditClass path="/user/admin/editClass/:id"></EditClass>
             </Router>
-          </div>
-         
-        </Content>
-        
-      <Footer>
+            <Footer>
         <AppFooter />
-      </Footer>  
+      </Footer> 
+          </div>
+          
+        </Content>
       </Layout>
    
   );
