@@ -99,7 +99,7 @@ function App() {
           style={{
             margin: "24px 16px 0",
             height: "100vh",
-            overflowY: "scroll",
+            //overflowY: "scroll",
             alignContent: "center",
           }}
         >
