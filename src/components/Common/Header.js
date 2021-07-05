@@ -20,7 +20,7 @@ function AppHeader() {
       <div className="header">
         <div className="logo" />
         <a href="https://localhost:3000/">
-          <h1>BE Routine Management</h1>
+          <h1 style={{textAlign: 'left'}}>BE Routine Management</h1>
         </a>
 
         <div className="mobileHidden">

@@ -10,6 +10,8 @@ import {
   SwapOutlined,
 } from "@ant-design/icons";
 
+
+import Profile from "./pages/Profile/Profile"
 import LabPage from "./pages/LabPage/LabPage";
 import AddPage from "./pages/AddPage/AddPage";
 import LecturePage from "./pages/LecturePage/LecturePage";
@@ -106,7 +108,7 @@ function App() {
          
           <div className="site-layout-background" style={{ padding: 24 }}>
             <Router primary={false}>
-              <AppHome path="/" />
+              <AppHome exact path="/" />
               <Routine path="/routine" />
               <ImpoExpo path="/ie" />
               <AllThings path="/user/admin/all" />
@@ -130,6 +132,7 @@ function App() {
               </EditProgram>
               <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
               <EditClass path="/user/admin/editClass/:id"></EditClass>
+              <Profile path="/user/profile"></Profile>
             </Router>
             <Footer>
         <AppFooter />

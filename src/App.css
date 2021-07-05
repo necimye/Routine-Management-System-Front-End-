@@ -13,3 +13,8 @@
   [data-theme="dark"] .site-layout-sub-header-background {
     background: #141414;
   }
+
+  .App {
+    text-align: center;
+    display: flex;
+  }
