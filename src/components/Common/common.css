@@ -222,3 +222,29 @@ footer
     display: none;
   }
 }
+
+.btn {
+  background: #42f5e6;
+  background-image: -webkit-linear-gradient(top, #42f5e6, #42c2f5);
+  background-image: -moz-linear-gradient(top, #42f5e6, #42c2f5);
+  background-image: -ms-linear-gradient(top, #42f5e6, #42c2f5);
+  background-image: -o-linear-gradient(top, #42f5e6, #42c2f5);
+  background-image: linear-gradient(to bottom, #42f5e6, #42c2f5);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 2px 3px 0px #f542bc;
+  -moz-box-shadow: 2px 3px 0px #f542bc;
+  box-shadow: 2px 3px 0px #f542bc;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 9px 24px 9px 24px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: #3498db;
+  text-decoration: none;
+}
