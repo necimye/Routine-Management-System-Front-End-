@@ -41,7 +41,6 @@ export class Program extends Component {
   }
 
   intervalID;
-
   componentDidMount() {
     this.getProgramData();
     this.intervalID = setInterval(this.getProgramData.bind(this), 400);
@@ -70,7 +69,7 @@ export class Program extends Component {
       onOk() {
         axios
           .delete(
-            `http://localhost:5000/user/admin/api/program/delete/${record._id}`
+            `http://localhost:5000/user/adminapi/program/delete/${record._id}`
           )
           .then(message.success("Programme Deleted Sucessfully"))
           .then(navigate("/program"));

@@ -41,7 +41,7 @@ function AppHeader() {
 
             <div className="b">
               <Router>
-                <Links to="/login">
+                <Links to="/user/login">
                   <Button className="btn" type="primary" size="large">
                     Login
                   </Button>
