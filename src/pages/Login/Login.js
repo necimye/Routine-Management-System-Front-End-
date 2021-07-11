@@ -1,13 +1,15 @@
-import React, { Component, useState } from "react"
+import React, { useState } from "react"
+import { Redirect } from "@reach/router"
 import axios from "axios"
 import "./Login.css"
 
-function Login() {
+export default function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [loginStatus, setLoginStatus] = useState(false)
 
   axios.defaults.withCredentials = true
+
   function handleUsernameInput(event) {
     setUsername(event.target.value)
   }
@@ -26,9 +28,12 @@ function Login() {
     })
 
     if (res.data) {
+      console.log(res.data)
       setLoginStatus(true)
     }
   }
+
+  if (loginStatus) return <Redirect noThrow={true} to="/user/profile" />
 
   return (
     <div>
@@ -72,5 +77,3 @@ function Login() {
     </div>
   )
 }
-
-export default Login

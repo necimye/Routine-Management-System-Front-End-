@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -15,11 +15,6 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
 })
-
-// function MultipleTable()
-// {
-
-// }
 
 export default function SpanningTable() {
   const classes = useStyles()
@@ -102,7 +97,7 @@ export default function SpanningTable() {
   function loopTeacher(teacherName) {
     let teacherArr = []
     for (let i = 0; i < teacherName.length; i++) {
-      if (i == teacherName.length - 1) {
+      if (i === teacherName.length - 1) {
         teacherArr.push(<>{teacherName[i].shortName}</>)
       } else {
         teacherArr.push(<>{teacherName[i].shortName} + </>)

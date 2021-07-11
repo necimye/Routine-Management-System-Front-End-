@@ -119,18 +119,18 @@ function App() {
             <AddTeacher path="/user/admin/addTeacher" />
             <AddProgram path="/user/admin/addProgram" />
             <AddClassForm path="/user/admin/addClass" />
-            <EditProgram path="/user/admin/editProgram/:id">
-              {/* {props => (
+            <EditProgram path="/user/admin/editProgram/:id"></EditProgram>
+            <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
+            <EditClass path="/user/admin/editClass/:id"></EditClass>
+            <Profile path="/user/profile"></Profile>
+
+            {/* {props => (
                 <div>
                   {props.match
                     ? props.match.id
                     : "No match"}
                 </div>
               )} */}
-            </EditProgram>
-            <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
-            <EditClass path="/user/admin/editClass/:id"></EditClass>
-            <Profile path="/user/profile"></Profile>
           </Router>
           <Footer>
             <AppFooter />
