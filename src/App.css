@@ -1,20 +1,20 @@
 .logo {
-  font-size: medium;
-  margin-top: 1em;
+	font-size: medium;
+	margin-top: 1em;
 }
 
 .site-layout-sub-header-background {
-  background: #fff;
+	background: #fff;
 }
 
 .site-layout-background {
-  background: #fff;
+	background: #fff;
 }
-  [data-theme="dark"] .site-layout-sub-header-background {
-    background: #141414;
-  }
+[data-theme='white'] .site-layout-sub-header-background {
+	background: #e7e3e3;
+}
 
-  .App {
-    text-align: center;
-    display: flex;
-  }
+.App {
+	text-align: center;
+	display: flex;
+}

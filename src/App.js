@@ -107,6 +107,7 @@ function App() {
           <Router primary={false}>
             <AppHome exact path="/" />
             <Login path="/user/login" />
+            <Profile path="/user/profile"></Profile>
             <Routine path="/routine" />
             <ImpoExpo path="/ie" />
             <AllThings path="/user/admin/all" />
@@ -122,7 +123,6 @@ function App() {
             <EditProgram path="/user/admin/editProgram/:id"></EditProgram>
             <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
             <EditClass path="/user/admin/editClass/:id"></EditClass>
-            <Profile path="/user/profile"></Profile>
 
             {/* {props => (
                 <div>
@@ -132,11 +132,11 @@ function App() {
                 </div>
               )} */}
           </Router>
-          <Footer>
-            <AppFooter />
-          </Footer>
         </div>
       </Content>
+      <Footer>
+        <AppFooter />
+      </Footer>
     </Layout>
   );
 }
