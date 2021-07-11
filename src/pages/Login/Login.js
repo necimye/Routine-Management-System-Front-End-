@@ -5,7 +5,9 @@ import "./Login.css"
 function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [loginStatus, setLoginStatus] = useState(false)
 
+  axios.defaults.withCredentials = true
   function handleUsernameInput(event) {
     setUsername(event.target.value)
   }
@@ -16,7 +18,7 @@ function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    let res = await axios({
+    const res = await axios({
       method: "POST",
       data: { username, password },
       withCredentials: true,
@@ -24,7 +26,7 @@ function Login() {
     })
 
     if (res.data) {
-      console.log(username, password)
+      setLoginStatus(true)
     }
   }
 
@@ -34,7 +36,12 @@ function Login() {
         <div className="title">Login</div>
         <form onSubmit={handleSubmit}>
           <div className="field">
-            <input type="text" required onChange={handleUsernameInput} />
+            <input
+              type="text"
+              required
+              onChange={handleUsernameInput}
+              autoFocus
+            />
             <label>Email Address</label>
           </div>
 
