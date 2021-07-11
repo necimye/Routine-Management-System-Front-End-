@@ -23,7 +23,7 @@ function AppHeader() {
         <div className="logo" />
         <Router>
           <Links to="/">
-            <h1 style={{ textAlign: "left" }}>BE Routine Management</h1>
+            <h1 style={{ textAlign: "left", color: "white"}}>BE Routine Management</h1>
           </Links>
         </Router>
         {/* <a href="https://localhost:3000/">
