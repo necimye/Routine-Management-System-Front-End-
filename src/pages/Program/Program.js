@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Router, Link } from '@reach/router';
+import React, { Component } from "react";
+import { Router, Link } from "@reach/router";
 // import { withRouter } from 'react-router-dom';
-import { navigate } from '@reach/router';
+import { navigate } from "@reach/router";
 import {
 	Modal,
 	Table,
@@ -16,7 +16,7 @@ import {
 	Button,
 	Radio,
 	message,
-} from 'antd';
+} from "antd";
 import {
 	ExclamationCircleOutlined,
 	DeleteOutlined,
@@ -25,9 +25,9 @@ import {
 	VideoCameraOutlined,
 	NumberOutlined,
 	PushpinOutlined,
-} from '@ant-design/icons';
-import axios from 'axios';
-import 'antd/dist/antd.css';
+} from "@ant-design/icons";
+import axios from "axios";
+import "antd/dist/antd.css";
 
 const { Title } = Typography;
 
@@ -52,7 +52,7 @@ export class Program extends Component {
 
 	getProgramData = async () => {
 		let res = await axios.get(
-			'http://localhost:5000/user/admin/api/program'
+			"http://localhost:5000/user/admin/api/program"
 		);
 		let data = res.data;
 		console.log(data);
@@ -61,20 +61,20 @@ export class Program extends Component {
 
 	deleteWarning(record) {
 		Modal.confirm({
-			title: 'Are you sure?',
+			title: "Are you sure?",
 			icon: <ExclamationCircleOutlined />,
 			content:
-				'Do you really want to delete these records? This process cannot be undone.',
-			okText: 'Confirm',
-			okType: 'danger primary',
-			cancelText: 'Cancel',
+				"Do you really want to delete these records? This process cannot be undone.",
+			okText: "Confirm",
+			okType: "danger primary",
+			cancelText: "Cancel",
 			onOk() {
 				axios
 					.delete(
 						`http://localhost:5000/user/adminapi/program/delete/${record._id}`
 					)
-					.then(message.success('Programme Deleted Sucessfully'))
-					.then(navigate('/program'));
+					.then(message.success("Programme Deleted Sucessfully"))
+					.then(navigate("/program"));
 			},
 		});
 	}
@@ -83,28 +83,28 @@ export class Program extends Component {
 		const { programData } = this.state;
 		const columns = [
 			{
-				title: 'Program Name',
-				dataIndex: 'programName',
-				key: 'programName',
+				title: "Program Name",
+				dataIndex: "programName",
+				key: "programName",
 			},
 			{
-				title: 'Year',
-				dataIndex: 'year',
-				key: 'year',
+				title: "Year",
+				dataIndex: "year",
+				key: "year",
 			},
 			{
-				title: 'Part',
-				dataIndex: 'part',
-				key: 'part',
+				title: "Part",
+				dataIndex: "part",
+				key: "part",
 			},
 			{
-				title: 'Action',
-				key: 'action',
+				title: "Action",
+				key: "action",
 				render: (text, record) => (
-					<Space size='middle'>
+					<Space size="middle">
 						<Link to={`/editProgram/${record._id}`}>
 							<EditOutlined
-								style={{ fontSize: '22px', color: 'blue' }}
+								style={{ fontSize: "22px", color: "blue" }}
 							/>
 						</Link>
 						<a
@@ -112,7 +112,7 @@ export class Program extends Component {
 								this.deleteWarning(record);
 							}}>
 							<DeleteOutlined
-								style={{ fontSize: '22px', color: 'red' }}
+								style={{ fontSize: "22px", color: "red" }}
 							/>
 						</a>
 					</Space>
@@ -122,11 +122,11 @@ export class Program extends Component {
 
 		return (
 			<div>
-				<Link to='/addProgram'>
-					<Button type='primary'>Add Program</Button>
+				<Link to="/addProgram">
+					<Button type="primary">Add Program</Button>
 				</Link>
-				<Title className='input' level={3}>
-					All Programme{' '}
+				<Title className="input" level={3}>
+					All Programme{" "}
 				</Title>
 				<Table columns={columns} dataSource={programData.data} />
 			</div>

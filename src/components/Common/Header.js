@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Anchor, Drawer, Button } from 'antd';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Link as Links } from 'react-router-dom';
-import './common.css';
+import React, { useState } from "react";
+import { Anchor, Drawer, Button } from "antd";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Link as Links } from "react-router-dom";
+import "./common.css";
 
 const { Link } = Anchor;
 
@@ -18,12 +18,12 @@ function AppHeader() {
 	};
 
 	return (
-		<div className='container-fluid'>
-			<div className='header'>
+		<div className="container-fluid">
+			<div className="header">
 				{/* <div className="logo" /> */}
 				<Router>
-					<Links to='/'>
-						<h1 style={{ textAlign: 'left' }}>
+					<Links to="/">
+						<h1 style={{ textAlign: "left" }}>
 							BE Routine Management
 						</h1>
 					</Links>
@@ -33,21 +33,21 @@ function AppHeader() {
         </a> */}
 
 				{/* <h1 style={{textAlign: 'left'}}>BE Routine Management</h1> */}
-				<div className='mobileHidden'>
-					<Anchor targetOffset='65'>
-						<Link href='#hero' title='Home' />
-						<Link href='#about' title='About' />
-						<Link href='#feature' title='Features' />
-						<Link href='#faq' title='FAQ' />
-						<Link href='#contact' title='Contact' />
+				<div className="mobileHidden">
+					<Anchor targetOffset="65">
+						<Link href="#hero" title="Home" />
+						<Link href="#about" title="About" />
+						<Link href="#feature" title="Features" />
+						<Link href="#faq" title="FAQ" />
+						<Link href="#contact" title="Contact" />
 
-						<div className='b'>
+						<div className="b">
 							<Router>
-								<Links to='/login'>
+								<Links to="/login">
 									<Button
-										className='btn'
-										type='primary'
-										size='large'>
+										className="btn"
+										type="primary"
+										size="large">
 										Login
 									</Button>
 								</Links>
@@ -56,24 +56,24 @@ function AppHeader() {
 					</Anchor>
 				</div>
 
-				<div className='mobileVisible'>
-					<Button type='primary' onClick={showDrawer}>
-						<i class='fas fa-bars'></i>
+				<div className="mobileVisible">
+					<Button type="primary" onClick={showDrawer}>
+						<i class="fas fa-bars"></i>
 					</Button>
 
 					<Drawer
-						placement='right'
+						placement="right"
 						closable={false}
 						onClose={onClose}
 						visible={visible}>
-						<Anchor targetOffset='65'>
-							<Link href='#hero' title='Home' />
-							<Link href='#about' title='About' />
-							<Link href='#feature' title='Features' />
-							<Link href='#faq' title='FAQ' />
-							<Link href='#contact' title='Contact' />
-							<div className='btnHolder'>
-								<Button type='primary' size='large'>
+						<Anchor targetOffset="65">
+							<Link href="#hero" title="Home" />
+							<Link href="#about" title="About" />
+							<Link href="#feature" title="Features" />
+							<Link href="#faq" title="FAQ" />
+							<Link href="#contact" title="Contact" />
+							<div className="btnHolder">
+								<Button type="primary" size="large">
 									Login
 								</Button>
 							</div>

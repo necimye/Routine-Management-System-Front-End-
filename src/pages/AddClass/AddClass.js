@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Router, Link } from '@reach/router';
+import React, { Component } from "react";
+import { Router, Link } from "@reach/router";
 // import { withRouter } from 'react-router-dom';
-import { navigate } from '@reach/router';
+import { navigate } from "@reach/router";
 import {
 	Modal,
 	Table,
@@ -16,7 +16,7 @@ import {
 	Button,
 	Radio,
 	message,
-} from 'antd';
+} from "antd";
 import {
 	ExclamationCircleOutlined,
 	DeleteOutlined,
@@ -25,11 +25,11 @@ import {
 	VideoCameraOutlined,
 	NumberOutlined,
 	PushpinOutlined,
-} from '@ant-design/icons';
-import {} from 'antd';
-import axios from 'axios';
-import AddClassForm from '../../components/AddClassForm/AddClassForm';
-import 'antd/dist/antd.css';
+} from "@ant-design/icons";
+import {} from "antd";
+import axios from "axios";
+import AddClassForm from "../../components/AddClassForm/AddClassForm";
+import "antd/dist/antd.css";
 
 const { Title } = Typography;
 
@@ -63,7 +63,7 @@ export class Class extends Component {
 	}
 
 	getClassData = async () => {
-		let res = await axios.get('http://localhost:5000/user/admin/api/class');
+		let res = await axios.get("http://localhost:5000/user/admin/api/class");
 		let data = res.data;
 		console.log(data);
 		this.setState({ classData: data });
@@ -71,20 +71,20 @@ export class Class extends Component {
 
 	deleteWarning(record) {
 		Modal.confirm({
-			title: 'Are you sure?',
+			title: "Are you sure?",
 			icon: <ExclamationCircleOutlined />,
 			content:
-				'Do you really want to delete these records? This process cannot be undone.',
-			okText: 'Confirm',
-			okType: 'danger primary',
-			cancelText: 'Cancel',
+				"Do you really want to delete these records? This process cannot be undone.",
+			okText: "Confirm",
+			okType: "danger primary",
+			cancelText: "Cancel",
 			onOk() {
 				axios
 					.delete(
 						`http://localhost:5000/user/admin/api/class/delete/${record._id}`
 					)
-					.then(message.success('Class Deleted Sucessfully'))
-					.then(navigate('/class'));
+					.then(message.success("Class Deleted Sucessfully"))
+					.then(navigate("/class"));
 			},
 		});
 	}
@@ -93,69 +93,69 @@ export class Class extends Component {
 		const { classData } = this.state;
 		const columns = [
 			{
-				title: 'Routine For',
-				dataIndex: 'routineFor',
-				key: 'routineFor',
+				title: "Routine For",
+				dataIndex: "routineFor",
+				key: "routineFor",
 				render: (routineFor) => (
 					<>
 						{routineFor
 							? routineFor.programName +
-							  '_' +
+							  "_" +
 							  routineFor.year +
-							  'year_' +
+							  "year_" +
 							  routineFor.part +
-							  'part'
-							: ''}
+							  "part"
+							: ""}
 					</>
 				),
 			},
 			{
-				title: 'Subject Name',
-				dataIndex: 'subjectName',
-				key: 'subjectName',
+				title: "Subject Name",
+				dataIndex: "subjectName",
+				key: "subjectName",
 			},
 			{
-				title: 'Class Code',
-				dataIndex: 'classCode',
-				key: 'classCode',
+				title: "Class Code",
+				dataIndex: "classCode",
+				key: "classCode",
 			},
 			{
-				title: 'Class Group',
-				dataIndex: 'classGroup',
-				key: 'classGroup',
+				title: "Class Group",
+				dataIndex: "classGroup",
+				key: "classGroup",
 			},
 			{
-				title: 'Starting Period',
-				dataIndex: 'startingPeriod',
-				key: 'startingPeriod',
+				title: "Starting Period",
+				dataIndex: "startingPeriod",
+				key: "startingPeriod",
 			},
 			{
-				title: 'No Of Period',
-				dataIndex: 'noOfPeriod',
-				key: 'noOfPeriod',
+				title: "No Of Period",
+				dataIndex: "noOfPeriod",
+				key: "noOfPeriod",
 			},
 			{
-				title: 'Course Code',
-				dataIndex: 'courseCode',
-				key: 'courseCode',
+				title: "Course Code",
+				dataIndex: "courseCode",
+				key: "courseCode",
 			},
 			{
-				title: 'Week Day',
-				dataIndex: 'weekDay',
-				key: 'weekDay',
+				title: "Week Day",
+				dataIndex: "weekDay",
+				key: "weekDay",
 			},
 			{
-				title: 'Action',
-				dataIndex: 'action',
+				title: "Action",
+				dataIndex: "action",
 				render: (text, record) => (
-					<Space size='middle'>
+					<Space size="middle">
 						{/* <Link to={`/editClass/${record._id}`} ><EditOutlined style={{ fontSize: '22px', color: 'blue' }} /></Link> */}
 						<a
 							onClick={() => {
 								this.deleteWarning(record);
 							}}>
 							<DeleteOutlined
-								style={{ fontSize: '22px', color: 'red' }}
+								style={{ fontSize: "22px", color: "red" }}
 							/>
 						</a>
 					</Space>
@@ -165,10 +165,10 @@ export class Class extends Component {
 
 		return (
 			<div>
-				<Link to='/addClass'>
-					<Button type='primary'>Add Class</Button>
+				<Link to="/addClass">
+					<Button type="primary">Add Class</Button>
 				</Link>
-				<Title className='input' level={3}>
+				<Title className="input" level={3}>
 					All Classes
 				</Title>
 				<Table columns={columns} dataSource={classData.data} />
