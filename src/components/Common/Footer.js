@@ -1,7 +1,7 @@
-import React from "react"
-import { BackTop } from "antd"
+import React from "react";
+import { BackTop } from "antd";
 //import "./common.css";
-import "../Common/common.css"
+import "../Common/common.css";
 
 function AppFooter() {
   return (
@@ -28,7 +28,7 @@ function AppFooter() {
         </BackTop>
       </div>
     </div>
-  )
+  );
 }
 
-export default AppFooter
+export default AppFooter;

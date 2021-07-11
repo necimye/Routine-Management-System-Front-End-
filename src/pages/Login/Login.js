@@ -1,39 +1,39 @@
-import React, { useState } from "react"
-import { Redirect } from "@reach/router"
-import axios from "axios"
-import "./Login.css"
+import React, { useState } from "react";
+import { Redirect } from "@reach/router";
+import axios from "axios";
+import "./Login.css";
 
 export default function Login() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [loginStatus, setLoginStatus] = useState(false)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
-  axios.defaults.withCredentials = true
+  axios.defaults.withCredentials = true;
 
   function handleUsernameInput(event) {
-    setUsername(event.target.value)
+    setUsername(event.target.value);
   }
 
   function handlePasswordInput(event) {
-    setPassword(event.target.value)
+    setPassword(event.target.value);
   }
 
   async function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     const res = await axios({
       method: "POST",
       data: { username, password },
       withCredentials: true,
       url: "http://localhost:5000/user/login",
-    })
+    });
 
     if (res.data) {
-      console.log(res.data)
-      setLoginStatus(true)
+      console.log(res.data);
+      setLoginStatus(true);
     }
   }
 
-  if (loginStatus) return <Redirect noThrow={true} to="/user/profile" />
+  if (loginStatus) return <Redirect noThrow={true} to="/user/profile" />;
 
   return (
     <div>
@@ -75,5 +75,5 @@ export default function Login() {
         </form>
       </div>
     </div>
-  )
+  );
 }

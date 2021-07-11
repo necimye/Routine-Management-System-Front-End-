@@ -280,7 +280,7 @@ export class EditClass extends Component {
           >
             <Select
               placeholder="Select a option and change input text above"
-              onChange={(value) => this.setState({ weekDay: value })}
+              onChange={value => this.setState({ weekDay: value })}
               allowClear
             >
               <Option value="sunday">Sunday</Option>

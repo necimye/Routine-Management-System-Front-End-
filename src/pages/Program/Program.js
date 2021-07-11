@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import { Router, Link } from "@reach/router"
+import React, { Component } from "react";
+import { Router, Link } from "@reach/router";
 // import { withRouter } from 'react-router-dom';
-import { navigate } from "@reach/router"
+import { navigate } from "@reach/router";
 import {
   Modal,
   Table,
@@ -16,7 +16,7 @@ import {
   Button,
   Radio,
   message,
-} from "antd"
+} from "antd";
 import {
   ExclamationCircleOutlined,
   DeleteOutlined,
@@ -25,38 +25,38 @@ import {
   VideoCameraOutlined,
   NumberOutlined,
   PushpinOutlined,
-} from "@ant-design/icons"
-import axios from "axios"
-import "antd/dist/antd.css"
+} from "@ant-design/icons";
+import axios from "axios";
+import "antd/dist/antd.css";
 
-const { Title } = Typography
+const { Title } = Typography;
 
 export class Program extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       programData: {},
-    }
+    };
   }
 
-  intervalID
+  intervalID;
 
   componentDidMount() {
-    this.getProgramData()
-    this.intervalID = setInterval(this.getProgramData.bind(this), 400)
+    this.getProgramData();
+    this.intervalID = setInterval(this.getProgramData.bind(this), 400);
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalID)
+    clearInterval(this.intervalID);
   }
 
   getProgramData = async () => {
-    let res = await axios.get("http://localhost:5000/user/admin/api/program")
-    let data = res.data
-    console.log(data)
-    this.setState({ programData: data })
-  }
+    let res = await axios.get("http://localhost:5000/user/admin/api/program");
+    let data = res.data;
+    console.log(data);
+    this.setState({ programData: data });
+  };
 
   deleteWarning(record) {
     Modal.confirm({
@@ -73,13 +73,13 @@ export class Program extends Component {
             `http://localhost:5000/user/admin/api/program/delete/${record._id}`
           )
           .then(message.success("Programme Deleted Sucessfully"))
-          .then(navigate("/program"))
+          .then(navigate("/program"));
       },
-    })
+    });
   }
 
   render() {
-    const { programData } = this.state
+    const { programData } = this.state;
     const columns = [
       {
         title: "Program Name",
@@ -106,7 +106,7 @@ export class Program extends Component {
             </Link>
             <a
               onClick={() => {
-                this.deleteWarning(record)
+                this.deleteWarning(record);
               }}
             >
               <DeleteOutlined style={{ fontSize: "22px", color: "red" }} />
@@ -114,7 +114,7 @@ export class Program extends Component {
           </Space>
         ),
       },
-    ]
+    ];
 
     return (
       <div>
@@ -126,8 +126,8 @@ export class Program extends Component {
         </Title>
         <Table columns={columns} dataSource={programData.data} />
       </div>
-    )
+    );
   }
 }
 
-export default Program
+export default Program;

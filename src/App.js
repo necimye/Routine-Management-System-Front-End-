@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
-import { Router, Link } from "@reach/router"
-import { Layout, Menu, Button } from "antd"
+import React, { useEffect } from "react";
+import { Router, Link } from "@reach/router";
+import { Layout, Menu, Button } from "antd";
 import {
   UserOutlined,
   VideoCameraOutlined,
@@ -8,40 +8,40 @@ import {
   GithubFilled,
   AppstoreAddOutlined,
   SwapOutlined,
-} from "@ant-design/icons"
+} from "@ant-design/icons";
 
-import Login from "./pages/Login/Login"
-import Profile from "./pages/Profile/Profile"
-import LabPage from "./pages/LabPage/LabPage"
-import AddPage from "./pages/AddPage/AddPage"
-import LecturePage from "./pages/LecturePage/LecturePage"
-import AllThings from "./pages/AllThings/AllThings"
-import ImpoExpo from "./pages/ImpoExpo/ImpoExpo"
+import Login from "./pages/Login/Login";
+import Profile from "./pages/Profile/Profile";
+import LabPage from "./pages/LabPage/LabPage";
+import AddPage from "./pages/AddPage/AddPage";
+import LecturePage from "./pages/LecturePage/LecturePage";
+import AllThings from "./pages/AllThings/AllThings";
+import ImpoExpo from "./pages/ImpoExpo/ImpoExpo";
 // import AddClass from './pages/AddClass/AddClass';
-import Class from "./pages/AddClass/AddClass"
-import AppHeader from "./components/Common/Header"
-import AppFooter from "./components/Common/Footer"
-import AppHome from "./components/Home/Home"
-import AddClassForm from "./components/AddClassForm/AddClassForm"
-import Routine from "./pages/Routine/Routine"
-import AddTeacher from "./components/AddTeacher/AddTeacher"
-import AddProgram from "./components/AddProgram/AddProgram"
-import EditProgram from "./components/EditProgram/EditProgram"
-import EditTeacher from "./components/EditTeacher/EditTeacher"
-import EditClass from "./components/EditClass/EditClass"
-import Program from "./pages/Program/Program"
-import Teacher from "./pages/Teacher/Teacher"
-import ReactGa from "react-ga"
-import "antd/dist/antd.css"
-import "./App.css"
+import Class from "./pages/AddClass/AddClass";
+import AppHeader from "./components/Common/Header";
+import AppFooter from "./components/Common/Footer";
+import AppHome from "./components/Home/Home";
+import AddClassForm from "./components/AddClassForm/AddClassForm";
+import Routine from "./pages/Routine/Routine";
+import AddTeacher from "./components/AddTeacher/AddTeacher";
+import AddProgram from "./components/AddProgram/AddProgram";
+import EditProgram from "./components/EditProgram/EditProgram";
+import EditTeacher from "./components/EditTeacher/EditTeacher";
+import EditClass from "./components/EditClass/EditClass";
+import Program from "./pages/Program/Program";
+import Teacher from "./pages/Teacher/Teacher";
+import ReactGa from "react-ga";
+import "antd/dist/antd.css";
+import "./App.css";
 
-const { Header, Content, Footer } = Layout
+const { Header, Content, Footer } = Layout;
 
 function App() {
   useEffect(() => {
-    ReactGa.initialize("UA-174022278-1")
-    ReactGa.pageview("/")
-  })
+    ReactGa.initialize("UA-174022278-1");
+    ReactGa.pageview("/");
+  });
 
   return (
     <Layout className="mainLayout">
@@ -138,7 +138,7 @@ function App() {
         </div>
       </Content>
     </Layout>
-  )
+  );
 }
 
-export default App
+export default App;

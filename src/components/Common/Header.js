@@ -1,21 +1,21 @@
-import React, { useState } from "react"
-import { Anchor, Drawer, Button } from "antd"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { Link as Links } from "react-router-dom"
-import "./common.css"
+import React, { useState } from "react";
+import { Anchor, Drawer, Button } from "antd";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Link as Links } from "react-router-dom";
+import "./common.css";
 
-const { Link } = Anchor
+const { Link } = Anchor;
 
 function AppHeader() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
-    setVisible(true)
-  }
+    setVisible(true);
+  };
 
   const onClose = () => {
-    setVisible(false)
-  }
+    setVisible(false);
+  };
 
   return (
     <div className="container-fluid">
@@ -78,7 +78,7 @@ function AppHeader() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default AppHeader
+export default AppHeader;

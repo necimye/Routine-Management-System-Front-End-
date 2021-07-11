@@ -1,55 +1,55 @@
-import React, { useEffect, useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableContainer from "@material-ui/core/TableContainer"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-import axios from "axios"
-import "./Routine.css"
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import axios from "axios";
+import "./Routine.css";
 
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-})
+});
 
 export default function SpanningTable() {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const [routine, setRoutine] = useState()
-  const datae = {}
+  const [routine, setRoutine] = useState();
+  const datae = {};
 
   useEffect(async () => {
-    let res = await axios.get("http://localhost:5000/api/class")
-    let data = res.data
+    let res = await axios.get("http://localhost:5000/api/class");
+    let data = res.data;
 
     if (data) {
       data.data.map((item, index) => {
         if (!datae[item.routineFor.programName]) {
-          datae[item.routineFor.programName] = {}
+          datae[item.routineFor.programName] = {};
         }
         if (!datae[item.routineFor.programName][item.weekDay]) {
-          datae[item.routineFor.programName][item.weekDay] = {}
+          datae[item.routineFor.programName][item.weekDay] = {};
         }
         if (
           !datae[item.routineFor.programName][item.weekDay][item.startingPeriod]
         ) {
           datae[item.routineFor.programName][item.weekDay][
             item.startingPeriod
-          ] = {}
+          ] = {};
         }
         datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
-          {}
+          {};
         datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
-          item
-      })
+          item;
+      });
     }
 
-    setRoutine(datae)
-  }, [])
+    setRoutine(datae);
+  }, []);
 
   // const dum = {
   //   sunday: [1, 2, 3, 4, 5, 6, 7, 8],
@@ -60,11 +60,11 @@ export default function SpanningTable() {
   //   friday: [1, 2, 3, 4, 5, 6, 7, 8],
   // };
   // console.log(dum);
-  let dummy = {}
+  let dummy = {};
 
   if (routine) {
     for (var name in routine) {
-      dummy[name] = {}
+      dummy[name] = {};
       dummy[name] = {
         sunday: [1, 2, 3, 4, 5, 6, 7, 8],
         monday: [1, 2, 3, 4, 5, 6, 7, 8],
@@ -72,8 +72,8 @@ export default function SpanningTable() {
         wednesday: [1, 2, 3, 4, 5, 6, 7, 8],
         thursday: [1, 2, 3, 4, 5, 6, 7, 8],
         friday: [1, 2, 3, 4, 5, 6, 7, 8],
-      }
-      console.log(dummy)
+      };
+      console.log(dummy);
       for (var val in routine[name]) {
         for (var start in routine[name][val]) {
           for (
@@ -83,7 +83,7 @@ export default function SpanningTable() {
             i++
           ) {
             // console.log(dummy);
-            delete dummy[name][val][dummy[name][val].indexOf(i)]
+            delete dummy[name][val][dummy[name][val].indexOf(i)];
             // ind.push(dummy[name][val].indexOf(i));
           }
         }
@@ -95,15 +95,15 @@ export default function SpanningTable() {
 
   //to loop through multiple teachers name
   function loopTeacher(teacherName) {
-    let teacherArr = []
+    let teacherArr = [];
     for (let i = 0; i < teacherName.length; i++) {
       if (i === teacherName.length - 1) {
-        teacherArr.push(<>{teacherName[i].shortName}</>)
+        teacherArr.push(<>{teacherName[i].shortName}</>);
       } else {
-        teacherArr.push(<>{teacherName[i].shortName} + </>)
+        teacherArr.push(<>{teacherName[i].shortName} + </>);
       }
     }
-    return teacherArr
+    return teacherArr;
   }
 
   return (
@@ -184,7 +184,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -216,7 +216,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -248,7 +248,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -280,7 +280,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -312,7 +312,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -344,7 +344,7 @@ export default function SpanningTable() {
                                   className="border"
                                   colSpan={1}
                                 ></TableCell>
-                              )
+                              );
                             })
                           : ""}
                       </TableRow>
@@ -352,9 +352,9 @@ export default function SpanningTable() {
                   </Table>
                 </TableContainer>
               </div>
-            )
+            );
           })
         : ""}
     </div>
-  )
+  );
 }
