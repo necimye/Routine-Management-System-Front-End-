@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import {
-	Form,
-	Select,
-	Card,
-	InputNumber,
-	Input,
-	Typography,
-	Button,
-	message,
-	TimePicker,
-	Menu,
-	Dropdown,
-	Radio,
+  Form,
+  Select,
+  Card,
+  InputNumber,
+  Input,
+  Typography,
+  Button,
+  message,
+  TimePicker,
+  Menu,
+  Dropdown,
+  Radio,
 } from "antd";
 import {
-	UserOutlined,
-	VideoCameraOutlined,
-	NumberOutlined,
-	PushpinOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  NumberOutlined,
+  PushpinOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
 import "antd/dist/antd.css";
@@ -26,110 +26,112 @@ import "antd/dist/antd.css";
 const { Option } = Select;
 
 const layout = {
-	labelCol: {
-		span: 6,
-	},
-	wrapperCol: {
-		span: 16,
-	},
+  labelCol: {
+    span: 6,
+  },
+  wrapperCol: {
+    span: 16,
+  },
 };
 const tailLayout = {
-	wrapperCol: {
-		offset: 8,
-		span: 16,
-	},
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
 };
 const { Title } = Typography;
 
 export class EditClass extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			teacherData: "",
-			programData: "",
-			routineFor: "",
-			subjectName: "",
-			teacherName: [""],
-			classCode: "",
-			classGroup: "",
-			startingPeriod: "1",
-			noOfPeriod: "",
-			courseCode: "",
-			link1: "",
-			weekDay: "",
-		};
-	}
-	componentDidMount() {
-		this.getClassData();
-	}
+    this.state = {
+      teacherData: "",
+      programData: "",
+      routineFor: "",
+      subjectName: "",
+      teacherName: [""],
+      classCode: "",
+      classGroup: "",
+      startingPeriod: "1",
+      noOfPeriod: "",
+      courseCode: "",
+      link1: "",
+      weekDay: "",
+    };
+  }
+  componentDidMount() {
+    this.getClassData();
+  }
 
-	getClassData = async () => {
-		let res = await axios.get(
-			`http://localhost:5000/user/admin/api/class/${this.props.id}`
-		);
-		let data = res.data.data;
-		//cosole.log(data);
-		this.setState({
-			teacherData: data.teacherData,
-			programData: data.programData,
-			routineFor: data.routineFor,
-			subjectName: data.subjectName,
-			teacherName: data.teacherName,
-			classCode: data.classCode,
-			classGroup: data.classGroup,
-			startingPeriod: data.startingPeriod,
-			noOfPeriod: data.noOfPeriod,
-			courseCode: data.courseCode,
-			link1: data.link1,
-			weekDay: data.weekDay,
-		});
-	};
+  getClassData = async () => {
+    let res = await axios.get(
+      `http://localhost:5000/user/admin/api/class/${this.props.id}`
+    );
+    let data = res.data.data;
+    //cosole.log(data);
+    this.setState({
+      teacherData: data.teacherData,
+      programData: data.programData,
+      routineFor: data.routineFor,
+      subjectName: data.subjectName,
+      teacherName: data.teacherName,
+      classCode: data.classCode,
+      classGroup: data.classGroup,
+      startingPeriod: data.startingPeriod,
+      noOfPeriod: data.noOfPeriod,
+      courseCode: data.courseCode,
+      link1: data.link1,
+      weekDay: data.weekDay,
+    });
+  };
 
-	render() {
-		console.log(this.props.id);
-		const paramsid = this.props.id;
-		const {
-			programData,
-			teacherData,
-			routineFor,
-			subjectName,
-			teacherName,
-			classCode,
-			classGroup,
-			startingPeriod,
-			noOfPeriod,
-			courseCode,
-			link1,
-			weekDay,
-		} = this.state;
-		console.log(
-			programData,
-			teacherData,
-			routineFor,
-			subjectName,
-			teacherName,
-			classCode,
-			classGroup,
-			startingPeriod,
-			noOfPeriod,
-			courseCode,
-			link1,
-			weekDay
-		);
-		return (
-			<Card
-				className="card"
-				style={{ backgroundColor: "#F3F1FF", margin: "12px" }}>
-				<Title className="input" level={3}>
-					Add/Edit Class
-				</Title>
-				<Form
-					{...layout}
-					ref={this.formRef}
-					name="control-ref"
-					onFinish={this.onFinish}>
-					{/* <Form.Item
+  render() {
+    console.log(this.props.id);
+    const paramsid = this.props.id;
+    const {
+      programData,
+      teacherData,
+      routineFor,
+      subjectName,
+      teacherName,
+      classCode,
+      classGroup,
+      startingPeriod,
+      noOfPeriod,
+      courseCode,
+      link1,
+      weekDay,
+    } = this.state;
+    console.log(
+      programData,
+      teacherData,
+      routineFor,
+      subjectName,
+      teacherName,
+      classCode,
+      classGroup,
+      startingPeriod,
+      noOfPeriod,
+      courseCode,
+      link1,
+      weekDay
+    );
+    return (
+      <Card
+        className="card"
+        style={{ backgroundColor: "#F3F1FF", margin: "12px" }}
+      >
+        <Title className="input" level={3}>
+          Add/Edit Class
+        </Title>
+        <Form
+          {...layout}
+          ref={this.formRef}
+          name="control-ref"
+          onFinish={this.onFinish}
+        >
+          {/* <Form.Item
                         name="routineFor"
                         label="Routine For"
                         rules={[
@@ -152,19 +154,20 @@ export class EditClass extends Component {
                         </Select>
                     </Form.Item> */}
 
-					<Form.Item
-						name="subjectName"
-						label="Subject Name"
-						rules={[
-							{
-								required: true,
-								message: "Please enter Subject Name",
-							},
-						]}>
-						<Input value={subjectName} />
-					</Form.Item>
+          <Form.Item
+            name="subjectName"
+            label="Subject Name"
+            rules={[
+              {
+                required: true,
+                message: "Please enter Subject Name",
+              },
+            ]}
+          >
+            <Input value={subjectName} />
+          </Form.Item>
 
-					{/* <Form.Item
+          {/* <Form.Item
                         name="teacherName"
                         label="Select Teachers"
                         rules={[
@@ -183,121 +186,124 @@ export class EditClass extends Component {
                         </Select>
                     </Form.Item> */}
 
-					<Form.Item
-						name="classCode"
-						label="Class Code"
-						rules={[
-							{
-								required: false,
-								message: "Please enter Class Code",
-							},
-						]}>
-						<Input />
-					</Form.Item>
+          <Form.Item
+            name="classCode"
+            label="Class Code"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Class Code",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-					<Form.Item
-						name="classGroup"
-						label="Class Group"
-						rules={[
-							{
-								required: false,
-								message: "Please enter Class Group",
-							},
-						]}>
-						<Input />
-					</Form.Item>
+          <Form.Item
+            name="classGroup"
+            label="Class Group"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Class Group",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-					<Form.Item label="Starting Period">
-						<Form.Item
-							name="startingPeriod"
-							rules={[
-								{
-									required: true,
-									message: "Please enter Starting Period",
-								},
-							]}
-							noStyle>
-							<InputNumber
-								value={startingPeriod}
-								min={1}
-								max={8}
-							/>
-						</Form.Item>
-					</Form.Item>
+          <Form.Item label="Starting Period">
+            <Form.Item
+              name="startingPeriod"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter Starting Period",
+                },
+              ]}
+              noStyle
+            >
+              <InputNumber value={startingPeriod} min={1} max={8} />
+            </Form.Item>
+          </Form.Item>
 
-					<Form.Item label="No Of Periods">
-						<Form.Item
-							name="noOfPeriod"
-							rules={[
-								{
-									required: true,
-									message: "Please enter No Of Periods",
-								},
-							]}
-							noStyle>
-							<InputNumber min={1} max={8} />
-						</Form.Item>
-					</Form.Item>
+          <Form.Item label="No Of Periods">
+            <Form.Item
+              name="noOfPeriod"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter No Of Periods",
+                },
+              ]}
+              noStyle
+            >
+              <InputNumber min={1} max={8} />
+            </Form.Item>
+          </Form.Item>
 
-					<Form.Item
-						name="courseCode"
-						label="Course Code"
-						rules={[
-							{
-								required: false,
-								message: "Please enter Course Code",
-							},
-						]}>
-						<Input />
-					</Form.Item>
+          <Form.Item
+            name="courseCode"
+            label="Course Code"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Course Code",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-					<Form.Item
-						name="link1"
-						label="Class Link"
-						rules={[
-							{
-								required: false,
-								message: "Please enter Class Link",
-							},
-						]}>
-						<Input />
-					</Form.Item>
+          <Form.Item
+            name="link1"
+            label="Class Link"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Class Link",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-					<Form.Item
-						name="weekDay"
-						label="Week Day"
-						rules={[
-							{
-								required: true,
-								message: "Please select a Week Day",
-							},
-						]}>
-						<Select
-							placeholder="Select a option and change input text above"
-							onChange={(value) =>
-								this.setState({ weekDay: value })
-							}
-							allowClear>
-							<Option value="sunday">Sunday</Option>
-							<Option value="monday">Monday</Option>
-							<Option value="tuesday">Tuesday</Option>
-							<Option value="wednesday">Wednesday</Option>
-							<Option value="thursday">Thursday</Option>
-							<Option value="friday">Friday</Option>
-						</Select>
-					</Form.Item>
-					<Form.Item {...tailLayout}>
-						<Button
-							type="primary"
-							style={{ backgroundColor: "#141414" }}
-							htmlType="submit">
-							Submit
-						</Button>
-					</Form.Item>
-				</Form>
-			</Card>
-		);
-	}
+          <Form.Item
+            name="weekDay"
+            label="Week Day"
+            rules={[
+              {
+                required: true,
+                message: "Please select a Week Day",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select a option and change input text above"
+              onChange={value => this.setState({ weekDay: value })}
+              allowClear
+            >
+              <Option value="sunday">Sunday</Option>
+              <Option value="monday">Monday</Option>
+              <Option value="tuesday">Tuesday</Option>
+              <Option value="wednesday">Wednesday</Option>
+              <Option value="thursday">Thursday</Option>
+              <Option value="friday">Friday</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button
+              type="primary"
+              style={{ backgroundColor: "#141414" }}
+              htmlType="submit"
+            >
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    );
+  }
 }
 
 export default EditClass;
