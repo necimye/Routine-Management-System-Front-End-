@@ -23,9 +23,7 @@ function AppHeader() {
 				{/* <div className="logo" /> */}
 				<Router>
 					<Links to="/">
-						<h1 style={{ textAlign: "left" }}>
-							BE Routine Management
-						</h1>
+						<h1 style={{ textAlign: "left" }}>BE Routine Management</h1>
 					</Links>
 				</Router>
 				{/* <a href="https://localhost:3000/">
@@ -44,10 +42,7 @@ function AppHeader() {
 						<div className="b">
 							<Router>
 								<Links to="/login">
-									<Button
-										className="btn"
-										type="primary"
-										size="large">
+									<Button className="btn" type="primary" size="large">
 										Login
 									</Button>
 								</Links>
