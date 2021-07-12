@@ -9,6 +9,7 @@ export default function Login() {
   const [loginStatus, setLoginStatus] = useState(false);
 
   axios.defaults.withCredentials = true;
+  // axios.defaults.headers.common["x-auth-token"];
 
   function handleUsernameInput(event) {
     setUsername(event.target.value);
@@ -20,20 +21,20 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const res = await axios({
+    const { data: user } = await axios({
       method: "POST",
       data: { username, password },
       withCredentials: true,
       url: "http://localhost:5000/user/login",
     });
 
-    if (res.data) {
-      console.log(res.data);
+    if (user) {
+      console.log(user.username);
+      localStorage.setItem("user", user.username);
       setLoginStatus(true);
+      window.location = "/user/profile";
     }
   }
-
-  if (loginStatus) return <Redirect noThrow={true} to="/user/profile" />;
 
   return (
     <div>

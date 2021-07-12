@@ -23,7 +23,7 @@ export default function SpanningTable() {
   const datae = {};
 
   useEffect(async () => {
-    let res = await axios.get("http://localhost:5000/user/admin/api/class");
+    let res = await axios.get("http://localhost:5000/api/class");
     let data = res.data;
 
     if (data) {
