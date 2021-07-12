@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Anchor, Drawer, Button } from "antd";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link as Links } from "react-router-dom";
+import { UserContext } from "../Contexts/UserContext";
 import "./common.css";
 
 const { Link } = Anchor;
 
 function AppHeader() {
   const [visible, setVisible] = useState(false);
+  const { user } = useContext(UserContext);
 
   const showDrawer = () => {
     setVisible(true);
@@ -17,13 +19,19 @@ function AppHeader() {
     setVisible(false);
   };
 
+  useEffect(() => {
+    console.log("context-user is", user);
+  }, [user]);
+
   return (
     <div className="container-fluid">
       <div className="header">
         <div className="logo" />
         <Router>
           <Links to="/">
-            <h1 style={{ textAlign: "left", color: "white"}}>BE Routine Management</h1>
+            <h1 style={{ textAlign: "left", color: "white" }}>
+              BE Routine Management
+            </h1>
           </Links>
         </Router>
         {/* <a href="https://localhost:3000/">
@@ -69,9 +77,15 @@ function AppHeader() {
               <Link href="#faq" title="FAQ" />
               <Link href="#contact" title="Contact" />
               <div className="btnHolder">
-                <Button type="primary" size="large">
-                  Login
-                </Button>
+                {user ? (
+                  <Button type="primary" size="large">
+                    Login
+                  </Button>
+                ) : (
+                  <Button type="primary" size="large">
+                    Logout
+                  </Button>
+                )}
               </div>
             </Anchor>
           </Drawer>

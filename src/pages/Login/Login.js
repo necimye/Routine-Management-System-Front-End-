@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { Redirect } from "@reach/router";
+import React, { useState, useContext } from "react";
+// import { Redirect } from "@reach/router";
 import axios from "axios";
+import { UserContext } from "../../components/Contexts/UserContext";
 import "./Login.css";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [username, setUsername] = useState("");
+  const { user, setUser } = useContext(UserContext);
 
   axios.defaults.withCredentials = true;
   // axios.defaults.headers.common["x-auth-token"];
@@ -21,17 +22,18 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const { data: user } = await axios({
+    const { data: userData } = await axios({
       method: "POST",
       data: { username, password },
       withCredentials: true,
       url: "http://localhost:5000/user/login",
     });
 
-    if (user) {
-      console.log(user.username);
-      localStorage.setItem("user", user.username);
-      setLoginStatus(true);
+    if (userData) {
+      console.log(userData.username);
+      localStorage.setItem("user", userData.username);
+      setUser(userData.username);
+      console.log("context user: ", user);
       window.location = "/user/profile";
     }
   }
