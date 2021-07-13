@@ -9,9 +9,9 @@ header
 }
 
 .ant-layout-header {
-	/* position: relative; */
-  position:absolute;
-  position: fixed;
+	position: fixed;
+	/* position: absolute; */
+	/* position: fixed; */
 	/*  */
 	left: 0;
 	right: 0;
@@ -29,7 +29,7 @@ header
 	font-size: 22px;
 	text-transform: uppercase;
 	font-weight: 400;
-  color: rgb(250, 239, 239);
+	color: rgb(250, 239, 239);
 }
 
 .header .logo .fas {
@@ -40,7 +40,7 @@ header
 
 .header .logo a {
 	/* color: #333; */
-  color: white;
+	color: white;
 }
 
 .header .ant-anchor-wrapper {
@@ -59,14 +59,14 @@ header
 	padding: 0 20px;
 	line-height: 1.4;
 	position: relative;
-  color: rgba(238, 232, 232, 0.603);
+	color: rgba(238, 232, 232, 0.603);
 }
 
 .header .ant-anchor-link:before,
 .header .ant-anchor-link:after {
-	content: '';
+	content: "";
 	/* background: #187cff; */
-  background-color: coral;
+	background-color: coral;
 	width: 1px;
 	position: absolute;
 	top: 2px;
@@ -81,7 +81,7 @@ header
 	right: 30%;
 }
 .ant-anchor-link-title {
-  color:white;
+	color: white;
 }
 .header .ant-anchor-link.ant-anchor-link-active:before,
 .header .ant-anchor-link:hover:before {
@@ -105,7 +105,7 @@ header
 .header .ant-menu li.ant-menu-item {
 	position: relative;
 	/* color: #333; */
-  color: white;
+	color: white;
 }
 
 .header .ant-menu li.ant-menu-item:before {
@@ -113,7 +113,7 @@ header
 	color: #fff;
 }
 .header .ant-menu li.ant-menu-item:after {
-	content: '';
+	content: "";
 	width: 1px;
 	position: absolute;
 	top: 2px;
@@ -152,25 +152,22 @@ header
 	opacity: 1;
 }
 
-
 /* 
 footer
 ------
 */
 .ant-layout-footer {
-  margin-top: 2399px;
-  display: block;
+	margin-top: 2399px;
+	display: block;
 	/* background: linear-gradient(-135deg, #1b4070, #0c1c49); */
-  background-color: rgb(109, 102, 102);
+	background-color: rgb(109, 102, 102);
 	color: #fff !important;
 	padding: 60px 0 !important;
 	text-align: center;
 	/* position: relative; */
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-
-
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
 }
 
 .footer .logo {
@@ -181,7 +178,7 @@ footer
 
 .footer .fas {
 	/* color: #1890ff; */
-  color: white;
+	color: white;
 	font-size: 28px;
 	margin: 0 5px 0 0;
 }
@@ -205,15 +202,6 @@ footer
 
 .footer .socials a {
 	color: #fff;
-}
-
-.footer .socials a:hover {
-	/* color: #1890ff; */
-  background-color: rgb(141, 130, 130);
-}
-
-.footer .goTop:hover {
-	opacity: 0.7;
 }
 
 .mobileVisible {
@@ -249,7 +237,7 @@ footer
 }
 
 .btn {
-  background-color: rgb(28, 159, 211);
+	background-color: rgb(28, 159, 211);
 	/* background-image: -webkit-linear-gradient(top, #42f5e6, #42c2f5);
   background-image: -moz-linear-gradient(top, #42f5e6, #42c2f5);
   background-image: -ms-linear-gradient(top, #42f5e6, #42c2f5);
@@ -267,18 +255,16 @@ footer
 	padding: 9px 24px 9px 24px;
 	text-decoration: none;
 	position: -ms-page;
-  margin-bottom: 9px;
+	margin-bottom: 9px;
 }
 
 .btn:hover {
 	cursor: pointer;
 	/* background: #3498db; */
-  background-color: coral;
+	background-color: rgb(197, 21, 21);
 	text-decoration: none;
 }
 
 .container-fluid {
-  display: block;
+	display: block;
 }
-
-
