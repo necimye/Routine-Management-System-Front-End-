@@ -1,9 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+	Component,
+	StrictMode,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import { Anchor, Drawer, Button } from "antd";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link as Links } from "react-router-dom";
 import { UserContext } from "../Contexts/UserContext";
 import "./common.css";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const { Link } = Anchor;
 
@@ -21,7 +28,7 @@ function AppHeader() {
 
 	useEffect(() => {
 		console.log("context-user is", user);
-	}, [user]);
+	}, [useState]);
 
 	return (
 		<div className="container-fluid">
@@ -53,13 +60,14 @@ function AppHeader() {
 									<Button className="btn" type="primary" size="large">
 										Login
 									</Button>
+									<h1></h1>
 								</Links>
 							</Router>
 						</div>
 					</Anchor>
 				</div>
 
-				<div className="mobileVisible">
+				{/* <div className="mobileVisible">
 					<Button type="primary" onClick={showDrawer}>
 						<i className="fas fa-bars"></i>
 					</Button>
@@ -88,7 +96,7 @@ function AppHeader() {
 							</div>
 						</Anchor>
 					</Drawer>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
