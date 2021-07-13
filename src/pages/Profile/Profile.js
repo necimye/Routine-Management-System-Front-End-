@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
 
-import profilePhoto from "./child.jpg";
+import profilePhoto from "./BibhaSthapit.jpg";
 
 function ProfileCard() {
   const { user } = useContext(UserContext);
@@ -19,14 +19,11 @@ function ProfileCard() {
       </div>
 
       <div className="description-part">
-        <h2>
-          <font color="#ff0000" /> SRJ
-        </h2>
-        <br></br>
         <h1>
           <font color="#ff0000" />
           Name
         </h1>
+        <h1>Bibha Sthapit</h1>
         <h1>{username}</h1>
       </div>
     </div>
