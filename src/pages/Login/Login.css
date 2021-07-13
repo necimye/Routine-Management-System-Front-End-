@@ -13,9 +13,11 @@ body {
 	height: 500%;
 	width: 500%;
 	place-items: inherit;
+
 	/* background: #097c63 ;
     /* background: url("bgrnd.jpg"); */
 	/* height: 500; */
+
 	background-repeat: no-repeat;
 	background-size: cover;
 	background: linear-gradient(-135deg, #1b4070, #0c1c49);
@@ -31,7 +33,8 @@ body {
 	font-family: cursive;
 	margin-left: 481px;
 	width: 380px;
-	margin-top: 20px;
+	/* height: 1000px; */
+	margin-top: 200px;
 	margin-bottom: 20px;
 	background: rgb(203, 207, 207);
 	border-radius: 10px;
