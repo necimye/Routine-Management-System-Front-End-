@@ -7,55 +7,43 @@ import "./common.css";
 const { Link } = Anchor;
 
 function AppHeader() {
-  const [visible, setVisible] = useState(false);
+	const [visible, setVisible] = useState(false);
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+	const showDrawer = () => {
+		setVisible(true);
+	};
 
-  const onClose = () => {
-    setVisible(false);
-  };
+	const onClose = () => {
+		setVisible(false);
+	};
 
-<<<<<<< HEAD
 	return (
 		<div className="container-fluid">
 			<div className="header">
-				{/* <div className="logo" /> */}
+				<div className="logo" />
 				<Router>
 					<Links to="/">
-						<h1 style={{ textAlign: "left" }}>BE Routine Management</h1>
+						<h1 style={{ textAlign: "left", color: "white" }}>
+							BE Routine Management
+						</h1>
 					</Links>
 				</Router>
 				{/* <a href="https://localhost:3000/">
-=======
-  return (
-    <div className="container-fluid">
-      <div className="header">
-        <div className="logo" />
-        <Router>
-          <Links to="/">
-            <h1 style={{ textAlign: "left", color: "white"}}>BE Routine Management</h1>
-          </Links>
-        </Router>
-        {/* <a href="https://localhost:3000/">
->>>>>>> 03e0e1c489607f4bd51deeed1b6276807ee4f42a
           
         </a> */}
 
-        {/* <h1 style={{textAlign: 'left'}}>BE Routine Management</h1> */}
-        <div className="mobileHidden">
-          <Anchor targetOffset="65">
-            <Link href="#hero" title="Home" />
-            <Link href="#about" title="About" />
-            <Link href="#feature" title="Features" />
-            <Link href="#faq" title="FAQ" />
-            <Link href="#contact" title="Contact" />
+				{/* <h1 style={{textAlign: 'left'}}>BE Routine Management</h1> */}
+				<div className="mobileHidden">
+					<Anchor targetOffset="65">
+						<Link href="#hero" title="Home" />
+						<Link href="#about" title="About" />
+						<Link href="#feature" title="Features" />
+						<Link href="#faq" title="FAQ" />
+						<Link href="#contact" title="Contact" />
 
-<<<<<<< HEAD
 						<div className="b">
 							<Router>
-								<Links to="/login">
+								<Links to="/user/login">
 									<Button className="btn" type="primary" size="large">
 										Login
 									</Button>
@@ -64,48 +52,34 @@ function AppHeader() {
 						</div>
 					</Anchor>
 				</div>
-=======
-            <div className="b">
-              <Router>
-                <Links to="/user/login">
-                  <Button className="btn" type="primary" size="large">
-                    Login
-                  </Button>
-                </Links>
-              </Router>
-            </div>
-          </Anchor>
-        </div>
->>>>>>> 03e0e1c489607f4bd51deeed1b6276807ee4f42a
 
-        <div className="mobileVisible">
-          <Button type="primary" onClick={showDrawer}>
-            <i className="fas fa-bars"></i>
-          </Button>
+				<div className="mobileVisible">
+					<Button type="primary" onClick={showDrawer}>
+						<i className="fas fa-bars"></i>
+					</Button>
 
-          <Drawer
-            placement="right"
-            closable={false}
-            onClose={onClose}
-            visible={visible}
-          >
-            <Anchor targetOffset="65">
-              <Link href="#hero" title="Home" />
-              <Link href="#about" title="About" />
-              <Link href="#feature" title="Features" />
-              <Link href="#faq" title="FAQ" />
-              <Link href="#contact" title="Contact" />
-              <div className="btnHolder">
-                <Button type="primary" size="large">
-                  Login
-                </Button>
-              </div>
-            </Anchor>
-          </Drawer>
-        </div>
-      </div>
-    </div>
-  );
+					<Drawer
+						placement="right"
+						closable={false}
+						onClose={onClose}
+						visible={visible}>
+						<Anchor targetOffset="65">
+							<Link href="#hero" title="Home" />
+							<Link href="#about" title="About" />
+							<Link href="#feature" title="Features" />
+							<Link href="#faq" title="FAQ" />
+							<Link href="#contact" title="Contact" />
+							<div className="btnHolder">
+								<Button type="primary" size="large">
+									Login
+								</Button>
+							</div>
+						</Anchor>
+					</Drawer>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default AppHeader;
