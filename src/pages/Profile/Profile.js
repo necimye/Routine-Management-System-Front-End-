@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import "./Profile.css";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import profilePhoto from "../Profile/child.jpg";
+import { UserContext } from "../../components/Contexts/UserContext";
+import "./Profile.css";
+
+import profilePhoto from "./child.jpg";
 
 function ProfileCard() {
-  const [shortName, setShortName] = useState("SRJ");
-  const [name, setName] = useState("Suraj Pokhrel");
-  const [role, setRole] = useState("Head of Department");
-  const [subject, setSubject] = useState(
-    "Computer Graphics, Artificial Intelligence, Satellite Communication"
-  );
-  const [username, setUsername] = useState("suraj@61");
-  const [email, setEmail] = useState("pokhrelsuraj1211@gmail.com");
-  const [about, setAbout] = useState(
-    "I am a part time software engineer as well as part time professor at Pulchowk Campus"
-  );
+  const { user } = useContext(UserContext);
+  const [username, setUsername] = useState(user);
 
   return (
     <div className="ProfileCard">
@@ -34,22 +27,7 @@ function ProfileCard() {
           <font color="#ff0000" />
           Name
         </h1>
-        <h3>{name}</h3>
-        <h1>Role</h1>
-        <h3>{role}</h3>
-        <h1>Subject</h1>
-        <h3>{subject}</h3>
-        <h1>Email</h1>
-        <h3>{email}</h3>
-        <p>About</p>
-        <h3>{about}</h3>
-      </div>
-      <div>
-        <Router>
-          <Link to="/">
-            <button className="btn">Close</button>
-          </Link>
-        </Router>
+        <h1>{username}</h1>
       </div>
     </div>
   );

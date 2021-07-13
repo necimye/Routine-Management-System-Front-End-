@@ -79,11 +79,11 @@ function AppHeader() {
               <div className="btnHolder">
                 {user ? (
                   <Button type="primary" size="large">
-                    Login
+                    Logout
                   </Button>
                 ) : (
                   <Button type="primary" size="large">
-                    Logout
+                    Login
                   </Button>
                 )}
               </div>
