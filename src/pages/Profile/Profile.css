@@ -1,7 +1,7 @@
 /* overall profile card */
 .ProfileCard {
-  width: 1550px;
-  height: 2000px;
+  width: 800px;
+  height: 600px;
   display: center;
   /* background-color: rgb(116, 238, 238); */
   background: linear-gradient(to left, #3178d6, #3a67e6);
@@ -13,24 +13,25 @@
   font-size: 14px;
   padding: auto;
   margin: 60px;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 350px;
+  margin-right: 400px;
   position: relative;
 }
 /* upper rectangular box */
 .photograph-part {
-  height: 600px;
+  height: 200px;
   background: linear-gradient(to left, #2566bb, #0c1c49);
-  margin-bottom: 190px;
+  margin-bottom: 20px;
 }
 .image-container {
-  padding-right: 1000px;
+  padding-right: 800px;
+  padding-left: 200px;
 }
 /* circular photo containing part  */
 .image-container img {
   background: rgb(13, 214, 221);
-  height: 600px;
-  width: 600px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   padding: 5px;
   transform: translate(96px, 49px);
@@ -42,6 +43,7 @@ img {
 }
 
 .description-part {
+  padding-top: 100px;
   padding-bottom: 200px;
   height: 1000px;
   margin-top: 260px;
@@ -59,8 +61,9 @@ div.description-part {
   font-size: 50px;
   font-weight: bold;
   font-style: normal;
+  padding-top: 50px;
 }
-/* about */
+/* about  */
 .description-part p {
   color: #3de7e7;
   font-size: 50px;
@@ -75,11 +78,13 @@ div.description-part {
   font-style: normal;
   font: bolder;
   font-weight: bold;
+  padding-top: 60px;
 }
+
 /* descriptions */
 .description-part h3 {
   color: #f0ede6;
-  /* font-style: normal; */
+  font-style: normal;
   font-size: 30px;
   font-style: normal;
   font: bolder;
@@ -89,7 +94,7 @@ div.description-part {
 .description-part h2 {
   color: #3de7e7;
   font-family: cursive;
-  font-size: 100px;
+  font-size: 30px;
   font-style: normal;
   font: bolder;
 }
