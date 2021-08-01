@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-// import { Link } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//import { Link } from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
 
-import profilePhoto from "./child.jpg";
+import profilePhoto from "./BibhaSthapit.jpeg";
 
 function ProfileCard() {
   const { user } = useContext(UserContext);
@@ -23,8 +23,11 @@ function ProfileCard() {
           <font color="#ff0000" />
           Name
         </h1>
-        <h1>Bibha Sthapit</h1>
+        <h2>Bibha Sthapit</h2>
+        <h3>Department of Computer and Electronics Engineering</h3>
         <h1>{username}</h1>
+
+        <button className="btn">Close</button>
       </div>
     </div>
   );
