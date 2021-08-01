@@ -1,22 +1,23 @@
 import React, {
-  Component,
-  StrictMode,
-  useContext,
   useEffect,
   useState,
+  // Component,
+  // StrictMode,
+  // useContext,
 } from "react";
 import { Anchor, Drawer, Button } from "antd";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Link as Links } from "react-router-dom";
-import { UserContext } from "../Contexts/UserContext";
+// import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+// import { UserContext } from "../Contexts/UserContext";
 import "./common.css";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const { Link } = Anchor;
 
 function AppHeader() {
   const [visible, setVisible] = useState(false);
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
+  const [user] = useState(localStorage.getItem("user"));
 
   const showDrawer = () => {
     setVisible(true);

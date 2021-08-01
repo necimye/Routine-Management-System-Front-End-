@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 import {
   Form,
   Select,
@@ -8,18 +8,17 @@ import {
   Input,
   Typography,
   Button,
-  message,
-  TimePicker,
-  Menu,
-  Dropdown,
-  Radio,
+  // message,
+  // TimePicker,
+  // Menu,
+  // Dropdown,
+  // Radio,
 } from "antd";
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  NumberOutlined,
-  PushpinOutlined,
-} from "@ant-design/icons";
+import // UserOutlined,
+// VideoCameraOutlined,
+// NumberOutlined,
+// PushpinOutlined,
+"@ant-design/icons";
 import axios from "axios";
 import "antd/dist/antd.css";
 
@@ -88,7 +87,7 @@ export class EditClass extends Component {
 
   render() {
     console.log(this.props.id);
-    const paramsid = this.props.id;
+    // const paramsid = this.props.id;
     const {
       programData,
       teacherData,

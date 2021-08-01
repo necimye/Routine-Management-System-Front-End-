@@ -1,30 +1,30 @@
 import React, { Component } from "react";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 // import { withRouter } from 'react-router-dom';
 import { navigate } from "@reach/router";
 import {
   Modal,
   Table,
-  Tag,
   Space,
-  Card,
-  Input,
-  TimePicker,
-  Menu,
-  Dropdown,
   Typography,
   Button,
-  Radio,
   message,
+  // Radio,
+  // Tag,
+  // Card,
+  // Input,
+  // TimePicker,
+  // Menu,
+  // Dropdown,
 } from "antd";
 import {
   ExclamationCircleOutlined,
   DeleteOutlined,
   EditOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  NumberOutlined,
-  PushpinOutlined,
+  // UserOutlined,
+  // VideoCameraOutlined,
+  // NumberOutlined,
+  // PushpinOutlined,
 } from "@ant-design/icons";
 import axios from "axios";
 import "antd/dist/antd.css";
@@ -103,13 +103,13 @@ export class Program extends Component {
             <Link to={`/editProgram/${record._id}`}>
               <EditOutlined style={{ fontSize: "22px", color: "blue" }} />
             </Link>
-            <a
+            <Button
               onClick={() => {
                 this.deleteWarning(record);
               }}
             >
               <DeleteOutlined style={{ fontSize: "22px", color: "red" }} />
-            </a>
+            </Button>
           </Space>
         ),
       },

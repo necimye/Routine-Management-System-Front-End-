@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
 
@@ -8,7 +8,7 @@ import profilePhoto from "./BibhaSthapit.jpg";
 
 function ProfileCard() {
   const { user } = useContext(UserContext);
-  const [username, setUsername] = useState(user);
+  const [username] = useState(user);
 
   return (
     <div className="ProfileCard">
