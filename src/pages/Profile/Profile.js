@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
 
-import profilePhoto from "./BibhaSthapit.jpg";
+import profilePhoto from "./child.jpg";
 
 function ProfileCard() {
   const { user } = useContext(UserContext);

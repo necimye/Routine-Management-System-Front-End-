@@ -62,11 +62,11 @@ function App() {
         }}
       >
         <div className="site-layout-background" style={{ padding: 24 }}>
-          <AppHome exact path="/" />
-          <Routine path="/routine" />
-          <Login path="/user/login" />
           {/* <UserContext.Provider value={{ user, setUser }}> */}
           <Router primary={false}>
+            <AppHome exact path="/" />
+            <Routine path="/routine" />
+            <Login path="/user/login" />
             <Profile path="/user/profile" />
             <AllThings path="/user/admin/all" />
             <ImpoExpo path="/user/admin/ie" />

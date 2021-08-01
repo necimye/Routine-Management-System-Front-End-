@@ -22,43 +22,35 @@ export default function SpanningTable() {
   const [routine, setRoutine] = useState();
   const datae = {};
 
-  useEffect(
-    () =>
-      async function () {
-        let res = await axios.get("http://localhost:5000/api/class");
-        let data = res.data;
+  useEffect(async () => {
+    let res = await axios.get("http://localhost:5000/api/class");
+    let data = res.data;
 
-        if (data) {
-          data.data.map(item => {
-            if (!datae[item.routineFor.programName]) {
-              datae[item.routineFor.programName] = {};
-            }
-            if (!datae[item.routineFor.programName][item.weekDay]) {
-              datae[item.routineFor.programName][item.weekDay] = {};
-            }
-            if (
-              !datae[item.routineFor.programName][item.weekDay][
-                item.startingPeriod
-              ]
-            ) {
-              datae[item.routineFor.programName][item.weekDay][
-                item.startingPeriod
-              ] = {};
-            }
-            datae[item.routineFor.programName][item.weekDay][
-              item.startingPeriod
-            ] = {};
-            datae[item.routineFor.programName][item.weekDay][
-              item.startingPeriod
-            ] = item;
-            return item;
-          });
+    if (data) {
+      data.data.map((item, index) => {
+        if (!datae[item.routineFor.programName]) {
+          datae[item.routineFor.programName] = {};
         }
+        if (!datae[item.routineFor.programName][item.weekDay]) {
+          datae[item.routineFor.programName][item.weekDay] = {};
+        }
+        if (
+          !datae[item.routineFor.programName][item.weekDay][item.startingPeriod]
+        ) {
+          datae[item.routineFor.programName][item.weekDay][
+            item.startingPeriod
+          ] = {};
+        }
+        datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
+          {};
+        datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
+          item;
+        return item;
+      });
+    }
 
-        setRoutine(datae);
-      },
-    [datae]
-  );
+    setRoutine(datae);
+  }, []);
 
   // const dum = {
   //   sunday: [1, 2, 3, 4, 5, 6, 7, 8],
