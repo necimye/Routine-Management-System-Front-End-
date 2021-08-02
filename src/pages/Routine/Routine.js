@@ -44,7 +44,6 @@ export default function SpanningTable() {
         }
         datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
           item;
-        return item;
       });
     }
 
