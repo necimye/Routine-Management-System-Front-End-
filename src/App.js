@@ -50,9 +50,9 @@ function App() {
 
   return (
     <Layout className="mainLayout">
-      {/* <Header>
+      <Header>
         <AppHeader />
-      </Header> */}
+      </Header>
       <Content
         style={{
           margin: "24px 16px 0",
@@ -87,9 +87,9 @@ function App() {
           {/* </UserContext.Provider> */}
         </div>
       </Content>
-      {/* <Footer>
+      <Footer>
         <AppFooter />
-      </Footer> */}
+      </Footer>
     </Layout>
   );
 }
