@@ -17,9 +17,9 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import LabPage from "./pages/LabPage/LabPage";
 import AddPage from "./pages/AddPage/AddPage";
-// import LecturePage from "./pages/LecturePage/LecturePage";
 import AllThings from "./pages/AllThings/AllThings";
 import ImpoExpo from "./pages/ImpoExpo/ImpoExpo";
+import LecturePage from "./pages/LecturePage/LecturePage";
 // import AddClass from './pages/AddClass/AddClass';
 import Class from "./pages/AddClass/AddClass";
 import AppHeader from "./components/Common/Header";
@@ -50,9 +50,9 @@ function App() {
 
   return (
     <Layout className="mainLayout">
-      <Header>
+      {/* <Header>
         <AppHeader />
-      </Header>
+      </Header> */}
       <Content
         style={{
           margin: "24px 16px 0",
@@ -70,6 +70,7 @@ function App() {
             <Profile path="/user/profile" />
             <AllThings path="/user/admin/all" />
             <ImpoExpo path="/user/admin/ie" />
+            <LecturePage path="/user/lecture" />
             <Class path="/user/admin/class" />
             <LabPage path="/user/admin/labs" />
             <AddPage path="/user/admin/edit" />
@@ -86,9 +87,9 @@ function App() {
           {/* </UserContext.Provider> */}
         </div>
       </Content>
-      <Footer>
+      {/* <Footer>
         <AppFooter />
-      </Footer>
+      </Footer> */}
     </Layout>
   );
 }

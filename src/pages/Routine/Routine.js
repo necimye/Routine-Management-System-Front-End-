@@ -16,18 +16,19 @@ const useStyles = makeStyles({
   },
 });
 
+const apiClassUrl = "http://localhost:5000/api/class";
+
 export default function SpanningTable() {
   const classes = useStyles();
 
-  const [routine, setRoutine] = useState();
+  const [routineData, setRoutineData] = useState();
   const datae = {};
 
   useEffect(async () => {
-    let res = await axios.get("http://localhost:5000/api/class");
-    let data = res.data;
+    let { data: res } = await axios.get(apiClassUrl);
 
-    if (data) {
-      data.data.map((item, index) => {
+    if (res) {
+      res.data.map(item => {
         if (!datae[item.routineFor.programName]) {
           datae[item.routineFor.programName] = {};
         }
@@ -42,31 +43,20 @@ export default function SpanningTable() {
           ] = {};
         }
         datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
-          {};
-        datae[item.routineFor.programName][item.weekDay][item.startingPeriod] =
           item;
         return item;
       });
     }
 
-    setRoutine(datae);
+    setRoutineData(datae);
   }, []);
 
-  // const dum = {
-  //   sunday: [1, 2, 3, 4, 5, 6, 7, 8],
-  //   monday: [1, 2, 3, 4, 5, 6, 7, 8],
-  //   tuesday: [1, 2, 3, 4, 5, 6, 7, 8],
-  //   wednesday: [1, 2, 3, 4, 5, 6, 7, 8],
-  //   thursday: [1, 2, 3, 4, 5, 6, 7, 8],
-  //   friday: [1, 2, 3, 4, 5, 6, 7, 8],
-  // };
-  // console.log(dum);
-  let dummy = {};
+  let routineTable = {};
 
-  if (routine) {
-    for (var name in routine) {
-      dummy[name] = {};
-      dummy[name] = {
+  if (routineData) {
+    // Add additional data for routine
+    for (let program in routineData) {
+      routineTable[program] = {
         sunday: [1, 2, 3, 4, 5, 6, 7, 8],
         monday: [1, 2, 3, 4, 5, 6, 7, 8],
         tuesday: [1, 2, 3, 4, 5, 6, 7, 8],
@@ -74,24 +64,24 @@ export default function SpanningTable() {
         thursday: [1, 2, 3, 4, 5, 6, 7, 8],
         friday: [1, 2, 3, 4, 5, 6, 7, 8],
       };
-      for (var val in routine[name]) {
-        for (var start in routine[name][val]) {
+
+      for (let weekDay in routineData[program]) {
+        for (let startPeriod in routineData[program][weekDay]) {
           for (
-            var i = parseInt(start) + 1;
-            i <
-            parseInt(start) + parseInt(routine[name][val][start].noOfPeriod);
-            i++
+            let period = parseInt(startPeriod) + 1;
+            period <
+            parseInt(startPeriod) +
+              parseInt(routineData[program][weekDay][startPeriod].noOfPeriod);
+            period++
           ) {
-            // console.log(dummy);
-            delete dummy[name][val][dummy[name][val].indexOf(i)];
-            // ind.push(dummy[name][val].indexOf(i));
+            delete routineTable[program][weekDay][
+              routineTable[program][weekDay].indexOf(period)
+            ];
           }
         }
       }
     }
   }
-
-  // console.log(routine);
 
   //to loop through multiple teachers name
   function loopTeacher(teacherName) {
@@ -108,18 +98,19 @@ export default function SpanningTable() {
 
   return (
     <div>
-      {routine
-        ? Object.keys(routine).map(data => {
+      {routineData
+        ? Object.keys(routineData).map(program => {
             return (
               <div>
                 <h1
                   style={{
                     textAlign: "center",
-                    fontSize: "35px",
+                    fontSize: "55px",
                     fontWeight: 700,
+                    marginTop: 30,
                   }}
                 >
-                  {data}
+                  {program}
                 </h1>
                 <TableContainer
                   component={Paper}
@@ -155,199 +146,46 @@ export default function SpanningTable() {
                         </TableCell>
                       </TableRow>
                     </TableHead>
-
                     <TableBody>
-                      <TableRow className="relative">
-                        <TableCell className="border">SUNDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].sunday.map((temp, index) => {
-                              return routine[data].sunday &&
-                                routine[data].sunday[temp] ? (
+                      {Object.keys(routineTable[program]).map(day => {
+                        return (
+                          <TableRow className="relative">
+                            <TableCell className="border">
+                              {day.toUpperCase()}
+                            </TableCell>
+                            {routineTable[program][day].map(idx => {
+                              return routineData[program][day] &&
+                                routineData[program][day][idx] ? (
+                                // return cell with data
                                 <TableCell
                                   align="center"
                                   className="border"
                                   colSpan={
-                                    routine[data].sunday[temp].noOfPeriod
+                                    routineData[program][day][idx].noOfPeriod
                                   }
                                 >
-                                  {routine[data].sunday[temp].subjectName}
+                                  {routineData[program][day][idx].subjectName}
                                   <br></br>(
                                   {loopTeacher(
-                                    routine[data].sunday[temp].teacherName
+                                    routineData[program][day][idx].teacherName
                                   )}
                                   )<br></br>[
-                                  {routine[data].sunday[temp].classCode}]
+                                  {routineData[program][day][idx].classCode}]
                                 </TableCell>
                               ) : (
+                                // return an empty cell
                                 <TableCell
                                   align="center"
                                   className="border"
                                   colSpan={1}
-                                ></TableCell>
-                              );
-                            })
-                          : ""}
-                      </TableRow>
-
-                      <TableRow className="relative">
-                        <TableCell className="border">MONDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].monday.map((temp, index) => {
-                              return routine[data].monday &&
-                                routine[data].monday[temp] ? (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routine[data].monday[temp].noOfPeriod
-                                  }
                                 >
-                                  {routine[data].monday[temp].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routine[data].monday[temp].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routine[data].monday[temp].classCode}]
+                                  {"-"}
                                 </TableCell>
-                              ) : (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                ></TableCell>
                               );
-                            })
-                          : ""}
-                      </TableRow>
-
-                      <TableRow className="relative">
-                        <TableCell className="border">TUESDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].tuesday.map((temp, index) => {
-                              return routine[data].tuesday &&
-                                routine[data].tuesday[temp] ? (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routine[data].tuesday[temp].noOfPeriod
-                                  }
-                                >
-                                  {routine[data].tuesday[temp].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routine[data].tuesday[temp].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routine[data].tuesday[temp].classCode}]
-                                </TableCell>
-                              ) : (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                ></TableCell>
-                              );
-                            })
-                          : ""}
-                      </TableRow>
-
-                      <TableRow className="relative">
-                        <TableCell className="border">WEDNESDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].wednesday.map((temp, index) => {
-                              return routine[data].wednesday &&
-                                routine[data].wednesday[temp] ? (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routine[data].wednesday[temp].noOfPeriod
-                                  }
-                                >
-                                  {routine[data].wednesday[temp].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routine[data].wednesday[temp].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routine[data].wednesday[temp].classCode}]
-                                </TableCell>
-                              ) : (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                ></TableCell>
-                              );
-                            })
-                          : ""}
-                      </TableRow>
-
-                      <TableRow className="relative">
-                        <TableCell className="border">THURSDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].thursday.map((temp, index) => {
-                              return routine[data].thursday &&
-                                routine[data].thursday[temp] ? (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routine[data].thursday[temp].noOfPeriod
-                                  }
-                                >
-                                  {routine[data].thursday[temp].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routine[data].thursday[temp].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routine[data].thursday[temp].classCode}]
-                                </TableCell>
-                              ) : (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                ></TableCell>
-                              );
-                            })
-                          : ""}
-                      </TableRow>
-
-                      <TableRow className="relative">
-                        <TableCell className="border">FRIDAY</TableCell>
-                        {routine && dummy
-                          ? dummy[data].friday.map((temp, index) => {
-                              return routine[data].friday &&
-                                routine[data].friday[temp] ? (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routine[data].friday[temp].noOfPeriod
-                                  }
-                                >
-                                  {routine[data].friday[temp].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routine[data].friday[temp].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routine[data].friday[temp].classCode}]
-                                </TableCell>
-                              ) : (
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                ></TableCell>
-                              );
-                            })
-                          : ""}
-                      </TableRow>
+                            })}
+                          </TableRow>
+                        );
+                      })}
                     </TableBody>
                   </Table>
                 </TableContainer>
