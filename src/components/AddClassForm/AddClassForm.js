@@ -30,6 +30,10 @@ const tailLayout = {
 };
 const { Title } = Typography;
 
+const apiClassUrl = "http://localhost:5000/api/class";
+const apiTeacherUrl = "http://localhost:5000/user/admin/api/teacher";
+const apiProgramUrl = "http://localhost:5000/user/admin/api/program";
+
 export class AddClassForm extends Component {
   constructor(props) {
     super(props);
@@ -58,22 +62,18 @@ export class AddClassForm extends Component {
   }
 
   getTeacherData = async () => {
-    let res = await axios.get("http://localhost:5000/user/admin/api/teacher");
-    let data = res.data.data;
-    // console.log(data);
-    this.setState({ teacherData: data });
+    let { data: res } = await axios.get(apiTeacherUrl);
+    this.setState({ teacherData: res.data });
   };
   getProgramData = async () => {
-    let res = await axios.get("http://localhost:5000/user/admin/api/program");
-    let data = res.data.data;
-    // console.log(data);
-    this.setState({ programData: data });
+    let { data: res } = await axios.get(apiProgramUrl);
+    this.setState({ programData: res.data });
   };
 
   onFinish = values => {
     console.log("Received values of form: ", values.routineFor);
     axios
-      .post(`http://localhost:5000/user/admin/api/class`, {
+      .post(apiClassUrl, {
         routineFor: values.routineFor,
         subjectName: values.subjectName,
         teacherName: values.teacherName,
@@ -104,6 +104,7 @@ export class AddClassForm extends Component {
       // link1,
       // weekDay,
     } = this.state;
+
     return (
       <Card
         className="card"
