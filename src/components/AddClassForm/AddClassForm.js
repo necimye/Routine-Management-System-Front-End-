@@ -144,6 +144,41 @@ export class AddClassForm extends Component {
               })}
             </Select>
           </Form.Item>
+          <Form.Item
+            name="weekDay"
+            label="Week Day"
+            rules={[
+              {
+                required: true,
+                message: "Please select a Week Day",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select a option and change input text above"
+              onChange={value => this.setState({ weekDay: value })}
+              allowClear
+            >
+              <Option value="sunday">Sunday</Option>
+              <Option value="monday">Monday</Option>
+              <Option value="tuesday">Tuesday</Option>
+              <Option value="wednesday">Wednesday</Option>
+              <Option value="thursday">Thursday</Option>
+              <Option value="friday">Friday</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="courseCode"
+            label="Course Code"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Course Code",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
           <Form.Item
             name="subjectName"
@@ -152,6 +187,18 @@ export class AddClassForm extends Component {
               {
                 required: true,
                 message: "Please enter Subject Name",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="classCode"
+            label="Class Code"
+            rules={[
+              {
+                required: false,
+                message: "Please enter Class Code",
               },
             ]}
           >
@@ -181,19 +228,6 @@ export class AddClassForm extends Component {
           </Form.Item>
 
           <Form.Item
-            name="classCode"
-            label="Class Code"
-            rules={[
-              {
-                required: false,
-                message: "Please enter Class Code",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
             name="classGroup"
             label="Class Group"
             rules={[
@@ -205,7 +239,6 @@ export class AddClassForm extends Component {
           >
             <Input />
           </Form.Item>
-
           <Form.Item label="Starting Period">
             <Form.Item
               name="startingPeriod"
@@ -237,19 +270,6 @@ export class AddClassForm extends Component {
           </Form.Item>
 
           <Form.Item
-            name="courseCode"
-            label="Course Code"
-            rules={[
-              {
-                required: false,
-                message: "Please enter Course Code",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
             name="link1"
             label="Class Link"
             rules={[
@@ -262,29 +282,6 @@ export class AddClassForm extends Component {
             <Input />
           </Form.Item>
 
-          <Form.Item
-            name="weekDay"
-            label="Week Day"
-            rules={[
-              {
-                required: true,
-                message: "Please select a Week Day",
-              },
-            ]}
-          >
-            <Select
-              placeholder="Select a option and change input text above"
-              onChange={value => this.setState({ weekDay: value })}
-              allowClear
-            >
-              <Option value="sunday">Sunday</Option>
-              <Option value="monday">Monday</Option>
-              <Option value="tuesday">Tuesday</Option>
-              <Option value="wednesday">Wednesday</Option>
-              <Option value="thursday">Thursday</Option>
-              <Option value="friday">Friday</Option>
-            </Select>
-          </Form.Item>
           <Form.Item {...tailLayout}>
             <Button
               type="primary"
