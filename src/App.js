@@ -51,12 +51,21 @@ function App() {
 
   return (
     <Layout className="mainLayout">
-      <Header>
+      <Header
+        className="site-layout-sub-header-background"
+        style={{
+          padding: 0,
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <AppHeader />
       </Header>
       <Content
         style={{
           margin: "24px 16px 0",
+          marginTop: "50px",
           height: "100vh",
           //overflowY: "scroll",
           alignContent: "center",
@@ -89,9 +98,9 @@ function App() {
           {/* </UserContext.Provider> */}
         </div>
       </Content>
-      <Footer>
+      {/* <Footer style={{}}>
         <AppFooter />
-      </Footer>
+      </Footer> */}
     </Layout>
   );
 }
