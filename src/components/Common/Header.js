@@ -27,10 +27,6 @@ function AppHeader() {
     setVisible(false);
   };
 
-  useEffect(() => {
-    console.log("context-user is", user);
-  }, [user]);
-
   return (
     <div className="container-fluid">
       <div className="header">
@@ -42,18 +38,14 @@ function AppHeader() {
             </h1>
           </Links>
         </Router>
-        {/* <a href="https://localhost:3000/">
-          
-        </a> */}
-
-        {/* <h1 style={{textAlign: 'left'}}>BE Routine Management</h1> */}
         <div className="mobileHidden">
           <Anchor targetOffset="65">
-            <Link href="#hero" title="Home" />
-            <Link href="#about" title="About" />
-            <Link href="#feature" title="Features" />
-            <Link href="#faq" title="FAQ" />
-            <Link href="#contact" title="Contact" />
+            <Link href="/#hero" title="Home" />
+            <Link href="/user/admin" title="Routine" />
+            <Link href="/#about" title="About" />
+            <Link href="/#feature" title="Features" />
+            <Link href="/#faq" title="FAQ" />
+            <Link href="/#contact" title="Contact" />
 
             <div className="b">
               <Router>
@@ -79,11 +71,11 @@ function AppHeader() {
             visible={visible}
           >
             <Anchor targetOffset="65">
-              <Link href="#hero" title="Home" />
-              <Link href="#about" title="About" />
-              <Link href="#feature" title="Features" />
-              <Link href="#faq" title="FAQ" />
-              <Link href="#contact" title="Contact" />
+              <Link href="/#hero" title="Home" />
+              <Link href="/#about" title="About" />
+              <Link href="/#feature" title="Features" />
+              <Link href="/#faq" title="FAQ" />
+              <Link href="/#contact" title="Contact" />
               <div className="btnHolder">
                 {user ? (
                   <Button type="primary" size="large">
