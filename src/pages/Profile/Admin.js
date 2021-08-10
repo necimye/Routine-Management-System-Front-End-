@@ -101,9 +101,9 @@ function RoutineTable(props) {
     let teacherArr = [];
     for (let i = 0; i < teacherName.length; i++) {
       if (i === teacherName.length - 1) {
-        teacherArr.push(<>{teacherName[i].shortName}</>);
+        teacherArr.push(<>{teacherName[i].teacherName}</>);
       } else {
-        teacherArr.push(<>{teacherName[i].shortName} + </>);
+        teacherArr.push(<>{teacherName[i].teacherName} + </>);
       }
     }
     return teacherArr;
@@ -187,7 +187,9 @@ function RoutineTable(props) {
                                     routineData[program][day][idx].noOfPeriod
                                   }
                                 >
-                                  {routineData[program][day][idx].subjectName}
+                                  <b>
+                                    {routineData[program][day][idx].subjectName}
+                                  </b>
                                   <br></br>(
                                   {loopTeacher(
                                     routineData[program][day][idx].teacherName
@@ -411,12 +413,21 @@ class AddClassForm extends Component {
   // };
 
   onFinish = values => {
-    console.log(this.props);
     const { program, day, idx } = this.props;
+
     let programID;
     switch (program) {
-      case "074BEXAB":
+      case "073BCTAB":
+        programID = "5fa7b033781e9b0d749f7b9e";
+        break;
+      case "074BEXCD":
         programID = "5fa6b5dad734150d70d5afb6";
+        break;
+      case "074BCTCD":
+        programID = "5fa76bea2331c4219cb0fe10";
+        break;
+      case "075BCTCD":
+        programID = "5fa76c172331c4219cb0fe13";
         break;
     }
     axios
