@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Form, Select, Input, Button, Radio, message } from "antd";
+import { Modal, Button } from "antd";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -43,7 +43,7 @@ function RoutineTable(props) {
   useEffect(async () => {
     let { data: res } = await axios.get(apiClassUrl);
 
-    if (res) {
+    if (res && res.data) {
       res.data.map(item => {
         if (!datae[item.routineFor.programName]) {
           datae[item.routineFor.programName] = {};
@@ -130,13 +130,7 @@ function RoutineTable(props) {
     });
   }
   function handleDeleteClassForm(program, day, idx) {
-    Modal.confirm({
-      content: <AddClassPopupForm program={program} day={day} idx={idx} />,
-      cancelButtonProps: { style: { display: "none" } },
-      okButtonProps: { style: { display: "none" } },
-      icon: "",
-      width: 720,
-    });
+    Modal.confirm({});
   }
 
   return (
