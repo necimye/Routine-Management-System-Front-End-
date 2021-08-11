@@ -15,6 +15,7 @@ import { Layout } from "antd";
 // import { UserContext } from "./components/Contexts/UserContext";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
+import Admin from "./pages/Profile/Admin";
 import LabPage from "./pages/LabPage/LabPage";
 import AddPage from "./pages/AddPage/AddPage";
 import AllThings from "./pages/AllThings/AllThings";
@@ -67,6 +68,7 @@ function App() {
 						<Routine path="/routine" />
 						<Login path="/user/login" />
 						<Profile path="/user/profile" />
+						<Admin exact path="/user/admin" />
 						<AllThings path="/user/admin/all" />
 						<ImpoExpo path="/user/admin/ie" />
 						<LecturePage path="/user/lecture" />
