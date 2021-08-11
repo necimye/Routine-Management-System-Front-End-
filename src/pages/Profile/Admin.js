@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button } from "antd";
+import { Modal, Button, Tooltip } from "antd";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -68,20 +68,24 @@ function RoutineTable(props) {
 
   let routineTable = {};
 
+  const createPeriodIndices = function () {
+    return [1, 2, 3, 4, 5, 6, 7, 8];
+  };
+
   if (routineData) {
     // Add additional data for routine
     for (let program in routineData) {
       routineTable[program] = {
-        sunday: [1, 2, 3, 4, 5, 6, 7, 8],
-        monday: [1, 2, 3, 4, 5, 6, 7, 8],
-        tuesday: [1, 2, 3, 4, 5, 6, 7, 8],
-        wednesday: [1, 2, 3, 4, 5, 6, 7, 8],
-        thursday: [1, 2, 3, 4, 5, 6, 7, 8],
-        friday: [1, 2, 3, 4, 5, 6, 7, 8],
+        sunday: createPeriodIndices(),
+        monday: createPeriodIndices(),
+        tuesday: createPeriodIndices(),
+        wednesday: createPeriodIndices(),
+        thursday: createPeriodIndices(),
+        friday: createPeriodIndices(),
       };
 
-      for (let weekDay in routineData[program]) {
-        for (let startPeriod in routineData[program][weekDay]) {
+      Object.keys(routineData[program]).map(weekDay => {
+        Object.keys(routineData[program][weekDay]).map(startPeriod => {
           for (
             let period = parseInt(startPeriod) + 1;
             period <
@@ -93,8 +97,8 @@ function RoutineTable(props) {
               routineTable[program][weekDay].indexOf(period)
             ];
           }
-        }
-      }
+        });
+      });
     }
   }
 
@@ -130,7 +134,7 @@ function RoutineTable(props) {
     });
   }
   function handleDeleteClassForm(program, day, idx) {
-    Modal.confirm({});
+    Modal.confirm({ title: "Confirm deletion?" });
   }
 
   return (
@@ -217,24 +221,36 @@ function RoutineTable(props) {
                                   )<br></br>[
                                   {routineData[program][day][idx].classCode}]
                                   <br></br>
-                                  <Button
-                                    ghost
-                                    type="dashed"
-                                    onClick={() =>
-                                      handleEditClassForm(program, day, idx)
-                                    }
+                                  <Tooltip
+                                    title="Edit Class"
+                                    placement="bottom"
                                   >
-                                    e
-                                  </Button>
-                                  <Button
-                                    ghost
-                                    type="dashed"
-                                    onClick={() =>
-                                      handleDeleteClassForm(program, day, idx)
-                                    }
+                                    <Button
+                                      ghost
+                                      type="dashed"
+                                      size="small"
+                                      onClick={() =>
+                                        handleEditClassForm(program, day, idx)
+                                      }
+                                    >
+                                      e
+                                    </Button>
+                                  </Tooltip>
+                                  <Tooltip
+                                    title="Delete Class"
+                                    placement="bottom"
                                   >
-                                    d
-                                  </Button>
+                                    <Button
+                                      ghost
+                                      type="dashed"
+                                      size="small"
+                                      onClick={() =>
+                                        handleDeleteClassForm(program, day, idx)
+                                      }
+                                    >
+                                      d
+                                    </Button>
+                                  </Tooltip>
                                 </TableCell>
                               ) : (
                                 // return an empty cell
@@ -243,15 +259,17 @@ function RoutineTable(props) {
                                   className="border"
                                   colSpan={1}
                                 >
-                                  <Button
-                                    type="dashed"
-                                    onClick={() =>
-                                      handleAddClassForm(program, day, idx)
-                                    }
-                                    ghost
-                                  >
-                                    +
-                                  </Button>
+                                  <Tooltip title="Add Class">
+                                    <Button
+                                      type="dashed"
+                                      onClick={() =>
+                                        handleAddClassForm(program, day, idx)
+                                      }
+                                      ghost
+                                    >
+                                      +
+                                    </Button>
+                                  </Tooltip>
                                 </TableCell>
                               );
                             })}
