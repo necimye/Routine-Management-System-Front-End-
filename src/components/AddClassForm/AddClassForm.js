@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   Radio,
+  Modal,
   message,
 } from "antd";
 import axios from "axios";
@@ -448,20 +449,13 @@ class AddClassPopupForm extends Component {
   }
 
   componentDidMount() {
-    // this.getProgramData();
     this.getTeacherData();
-    // console.log(this.state.programData);
-    // console.log(this.state.teacherData)
   }
 
   getTeacherData = async () => {
     let { data: res } = await axios.get(apiTeacherUrl);
     this.setState({ teacherData: res.data });
   };
-  // getProgramData = async () => {
-  //   let { data: res } = await axios.get(apiProgramUrl);
-  //   this.setState({ programData: res.data });
-  // };
 
   onFinish = values => {
     const { program, day, idx } = this.props;
@@ -497,6 +491,18 @@ class AddClassPopupForm extends Component {
       .then(message.success("Class Added Sucessfully"));
     window.location.reload();
   };
+
+  handleTeacherSelection(teachers) {
+    let { teacherTable, program, day, idx } = this.props;
+    for (let teacher of teachers)
+      if (teacherTable[teacher] && teacherTable[teacher][idx]) {
+        Modal.warn({
+          title: `${teacher} is occupied on ${program} ${day} period ${idx}`,
+        });
+        return;
+      }
+    this.setState({ teacherName: teachers });
+  }
 
   render() {
     const {
@@ -559,8 +565,9 @@ class AddClassPopupForm extends Component {
                 message: "Please enter Class Code",
               },
             ]}
+            initialValue="L"
           >
-            <Radio.Group value={"L"}>
+            <Radio.Group defaultValue={"L"}>
               <Radio.Button value="L">Lecture [L]</Radio.Button>
               <Radio.Button value="P">Practical [P]</Radio.Button>
             </Radio.Group>
@@ -580,10 +587,13 @@ class AddClassPopupForm extends Component {
             <Select
               mode="multiple"
               // placeholder="Select a option and change input text above"
-              onChange={value => this.setState({ teacherName: value })}
+              onChange={value => this.handleTeacherSelection(value)}
+              dropdownAlign="bottom"
             >
               {Object.values(teacherData).map((item, index) => {
-                return <Option value={item._id}>{item.teacherName}</Option>;
+                return (
+                  <Option value={item.teacherName}>{item.teacherName}</Option>
+                );
               })}
             </Select>
           </Form.Item>
@@ -597,8 +607,9 @@ class AddClassPopupForm extends Component {
                 message: "Please enter Class Group",
               },
             ]}
+            initialValue="Both"
           >
-            <Radio.Group value={"D"}>
+            <Radio.Group defaultValue={"Both"}>
               <Radio.Button value="C">C</Radio.Button>
               <Radio.Button value="D">D</Radio.Button>
               <Radio.Button value="Both">Both</Radio.Button>
@@ -615,8 +626,9 @@ class AddClassPopupForm extends Component {
                 },
               ]}
               noStyle
+              initialValue="1"
             >
-              <Radio.Group value={"1"}>
+              <Radio.Group defaultValue="1">
                 <Radio.Button value="1">1</Radio.Button>
                 <Radio.Button value="2">2</Radio.Button>
                 <Radio.Button value="3">3</Radio.Button>

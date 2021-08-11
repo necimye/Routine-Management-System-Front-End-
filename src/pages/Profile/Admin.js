@@ -66,7 +66,8 @@ function RoutineTable(props) {
     setRoutineData(datae);
   }, []);
 
-  let routineTable = {};
+  const routineTable = {};
+  const teacherTable = {};
 
   const createPeriodIndices = function () {
     return [1, 2, 3, 4, 5, 6, 7, 8];
@@ -102,22 +103,41 @@ function RoutineTable(props) {
     }
   }
 
-  //to loop through multiple teachers name
-  function loopTeacher(teacherName) {
+  // Loops through multiple teachers name &&
+  // Creates a teacherTable
+  function loopTeacher(teacherNames, idx, noOfPeriods) {
     let teacherArr = [];
-    for (let i = 0; i < teacherName.length; i++) {
-      if (i === teacherName.length - 1) {
-        teacherArr.push(<>{teacherName[i].teacherName}</>);
+    let name = "";
+
+    for (let i = 0; i < teacherNames.length; i++) {
+      name = teacherNames[i].teacherName;
+
+      // create or update teacherTable
+      if (!teacherTable[name]) {
+        teacherTable[name] = createPeriodIndices();
       } else {
-        teacherArr.push(<>{teacherName[i].teacherName} + </>);
+        for (let j = --idx; j < idx + noOfPeriods; j++)
+          delete teacherTable[name][j];
       }
+
+      // push multiple teacherNames
+      i === teacherNames.length - 1
+        ? teacherArr.push(<>{name}</>)
+        : teacherArr.push(<>{name} + </>);
     }
     return teacherArr;
   }
 
   function handleAddClassForm(program, day, idx) {
     Modal.confirm({
-      content: <AddClassPopupForm program={program} day={day} idx={idx} />,
+      content: (
+        <AddClassPopupForm
+          program={program}
+          day={day}
+          idx={idx}
+          teacherTable={teacherTable}
+        />
+      ),
       cancelButtonProps: { style: { display: "none" } },
       okButtonProps: { style: { display: "none" } },
       icon: "",
@@ -215,11 +235,16 @@ function RoutineTable(props) {
                                   <br></br>(
                                   <i>
                                     {loopTeacher(
-                                      routineData[program][day][idx].teacherName
+                                      routineData[program][day][idx]
+                                        .teacherName,
+                                      idx,
+                                      routineData[program][day][idx].noOfPeriod
                                     )}
                                   </i>
                                   )<br></br>[
                                   {routineData[program][day][idx].classCode}]
+                                  <br></br>
+                                  {` {${routineData[program][day][idx].classGroup}}`}
                                   <br></br>
                                   <Tooltip
                                     title="Edit Class"
