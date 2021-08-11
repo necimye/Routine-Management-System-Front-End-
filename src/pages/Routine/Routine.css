@@ -7,9 +7,6 @@
 	border: 1px solid black !important;
 }
 
-.MuiTableCell-body {
-}
-
 .MuiTableCell-head {
 	background-color: #1f466b !important;
 	font-weight: 600 !important;
@@ -29,4 +26,9 @@
 
 .MuiPaper-elevation1 {
 	box-shadow: none !important;
+}
+
+.App.App-header p {
+	top: 20%;
+	right: 10%;
 }

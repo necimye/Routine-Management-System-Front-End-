@@ -3,34 +3,33 @@ import React, { useContext, useState } from "react";
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
-
 import profilePhoto from "./BibhaSthapit.jpeg";
 
 function ProfileCard() {
-  const { user } = useContext(UserContext);
-  const [username] = useState(user);
+	const { user } = useContext(UserContext);
+	const [username] = useState(user);
 
-  return (
-    <div className="ProfileCard">
-      <div className="photograph-part">
-        <div className="image-container">
-          <img src={profilePhoto} alt="" height="1200px" width="1200px" />
-        </div>
-      </div>
+	return (
+		<div className="ProfileCard">
+			<div className="photograph-part">
+				<div className="image-container">
+					<img src={profilePhoto} alt="" height="800px" width="800px" />
+				</div>
+			</div>
 
-      <div className="description-part">
-        <h1>
-          <font color="#ff0000" />
-          Name
-        </h1>
-        <h2>Bibha Sthapit</h2>
-        <h3>Department of Computer and Electronics Engineering</h3>
-        <h1>{username}</h1>
+			<div className="description-part">
+				<h1>
+					<font color="#ff0000" />
+					ID:
+				</h1>
+				<h2>Bibha Sthapit</h2>
+				<h3>Department of Computer and Electronics Engineering</h3>
+				<h1>{username}</h1>
 
-        <button className="btn">Close</button>
-      </div>
-    </div>
-  );
+				<button className="btn">Close</button>
+			</div>
+		</div>
+	);
 }
 
 export default ProfileCard;
