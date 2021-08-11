@@ -489,7 +489,6 @@ class AddClassPopupForm extends Component {
         weekDay: day,
       })
       .then(message.success("Class Added Sucessfully"));
-    window.location.reload();
   };
 
   handleTeacherSelection(teachers) {
@@ -497,7 +496,7 @@ class AddClassPopupForm extends Component {
     for (let teacher of teachers)
       if (teacherTable[teacher] && teacherTable[teacher][idx]) {
         Modal.warn({
-          title: `${teacher} is occupied on ${program} ${day} period ${idx}`,
+          title: `Teacher occupied on ${program} this day period ${idx}`,
         });
         return;
       }
@@ -549,7 +548,7 @@ class AddClassPopupForm extends Component {
             >
               {subjects.map((item, index) => {
                 return (
-                  <Option value={item}>
+                  <Option key={item} value={item}>
                     {item + ` (${courseCode[index]})`}
                   </Option>
                 );
@@ -568,8 +567,12 @@ class AddClassPopupForm extends Component {
             initialValue="L"
           >
             <Radio.Group defaultValue={"L"}>
-              <Radio.Button value="L">Lecture [L]</Radio.Button>
-              <Radio.Button value="P">Practical [P]</Radio.Button>
+              <Radio.Button key="L" value="L">
+                Lecture [L]
+              </Radio.Button>
+              <Radio.Button key="L" value="P">
+                Practical [P]
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
 
@@ -592,7 +595,9 @@ class AddClassPopupForm extends Component {
             >
               {Object.values(teacherData).map((item, index) => {
                 return (
-                  <Option value={item.teacherName}>{item.teacherName}</Option>
+                  <Option key={item} value={item._id}>
+                    {item.teacherName}
+                  </Option>
                 );
               })}
             </Select>
@@ -610,9 +615,15 @@ class AddClassPopupForm extends Component {
             initialValue="Both"
           >
             <Radio.Group defaultValue={"Both"}>
-              <Radio.Button value="C">C</Radio.Button>
-              <Radio.Button value="D">D</Radio.Button>
-              <Radio.Button value="Both">Both</Radio.Button>
+              <Radio.Button key="C" value="C">
+                C
+              </Radio.Button>
+              <Radio.Button key="D" value="D">
+                D
+              </Radio.Button>
+              <Radio.Button key="Both" value="Both">
+                Both
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
 
@@ -629,9 +640,15 @@ class AddClassPopupForm extends Component {
               initialValue="1"
             >
               <Radio.Group defaultValue="1">
-                <Radio.Button value="1">1</Radio.Button>
-                <Radio.Button value="2">2</Radio.Button>
-                <Radio.Button value="3">3</Radio.Button>
+                <Radio.Button key="1" value="1">
+                  1
+                </Radio.Button>
+                <Radio.Button key="2" value="2">
+                  2
+                </Radio.Button>
+                <Radio.Button key="3" value="3">
+                  3
+                </Radio.Button>
               </Radio.Group>
             </Form.Item>
           </Form.Item>

@@ -107,17 +107,19 @@ function RoutineTable(props) {
   // Creates a teacherTable
   function loopTeacher(teacherNames, idx, noOfPeriods) {
     let teacherArr = [];
-    let name = "";
+    let name = "",
+      id = "";
 
     for (let i = 0; i < teacherNames.length; i++) {
       name = teacherNames[i].teacherName;
+      id = teacherNames[i]._id;
 
       // create or update teacherTable
-      if (!teacherTable[name]) {
-        teacherTable[name] = createPeriodIndices();
+      if (!teacherTable[id]) {
+        teacherTable[id] = createPeriodIndices();
       } else {
         for (let j = --idx; j < idx + noOfPeriods; j++)
-          delete teacherTable[name][j];
+          delete teacherTable[id][j];
       }
 
       // push multiple teacherNames
@@ -210,8 +212,9 @@ function RoutineTable(props) {
                     <TableBody>
                       {Object.keys(routineTable[program]).map(day => {
                         return (
-                          <TableRow className="relative">
+                          <TableRow className="relative" key={day}>
                             <TableCell
+                              key={day}
                               className="border"
                               style={{ backgroundColor: "#D3D3DF" }}
                             >
@@ -222,6 +225,7 @@ function RoutineTable(props) {
                                 routineData[program][day][idx] ? (
                                 // return cell with data
                                 <TableCell
+                                  key={idx}
                                   align="center"
                                   className="border"
                                   style={{ backgroundColor: "#F0F0F0" }}
@@ -280,6 +284,7 @@ function RoutineTable(props) {
                               ) : (
                                 // return an empty cell
                                 <TableCell
+                                  key={idx}
                                   align="center"
                                   className="border"
                                   colSpan={1}
