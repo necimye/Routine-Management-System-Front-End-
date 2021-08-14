@@ -15,7 +15,7 @@ import { Layout } from "antd";
 // import { UserContext } from "./components/Contexts/UserContext";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
-import Admin from "./pages/Profile/Admin";
+//import Admin from "./pages/Profile/Admin";
 import LabPage from "./pages/LabPage/LabPage";
 import AddPage from "./pages/AddPage/AddPage";
 import AllThings from "./pages/AllThings/AllThings";
@@ -42,57 +42,58 @@ import "./App.css";
 const { Header, Content, Footer } = Layout;
 
 function App() {
-	// const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-	useEffect(() => {
-		ReactGa.initialize("UA-174022278-1");
-		ReactGa.pageview("/");
-	});
+  useEffect(() => {
+    ReactGa.initialize("UA-174022278-1");
+    ReactGa.pageview("/");
+  });
 
-	return (
-		<Layout className="mainLayout">
-			<Header>
-				<AppHeader />
-			</Header>
-			<Content
-				style={{
-					margin: "24px 16px 0",
-					height: "100vh",
-					//overflowY: "scroll",
-					alignContent: "center",
-				}}>
-				<div className="site-layout-background" style={{ padding: 24 }}>
-					{/* <UserContext.Provider value={{ user, setUser }}> */}
-					<Router primary={false}>
-						<AppHome exact path="/" />
-						<Routine path="/routine" />
-						<Login path="/user/login" />
-						<Profile path="/user/profile" />
-						<Admin exact path="/user/admin" />
-						<AllThings path="/user/admin/all" />
-						<ImpoExpo path="/user/admin/ie" />
-						<LecturePage path="/user/lecture" />
-						<Class path="/user/admin/class" />
-						<LabPage path="/user/admin/labs" />
-						<AddPage path="/user/admin/edit" />
-						<AddPage path="/user/admin/add" />
-						<Teacher path="/user/admin/teacher" />
-						<Program path="/user/admin/program" />
-						<AddTeacher path="/user/admin/addTeacher" />
-						<AddProgram path="/user/admin/addProgram" />
-						<AddClassForm path="/user/admin/addClass" />
-						<EditProgram path="/user/admin/editProgram/:id"></EditProgram>
-						<EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
-						<EditClass path="/user/admin/editClass/:id"></EditClass>
-					</Router>
-					{/* </UserContext.Provider> */}
-				</div>
-			</Content>
-			<Footer>
-				<AppFooter />
-			</Footer>
-		</Layout>
-	);
+  return (
+    <Layout className="mainLayout">
+      <Header>
+        <AppHeader />
+      </Header>
+      <Content
+        style={{
+          margin: "24px 16px 0",
+          height: "100vh",
+          //overflowY: "scroll",
+          alignContent: "center",
+        }}
+      >
+        <div className="site-layout-background" style={{ padding: 24 }}>
+          {/* <UserContext.Provider value={{ user, setUser }}> */}
+          <Router primary={false}>
+            <AppHome exact path="/" />
+            <Routine path="/routine" />
+            <Login path="/user/login" />
+            <Profile path="/user/profile" />
+            {/* <Admin exact path="/user/admin" /> */}
+            <AllThings path="/user/admin/all" />
+            <ImpoExpo path="/user/admin/ie" />
+            <LecturePage path="/user/lecture" />
+            <Class path="/user/admin/class" />
+            <LabPage path="/user/admin/labs" />
+            <AddPage path="/user/admin/edit" />
+            <AddPage path="/user/admin/add" />
+            <Teacher path="/user/admin/teacher" />
+            <Program path="/user/admin/program" />
+            <AddTeacher path="/user/admin/addTeacher" />
+            <AddProgram path="/user/admin/addProgram" />
+            <AddClassForm path="/user/admin/addClass" />
+            <EditProgram path="/user/admin/editProgram/:id"></EditProgram>
+            <EditTeacher path="/user/admin/editTeacher/:id"></EditTeacher>
+            <EditClass path="/user/admin/editClass/:id"></EditClass>
+          </Router>
+          {/* </UserContext.Provider> */}
+        </div>
+      </Content>
+      <Footer>
+        <AppFooter />
+      </Footer>
+    </Layout>
+  );
 }
 
 export default App;
