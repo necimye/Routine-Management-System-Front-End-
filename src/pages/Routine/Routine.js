@@ -10,7 +10,6 @@ import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import "./Routine.css";
 import { Select } from "antd";
-import { red } from "@material-ui/core/colors";
 
 const { Option } = Select;
 const children = [];
@@ -66,10 +65,23 @@ for (let i = 0; i < teachersList.length; i++) {
   );
 }
 
+// function useForceUpdate() {
+
+// }
+
 function handleSelectedTeacher(value) {
   currentTeacher = value;
-  // console.log(currentTeacher);
-  document.getElementById("teacherCell").style.color = "red";
+  var tableBody = document.getElementById("tableBody").innerHTML;
+  tableBody = tableBody.toString();
+
+  if (currentTeacher) {
+    var pattern = new RegExp("(" + currentTeacher + ")", "gi");
+    var new_currentTeacher = tableBody.replace(
+      pattern,
+      "<span class='active'>" + currentTeacher + "</span>"
+    );
+    document.getElementById("tableBody").innerHTML = new_currentTeacher;
+  }
 }
 
 const useStyles = makeStyles({
@@ -147,30 +159,25 @@ export default function SpanningTable() {
   //to loop through multiple teachers name
   function loopTeacher(teacherName) {
     let teacherArr = [];
-    let textTeacherArr = [];
+    // let textTeacherArr = [];
     for (let i = 0; i < teacherName.length; i++) {
       if (i === teacherName.length - 1) {
         teacherArr.push(<>{teacherName[i].teacherName}</>);
       } else {
         teacherArr.push(<>{teacherName[i].teacherName} + </>);
       }
-      textTeacherArr.push(teacherName[i].teacherName);
+      // textTeacherArr.push(teacherName[i].teacherName);
       // console.log(textTeacherArr.includes(currentTeacher, 0))
 
-      console.log(textTeacherArr);
-
       // console.log(textTeacherArr);
-      //console.log(currentTeacher);
-      // console.log(teacherArr);
     }
-
-    if (!currentTeacher.length === 0) {
-      if (textTeacherArr.includes(currentTeacher, 0)) {
-        document.getElementById("teacherCell").style.color = "red";
-      } else {
-        document.getElementById("teacherCell").style.color = "green";
-      }
-    }
+    // if(!(currentTeacher.length === 0)) {
+    //   if(textTeacherArr.includes(currentTeacher, 0)) {
+    //     document.getElementById("teacherCell").style.color = "red";
+    //   } else {
+    //     document.getElementById("teacherCell").style.color = "green";
+    //   }
+    // }
 
     return teacherArr;
   }
@@ -185,7 +192,7 @@ export default function SpanningTable() {
             allowClear
             style={{ width: "100%" }}
             onChange={handleSelectedTeacher}
-            placeholder="enter here"
+            placeholder="select teacher here"
           >
             {children}
           </Select>
@@ -245,11 +252,14 @@ export default function SpanningTable() {
                             </TableCell>
                           </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody id="tableBody">
                           {Object.keys(routineTable[program]).map((day) => {
                             return (
                               <TableRow className="relative">
-                                <TableCell className="border">
+                                <TableCell
+                                  className="border"
+                                  style={{ backgroundColor: "#D3D3DF" }}
+                                >
                                   {day.toUpperCase()}
                                 </TableCell>
                                 {routineTable[program][day].map((idx) => {
@@ -259,6 +269,7 @@ export default function SpanningTable() {
                                     <TableCell
                                       align="center"
                                       className="border"
+                                      style={{ backgroundColor: "#F0F0F0" }}
                                       colSpan={
                                         routineData[program][day][idx]
                                           .noOfPeriod
