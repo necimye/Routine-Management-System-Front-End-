@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-//import { Link } from "react-router-dom";
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
 import profilePhoto from "./BibhaSthapit.jpeg";
@@ -19,14 +19,18 @@ function ProfileCard() {
 
 			<div className="description-part">
 				<h1>
-					<font color="#ff0000" />
-					ID:
+					<font color="#2566bb" />
+					ID: BS
 				</h1>
 				<h2>Bibha Sthapit</h2>
-				<h3>Department of Computer and Electronics Engineering</h3>
+				<h3 id="dept">Department of Computer and Electronics Engineering</h3>
 				<h1>{username}</h1>
 
-				<button className="btn">Close</button>
+        <Router>
+          <Link to="/"><button className="btn">Close</button></Link>
+        </Router>
+
+			
 			</div>
 		</div>
 	);
