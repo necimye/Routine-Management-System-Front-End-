@@ -13,22 +13,49 @@ import { Select } from "antd";
 
 const { Option } = Select;
 const children = [];
-for (let i = 10; i < 36; i++) {
-	children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+
+
+const teachersList = [
+   "Dr. Aman Shakya","Prof. Dr. Subarna Shakya", "Dr. Nagendra Bahadur Amatya", 
+   "Prof. Dr. Shashidar Ram Joshi",     
+    "Prof. Dr. Ram Krishna Maharjan",
+    "Bibha Sthapit", "Babu Ram Dawadi",
+    "Daya Sagar Baral", "Jitendra Kumar Manandhar",
+    "Sharad Kumar Ghimire", "Dr. Basanta Joshi",
+    "Ranju Kumari Shiwakoti", "Suman Sharma",
+    "Banshee Ram Pradhan", "Hari Naryan Yadhav",
+    "Ganesh Gautam", "Kumar Prasun",
+    "Sanjivan Satyal", "Ganesh Prasad Bhatta",
+    "Anup Shrestha", "Nischal Acharya",
+    "Bikal Adhikari", "Suresh Jha", 
+    "Deepak Lal Shrestha", "Kamal Nepal",
+    "Suresh Pokhrel", "Anila Kansakar",
+    "Ashok Malla", "Durga Prasad Khatiwada",
+    "Nripa Dhoj Khadka", "Dr. Jyoti Tandukar",
+    "Dr. Surendra Shrestha", "Dr. Diwakar Raj Pant",
+    "Dr. Sanjeeb Prasad Pandey", "Dr. Nanda Bikram Adhikari",
+    "Dr. Arun Kumar Timalsina", "Er. Anil Verma",
+    "Roshan Karki", "Sudeep Dulal"
+  ];
+
+  
+for (let i = 0; i < teachersList.length; i++) {
+  children.push(<Option key={i} value={teachersList[i]}>{teachersList[i]}</Option>);
 }
 
-//to loop through multiple teachers name
-// const children = [];
-// function loopTeacher(teacherName) {
-// 	for (let i = 0; i < teacherName.length; i++) {
-// 		if (i === teacherName.length - 1) {
-// 			children.push(<>{teacherName[i].teacherName}</>);
-// 		} else {
-// 			children.push(<>{teacherName[i].teacherName} + </>);
-// 		}
-// 	}
-// 	return children;
-// }
+
+function handleSelectedTeacher(value) {
+  let currentTeacher;
+  currentTeacher = value;
+  let tableBody = document.getElementById("tableBody").innerHTML;
+  tableBody = tableBody.toString();
+  
+  if(currentTeacher) {
+    let pattern = new RegExp("(" + currentTeacher + ")", "gi");
+    let new_currentTeacher = tableBody.replace(pattern, "<span class='active'>"+currentTeacher +"</span>");
+    document.getElementById("tableBody").innerHTML = new_currentTeacher;
+  }
+}
 
 const useStyles = makeStyles({
 	table: {
@@ -111,31 +138,34 @@ export default function SpanningTable() {
 			} else {
 				teacherArr.push(<>{teacherName[i].teacherName} + </>);
 			}
-		}
+	}
 		return teacherArr;
 	}
 
 	return (
-		<div>
+    <div>
+      	<div className="search-area">
+									<header className="Search-box">
+										<p>Select Teacher's Name</p>
+										<Select
+											mode="single"
+											allowClear
+											style={{ width: "100%" }}
+                      onChange={handleSelectedTeacher}
+											placeholder="select teacher here"
+										>
+										{children}
+										</Select>
+									</header>
+						</div>
+
+
+		<div id="tableBody">
 			{routineData
 				? Object.keys(routineData).map(program => {
 						return (
+           <div>
 							<div>
-								<div className="App">
-									<header className="App-header">
-										<p>Select your name</p>
-										<Select
-											mode="multiple"
-											allowClear
-											style={{ width: "100%" }}
-											placeholder="Please select"
-											//defaultValue={["a10", "c12"]}
-										>
-											{children}
-										</Select>
-									</header>
-								</div>
-
 								<h1
 									style={{
 										textAlign: "center",
@@ -182,7 +212,8 @@ export default function SpanningTable() {
 											{Object.keys(routineTable[program]).map(day => {
 												return (
 													<TableRow className="relative">
-														<TableCell className="border">
+														<TableCell className="border"
+                            style={{ backgroundColor: "#D3D3DF" }}>
 															{day.toUpperCase()}
 														</TableCell>
 														{routineTable[program][day].map(idx => {
@@ -192,10 +223,11 @@ export default function SpanningTable() {
 																<TableCell
 																	align="center"
 																	className="border"
+                                  style={{backgroundColor: "#F0F0F0"}}
 																	colSpan={
 																		routineData[program][day][idx].noOfPeriod
 																	}>
-																	{routineData[program][day][idx].subjectName}
+                                    	{routineData[program][day][idx].subjectName}
 																	<br></br>(
 																	{loopTeacher(
 																		routineData[program][day][idx].teacherName
@@ -211,6 +243,7 @@ export default function SpanningTable() {
 																	colSpan={1}>
 																	{"-"}
 																</TableCell>
+                                
 															);
 														})}
 													</TableRow>
@@ -220,9 +253,15 @@ export default function SpanningTable() {
 									</Table>
 								</TableContainer>
 							</div>
+              </div>
 						);
 				  })
 				: ""}
 		</div>
+    <div>
+
+    </div>
+    </div>
 	);
 }
+
