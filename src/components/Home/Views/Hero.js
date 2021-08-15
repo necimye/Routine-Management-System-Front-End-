@@ -14,6 +14,7 @@ import "./Views.css";
 function AppHero() {
   return (
     <div id="hero" className="heroBlock">
+      <div id="background-img"></div>
       <Carousel>
         {/* {items.map((item) => {
 					return (

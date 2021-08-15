@@ -10,10 +10,10 @@ import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import "./Routine.css";
 import { Select } from "antd";
+import jsPDF from "jspdf";
 
 const { Option } = Select;
 const children = [];
-var currentTeacher = "";
 
 const teachersList = [
   "Dr. Aman Shakya",
@@ -57,6 +57,36 @@ const teachersList = [
   "Sudeep Dulal",
 ];
 
+const generatePDF = () => {
+  var doc = new jsPDF("p", "pt", "a1");
+  doc.html(document.querySelector("#tableBody"), {
+    callback: function (pdf) {
+      pdf.save("Myroutine.pdf");
+    },
+  });
+
+  // var wb = XLSX.utils.table_to_book(document.getElementById("mytable"), {
+  //   sheet: "Sheet JS",
+  // });
+  // var wbout = XLSX.write(wb, {
+  //   bookType: "xlsx",
+  //   bookSST: true,
+  //   type: "binary",
+  // });
+  // function s2ab(s) {
+  //   var buf = new ArrayBuffer(s.length);
+  //   var view = new Uint8Array(buf);
+  //   for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+  //   return buf;
+  // }
+  // $("#button-a").click(function () {
+  //   saveAs(
+  //     new Blob([s2ab(wbout)], { type: "application/octet-stream" }),
+  //     "test.xlsx"
+  //   );
+  // });
+};
+
 for (let i = 0; i < teachersList.length; i++) {
   children.push(
     <Option key={i} value={teachersList[i]}>
@@ -65,18 +95,15 @@ for (let i = 0; i < teachersList.length; i++) {
   );
 }
 
-// function useForceUpdate() {
-
-// }
-
 function handleSelectedTeacher(value) {
+  let currentTeacher;
   currentTeacher = value;
-  var tableBody = document.getElementById("tableBody").innerHTML;
+  let tableBody = document.getElementById("tableBody").innerHTML;
   tableBody = tableBody.toString();
 
   if (currentTeacher) {
-    var pattern = new RegExp("(" + currentTeacher + ")", "gi");
-    var new_currentTeacher = tableBody.replace(
+    let pattern = new RegExp("(" + currentTeacher + ")", "gi");
+    let new_currentTeacher = tableBody.replace(
       pattern,
       "<span class='active'>" + currentTeacher + "</span>"
     );
@@ -159,26 +186,13 @@ export default function SpanningTable() {
   //to loop through multiple teachers name
   function loopTeacher(teacherName) {
     let teacherArr = [];
-    // let textTeacherArr = [];
     for (let i = 0; i < teacherName.length; i++) {
       if (i === teacherName.length - 1) {
         teacherArr.push(<>{teacherName[i].teacherName}</>);
       } else {
         teacherArr.push(<>{teacherName[i].teacherName} + </>);
       }
-      // textTeacherArr.push(teacherName[i].teacherName);
-      // console.log(textTeacherArr.includes(currentTeacher, 0))
-
-      // console.log(textTeacherArr);
     }
-    // if(!(currentTeacher.length === 0)) {
-    //   if(textTeacherArr.includes(currentTeacher, 0)) {
-    //     document.getElementById("teacherCell").style.color = "red";
-    //   } else {
-    //     document.getElementById("teacherCell").style.color = "green";
-    //   }
-    // }
-
     return teacherArr;
   }
 
@@ -199,7 +213,7 @@ export default function SpanningTable() {
         </header>
       </div>
 
-      <div>
+      <div id="tableBody">
         {routineData
           ? Object.keys(routineData).map((program) => {
               return (
@@ -252,7 +266,7 @@ export default function SpanningTable() {
                             </TableCell>
                           </TableRow>
                         </TableHead>
-                        <TableBody id="tableBody">
+                        <TableBody>
                           {Object.keys(routineTable[program]).map((day) => {
                             return (
                               <TableRow className="relative">
@@ -275,30 +289,18 @@ export default function SpanningTable() {
                                           .noOfPeriod
                                       }
                                     >
-                                      <div id="teacherCell">
-                                        {
-                                          routineData[program][day][idx]
-                                            .subjectName
-                                        }
-                                        <br></br>(
-                                        {loopTeacher(
-                                          routineData[program][day][idx]
-                                            .teacherName
-                                        )}
-                                        )<br></br>[
-                                        {
-                                          routineData[program][day][idx]
-                                            .classCode
-                                        }
-                                        ]
-                                      </div>
-                                      {/* {routineData[program][day][idx].subjectName}
-																	<br></br>(
-																	{loopTeacher(
-																		routineData[program][day][idx].teacherName
-																	)}
-																	)<br></br>[
-																	{routineData[program][day][idx].classCode}] */}
+                                      {
+                                        routineData[program][day][idx]
+                                          .subjectName
+                                      }
+                                      <br></br>(
+                                      {loopTeacher(
+                                        routineData[program][day][idx]
+                                          .teacherName
+                                      )}
+                                      )<br></br>[
+                                      {routineData[program][day][idx].classCode}
+                                      ]
                                     </TableCell>
                                   ) : (
                                     // return an empty cell
@@ -322,6 +324,11 @@ export default function SpanningTable() {
               );
             })
           : ""}
+      </div>
+      <div>
+        <button onClick={generatePDF} id="#button-a">
+          Generate PDF
+        </button>
       </div>
     </div>
   );

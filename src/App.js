@@ -69,7 +69,7 @@ function App() {
             <Routine path="/routine" />
             <Login path="/user/login" />
             <Profile path="/user/profile" />
-            {/* <Admin exact path="/user/admin" /> */}
+            {/*	<Admin exact path="/user/admin" />*/}
             <AllThings path="/user/admin/all" />
             <ImpoExpo path="/user/admin/ie" />
             <LecturePage path="/user/lecture" />
