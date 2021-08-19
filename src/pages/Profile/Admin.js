@@ -157,7 +157,13 @@ function RoutineTable(props) {
     });
   }
   function handleDeleteClassForm(program, day, index, id) {
-    Modal.confirm({ title: "Confirm deletion?" });
+    Modal.confirm({
+      title: "Confirm deletion?",
+      onOk: async () => {
+        await axios.delete(`http://localhost:5000/api/class/delete/${id}`);
+        window.location.reload();
+      },
+    });
   }
 
   console.log(labsTable);

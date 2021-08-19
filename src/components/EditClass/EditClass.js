@@ -194,7 +194,7 @@ class EditClassPopupForm extends Component {
 
   getClassData = async () => {
     let { data: res } = await axios.get(
-      `http://localhost:5000/user/admin/api/class/${this.props.id}`
+      `http://localhost:5000/api/class/${this.props.id}`
     );
     let data = res.data;
 
