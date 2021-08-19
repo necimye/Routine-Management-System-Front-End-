@@ -216,7 +216,6 @@ class EditClassPopupForm extends Component {
 
   render() {
     console.log(this.props.id);
-    // const paramsid = this.props.id;
     const {
       programData,
       teacherData,
@@ -231,20 +230,6 @@ class EditClassPopupForm extends Component {
       link1,
       weekDay,
     } = this.state;
-    console.log(
-      programData,
-      teacherData,
-      routineFor,
-      subjectName,
-      teacherName,
-      classCode,
-      classGroup,
-      startingPeriod,
-      noOfPeriod,
-      courseCode,
-      link1,
-      weekDay
-    );
     return (
       <Form
         {...layout}
@@ -273,7 +258,9 @@ class EditClassPopupForm extends Component {
           >
             {subjects.map((item, index) => {
               return (
-                <Option value={item}>{item + ` (${courseCode[index]})`}</Option>
+                <Option key={item} value={item}>
+                  {item + ` (${courseCode[index]})`}
+                </Option>
               );
             })}
           </Select>
@@ -287,10 +274,15 @@ class EditClassPopupForm extends Component {
               message: "Please enter Class Code",
             },
           ]}
+          initialValue="L"
         >
-          <Radio.Group value={"L"}>
-            <Radio.Button value="L">Lecture [L]</Radio.Button>
-            <Radio.Button value="P">Practical [P]</Radio.Button>
+          <Radio.Group defaultValue={"L"}>
+            <Radio.Button key="L" value="L">
+              Lecture [L]
+            </Radio.Button>
+            <Radio.Button key="L" value="P">
+              Practical [P]
+            </Radio.Button>
           </Radio.Group>
         </Form.Item>
 
@@ -308,10 +300,15 @@ class EditClassPopupForm extends Component {
           <Select
             mode="multiple"
             // placeholder="Select a option and change input text above"
-            onChange={value => this.setState({ teacherName: value })}
+            onChange={value => this.handleTeacherSelection(value)}
+            dropdownAlign="bottom"
           >
             {Object.values(teacherData).map((item, index) => {
-              return <Option value={item._id}>{item.teacherName}</Option>;
+              return (
+                <Option key={item} value={item._id}>
+                  {item.teacherName}
+                </Option>
+              );
             })}
           </Select>
         </Form.Item>
@@ -325,11 +322,18 @@ class EditClassPopupForm extends Component {
               message: "Please enter Class Group",
             },
           ]}
+          initialValue="Both"
         >
-          <Radio.Group value={"D"}>
-            <Radio.Button value="C">C</Radio.Button>
-            <Radio.Button value="D">D</Radio.Button>
-            <Radio.Button value="Both">Both</Radio.Button>
+          <Radio.Group defaultValue={"Both"}>
+            <Radio.Button key="C" value="C">
+              C
+            </Radio.Button>
+            <Radio.Button key="D" value="D">
+              D
+            </Radio.Button>
+            <Radio.Button key="Both" value="Both">
+              Both
+            </Radio.Button>
           </Radio.Group>
         </Form.Item>
 
@@ -343,11 +347,18 @@ class EditClassPopupForm extends Component {
               },
             ]}
             noStyle
+            initialValue="1"
           >
-            <Radio.Group value={"1"}>
-              <Radio.Button value="1">1</Radio.Button>
-              <Radio.Button value="2">2</Radio.Button>
-              <Radio.Button value="3">3</Radio.Button>
+            <Radio.Group defaultValue="1">
+              <Radio.Button key="1" value="1">
+                1
+              </Radio.Button>
+              <Radio.Button key="2" value="2">
+                2
+              </Radio.Button>
+              <Radio.Button key="3" value="3">
+                3
+              </Radio.Button>
             </Radio.Group>
           </Form.Item>
         </Form.Item>

@@ -68,6 +68,7 @@ function RoutineTable(props) {
 
   const routineTable = {};
   const teacherTable = {};
+  const labsTable = {};
 
   const createPeriodIndices = function () {
     return [1, 2, 3, 4, 5, 6, 7, 8];
@@ -130,13 +131,13 @@ function RoutineTable(props) {
     return teacherArr;
   }
 
-  function handleAddClassForm(program, day, idx) {
+  function handleAddClassForm(program, day, index) {
     Modal.confirm({
       content: (
         <AddClassPopupForm
           program={program}
           day={day}
-          idx={idx}
+          index={index}
           teacherTable={teacherTable}
         />
       ),
@@ -146,18 +147,20 @@ function RoutineTable(props) {
       width: 720,
     });
   }
-  function handleEditClassForm(program, day, idx) {
+  function handleEditClassForm(program, day, index, id) {
     Modal.confirm({
-      content: <EditClassPopupForm program={program} day={day} idx={idx} />,
+      content: <EditClassPopupForm program={program} day={day} index={index} />,
       cancelButtonProps: { style: { display: "none" } },
       okButtonProps: { style: { display: "none" } },
       icon: "",
       width: 720,
     });
   }
-  function handleDeleteClassForm(program, day, idx) {
+  function handleDeleteClassForm(program, day, index, id) {
     Modal.confirm({ title: "Confirm deletion?" });
   }
+
+  console.log(labsTable);
 
   return (
     <div>
@@ -220,35 +223,53 @@ function RoutineTable(props) {
                             >
                               {day.toUpperCase()}
                             </TableCell>
-                            {routineTable[program][day].map(idx => {
+                            {routineTable[program][day].map(index => {
                               return routineData[program][day] &&
-                                routineData[program][day][idx] ? (
-                                // return cell with data
+                                routineData[program][day][index] ? (
+                                // {let noOfPeriod = routineData[program][day][index].noOfPeriod}
+                                // return cell with class data
                                 <TableCell
-                                  key={idx}
+                                  key={index}
                                   align="center"
                                   className="border"
                                   style={{ backgroundColor: "#F0F0F0" }}
                                   colSpan={
-                                    routineData[program][day][idx].noOfPeriod
+                                    routineData[program][day][index].noOfPeriod
                                   }
                                 >
                                   <b>
-                                    {routineData[program][day][idx].subjectName}
+                                    {
+                                      routineData[program][day][index]
+                                        .subjectName
+                                    }
+                                    {routineData[program][day][index]._id}
                                   </b>
                                   <br></br>(
                                   <i>
                                     {loopTeacher(
-                                      routineData[program][day][idx]
+                                      routineData[program][day][index]
                                         .teacherName,
-                                      idx,
-                                      routineData[program][day][idx].noOfPeriod
+                                      index,
+                                      routineData[program][day][index]
+                                        .noOfPeriod
                                     )}
                                   </i>
                                   )<br></br>[
-                                  {routineData[program][day][idx].classCode}]
+                                  {routineData[program][day][index].classCode}
+                                  {routineData[program][day][index]
+                                    .classCode === "P"
+                                    ? !labsTable[
+                                        routineData[program][day][index]._id
+                                      ]
+                                      ? (labsTable[
+                                          routineData[program][day][index]._id
+                                        ] = createPeriodIndices())
+                                      : delete labsTable[
+                                          routineData[program][day][index]._id
+                                        ][index - 1]
+                                    : ""}
                                   <br></br>
-                                  {` {${routineData[program][day][idx].classGroup}}`}
+                                  {` {${routineData[program][day][index].classGroup}}`}
                                   <br></br>
                                   <Tooltip
                                     title="Edit Class"
@@ -259,7 +280,12 @@ function RoutineTable(props) {
                                       type="dashed"
                                       size="small"
                                       onClick={() =>
-                                        handleEditClassForm(program, day, idx)
+                                        handleEditClassForm(
+                                          program,
+                                          day,
+                                          index,
+                                          routineData[program][day][index]._id
+                                        )
                                       }
                                     >
                                       e
@@ -274,7 +300,12 @@ function RoutineTable(props) {
                                       type="dashed"
                                       size="small"
                                       onClick={() =>
-                                        handleDeleteClassForm(program, day, idx)
+                                        handleDeleteClassForm(
+                                          program,
+                                          day,
+                                          index,
+                                          routineData[program][day][index]._id
+                                        )
                                       }
                                     >
                                       d
@@ -284,7 +315,7 @@ function RoutineTable(props) {
                               ) : (
                                 // return an empty cell
                                 <TableCell
-                                  key={idx}
+                                  key={index}
                                   align="center"
                                   className="border"
                                   colSpan={1}
@@ -293,7 +324,7 @@ function RoutineTable(props) {
                                     <Button
                                       type="dashed"
                                       onClick={() =>
-                                        handleAddClassForm(program, day, idx)
+                                        handleAddClassForm(program, day, index)
                                       }
                                       ghost
                                     >

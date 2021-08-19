@@ -474,6 +474,8 @@ class AddClassPopupForm extends Component {
       case "075BCTCD":
         programID = "5fa76c172331c4219cb0fe13";
         break;
+      default:
+        break;
     }
     axios
       .post(apiClassUrl, {
@@ -492,11 +494,11 @@ class AddClassPopupForm extends Component {
   };
 
   handleTeacherSelection(teachers) {
-    let { teacherTable, program, day, idx } = this.props;
+    let { teacherTable, program, day, index } = this.props;
     for (let teacher of teachers)
-      if (teacherTable[teacher] && teacherTable[teacher][idx]) {
+      if (teacherTable[teacher] && teacherTable[teacher][index]) {
         Modal.warn({
-          title: `Teacher occupied on ${program} this day period ${idx}`,
+          title: `Teacher occupied on ${program} on ${day} period ${index}`,
         });
         return;
       }
