@@ -8,6 +8,7 @@ import {
   Input,
   Typography,
   Button,
+  Modal,
   // message,
   // TimePicker,
   // Menu,
@@ -190,7 +191,16 @@ class EditClassPopupForm extends Component {
   }
   componentDidMount() {
     this.getClassData();
+    this.getTeacherData();
   }
+
+  getTeacherData = async () => {
+    let { data: res } = await axios.get(
+      `http://localhost:5000/user/admin/api/teacher`
+    );
+    this.setState({ teacherData: res.data });
+    console.log("teacherdata: ", this.state);
+  };
 
   getClassData = async () => {
     let { data: res } = await axios.get(
@@ -199,20 +209,67 @@ class EditClassPopupForm extends Component {
     let data = res.data;
 
     this.setState({
-      teacherData: data.teacherData,
-      programData: data.programData,
-      routineFor: data.routineFor,
-      subjectName: data.subjectName,
-      teacherName: data.teacherName,
-      classCode: data.classCode,
-      classGroup: data.classGroup,
-      startingPeriod: data.startingPeriod,
-      noOfPeriod: data.noOfPeriod,
-      courseCode: data.courseCode,
-      link1: data.link1,
-      weekDay: data.weekDay,
+      // teacherData: data.teacherData,
+      // programData: data.programData,
+      // routineFor: data.routineFor,
+      // subjectName: data.subjectName,
+      // teacherName: data.teacherName,
+      // classCode: data.classCode,
+      // classGroup: data.classGroup,
+      // startingPeriod: data.startingPeriod,
+      // noOfPeriod: data.noOfPeriod,
+      // courseCode: data.courseCode,
+      // link1: data.link1,
+      // weekDay: data.weekDay,
     });
   };
+
+  onFinish = values => {
+    const { program, day, index, id, teacherTable } = this.props;
+
+    let programID;
+    switch (program) {
+      case "073BCTAB":
+        programID = "5fa7b033781e9b0d749f7b9e";
+        break;
+      case "074BEXCD":
+        programID = "5fa6b5dad734150d70d5afb6";
+        break;
+      case "074BCTCD":
+        programID = "5fa76bea2331c4219cb0fe10";
+        break;
+      case "075BCTCD":
+        programID = "5fa76c172331c4219cb0fe13";
+        break;
+      default:
+        break;
+    }
+    axios.post(`http://localhost:5000/api/class/edit/${id}`, {
+      routineFor: programID,
+      subjectName: values.subjectName,
+      teacherName: values.teacherName,
+      classCode: values.classCode,
+      classGroup: values.classGroup,
+      startingPeriod: index,
+      noOfPeriod: values.noOfPeriod,
+      courseCode: values.courseCode,
+      link1: values.link1,
+      weekDay: day,
+    });
+    window.location.reload();
+  };
+
+  handleTeacherSelection(teachers) {
+    let { teacherTable, program, day, index } = this.props;
+    for (let teacher of teachers)
+      if (teacherTable[teacher] && teacherTable[teacher][index]) {
+        Modal.warn({
+          title: `Teacher occupied on ${program} on ${day} period ${index}`,
+        });
+        return;
+      }
+    this.setState({ teacherName: teachers });
+  }
 
   render() {
     console.log(this.props.id);
@@ -226,7 +283,7 @@ class EditClassPopupForm extends Component {
       classGroup,
       startingPeriod,
       noOfPeriod,
-      courseCode,
+      // courseCode,
       link1,
       weekDay,
     } = this.state;

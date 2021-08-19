@@ -68,7 +68,6 @@ function RoutineTable(props) {
 
   const routineTable = {};
   const teacherTable = {};
-  const labsTable = {};
 
   const createPeriodIndices = function () {
     return [1, 2, 3, 4, 5, 6, 7, 8];
@@ -149,14 +148,22 @@ function RoutineTable(props) {
   }
   function handleEditClassForm(program, day, index, id) {
     Modal.confirm({
-      content: <EditClassPopupForm program={program} day={day} index={index} />,
+      content: (
+        <EditClassPopupForm
+          program={program}
+          day={day}
+          index={index}
+          id={id}
+          teacherTable={teacherTable}
+        />
+      ),
       cancelButtonProps: { style: { display: "none" } },
       okButtonProps: { style: { display: "none" } },
       icon: "",
       width: 720,
     });
   }
-  function handleDeleteClassForm(program, day, index, id) {
+  function handleDeleteClassForm(id) {
     Modal.confirm({
       title: "Confirm deletion?",
       onOk: async () => {
@@ -165,8 +172,6 @@ function RoutineTable(props) {
       },
     });
   }
-
-  console.log(labsTable);
 
   return (
     <div>
@@ -306,9 +311,6 @@ function RoutineTable(props) {
                                       size="small"
                                       onClick={() =>
                                         handleDeleteClassForm(
-                                          program,
-                                          day,
-                                          index,
                                           routineData[program][day][index]._id
                                         )
                                       }
