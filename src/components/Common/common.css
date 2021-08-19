@@ -157,11 +157,11 @@ footer
 ------
 */
 .ant-layout-footer {
-  margin-top: 2399px;
+  margin-top: 3200px;
   display: block;
   /* background: linear-gradient(-135deg, #1b4070, #0c1c49); */
   background-color: rgb(109, 102, 102);
-  color: #fff !important;
+  color: rgb(185, 147, 147) !important;
   padding: 60px 0 !important;
   text-align: center;
   /* position: relative; */

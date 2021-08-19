@@ -242,7 +242,6 @@ function RoutineTable(props) {
                                       routineData[program][day][index]
                                         .subjectName
                                     }
-                                    {routineData[program][day][index]._id}
                                   </b>
                                   <br></br>(
                                   <i>
@@ -255,8 +254,8 @@ function RoutineTable(props) {
                                     )}
                                   </i>
                                   )<br></br>[
-                                  {routineData[program][day][index].classCode}
-                                  {routineData[program][day][index]
+                                  {routineData[program][day][index].classCode}]
+                                  {/* {routineData[program][day][index]
                                     .classCode === "P"
                                     ? !labsTable[
                                         routineData[program][day][index]._id
@@ -267,7 +266,7 @@ function RoutineTable(props) {
                                       : delete labsTable[
                                           routineData[program][day][index]._id
                                         ][index - 1]
-                                    : ""}
+                                    : ""} */}
                                   <br></br>
                                   {` {${routineData[program][day][index].classGroup}}`}
                                   <br></br>

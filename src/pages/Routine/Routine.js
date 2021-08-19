@@ -7,8 +7,89 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import axios from "axios";
 import "./Routine.css";
+import { Select } from "antd";
+import jsPDF from "jspdf";
+
+const { Option } = Select;
+const children = [];
+
+const teachersList = [
+  "Dr. Aman Shakya",
+  "Prof. Dr. Subarna Shakya",
+  "Dr. Nagendra Bahadur Amatya",
+  "Prof. Dr. Shashidar Ram Joshi",
+  "Prof. Dr. Ram Krishna Maharjan",
+  "Bibha Sthapit",
+  "Babu Ram Dawadi",
+  "Daya Sagar Baral",
+  "Jitendra Kumar Manandhar",
+  "Sharad Kumar Ghimire",
+  "Dr. Basanta Joshi",
+  "Ranju Kumari Shiwakoti",
+  "Suman Sharma",
+  "Banshee Ram Pradhan",
+  "Hari Naryan Yadhav",
+  "Ganesh Gautam",
+  "Kumar Prasun",
+  "Sanjivan Satyal",
+  "Ganesh Prasad Bhatta",
+  "Anup Shrestha",
+  "Nischal Acharya",
+  "Bikal Adhikari",
+  "Suresh Jha",
+  "Deepak Lal Shrestha",
+  "Kamal Nepal",
+  "Suresh Pokhrel",
+  "Anila Kansakar",
+  "Ashok Malla",
+  "Durga Prasad Khatiwada",
+  "Nripa Dhoj Khadka",
+  "Dr. Jyoti Tandukar",
+  "Dr. Surendra Shrestha",
+  "Dr. Diwakar Raj Pant",
+  "Dr. Sanjeeb Prasad Pandey",
+  "Dr. Nanda Bikram Adhikari",
+  "Dr. Arun Kumar Timalsina",
+  "Er. Anil Verma",
+  "Roshan Karki",
+  "Sudeep Dulal",
+];
+
+const generatePDF = () => {
+  var doc = new jsPDF("p", "pt", "a1");
+  doc.html(document.querySelector("#tableBody"), {
+    callback: function (pdf) {
+      pdf.save("Myroutine.pdf");
+    },
+  });
+};
+
+for (let i = 0; i < teachersList.length; i++) {
+  children.push(
+    <Option key={i} value={teachersList[i]}>
+      {teachersList[i]}
+    </Option>
+  );
+}
+
+function handleSelectedTeacher(value) {
+  let currentTeacher;
+  currentTeacher = value;
+  let tableBody = document.getElementById("tableBody").innerHTML;
+  tableBody = tableBody.toString();
+
+  if (currentTeacher) {
+    let pattern = new RegExp("(" + currentTeacher + ")", "gi");
+    let new_currentTeacher = tableBody.replace(
+      pattern,
+      "<span class='active'>" + currentTeacher + "</span>"
+    );
+    document.getElementById("tableBody").innerHTML = new_currentTeacher;
+  }
+}
 
 const useStyles = makeStyles({
   table: {
@@ -28,7 +109,7 @@ export default function SpanningTable() {
     let { data: res } = await axios.get(apiClassUrl);
 
     if (res) {
-      res.data.map(item => {
+      res.data.map((item) => {
         if (!datae[item.routineFor.programName]) {
           datae[item.routineFor.programName] = {};
         }
@@ -87,9 +168,9 @@ export default function SpanningTable() {
     let teacherArr = [];
     for (let i = 0; i < teacherName.length; i++) {
       if (i === teacherName.length - 1) {
-        teacherArr.push(<>{teacherName[i].shortName}</>);
+        teacherArr.push(<>{teacherName[i].teacherName}</>);
       } else {
-        teacherArr.push(<>{teacherName[i].shortName} + </>);
+        teacherArr.push(<>{teacherName[i].teacherName} + </>);
       }
     }
     return teacherArr;
@@ -97,101 +178,142 @@ export default function SpanningTable() {
 
   return (
     <div>
-      {routineData
-        ? Object.keys(routineData).map(program => {
-            return (
-              <div>
-                <h1
-                  style={{
-                    textAlign: "center",
-                    fontSize: "55px",
-                    fontWeight: 700,
-                    marginTop: 30,
-                  }}
-                >
-                  {program}
-                </h1>
-                <TableContainer
-                  component={Paper}
-                  style={{ paddingBottom: "80px" }}
-                >
-                  <Table className={classes.table} aria-label="spanning table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell align="center">Periods</TableCell>
-                        <TableCell align="center">
-                          Period 1<br></br>(10:15-11:05)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 2<br></br>(11:05-11:55)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 3<br></br>(11:55-12:45)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 4<br></br>(12:45-01:35)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 5<br></br>(01:35-02:25)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 6<br></br>(02:25-03:15)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 7<br></br>(03:15-04:05)
-                        </TableCell>
-                        <TableCell align="center">
-                          Period 8<br></br>(04:05-04:55)
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {Object.keys(routineTable[program]).map(day => {
-                        return (
-                          <TableRow className="relative">
-                            <TableCell className="border">
-                              {day.toUpperCase()}
+      <div className="search-area">
+        <header className="Search-box">
+          <p>Select Teacher's Name</p>
+          <Select
+            mode="single"
+            allowClear
+            style={{ width: "100%" }}
+            dropdownStyle={{
+              textAlign: "center",
+              backgroundColor: "#F2F1EF",
+              fontFamily: "cursive",
+            }}
+            onChange={handleSelectedTeacher}
+            placeholder="select teacher here"
+          >
+            {children}
+          </Select>
+        </header>
+      </div>
+      <div id="tableBody">
+        {routineData
+          ? Object.keys(routineData).map((program) => {
+              return (
+                <div>
+                  <div>
+                    <h1
+                      style={{
+                        textAlign: "center",
+                        fontSize: "55px",
+                        fontWeight: 700,
+                        marginTop: 30,
+                      }}
+                    >
+                      {program}
+                    </h1>
+                    <TableContainer
+                      component={Paper}
+                      style={{ paddingBottom: "80px" }}
+                    >
+                      <Table
+                        className={classes.table}
+                        aria-label="spanning table"
+                      >
+                        <TableHead>
+                          <TableRow>
+                            <TableCell align="center">Periods</TableCell>
+                            <TableCell align="center">
+                              Period 1<br></br>(10:15-11:05)
                             </TableCell>
-                            {routineTable[program][day].map(idx => {
-                              return routineData[program][day] &&
-                                routineData[program][day][idx] ? (
-                                // return cell with data
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={
-                                    routineData[program][day][idx].noOfPeriod
-                                  }
-                                >
-                                  {routineData[program][day][idx].subjectName}
-                                  <br></br>(
-                                  {loopTeacher(
-                                    routineData[program][day][idx].teacherName
-                                  )}
-                                  )<br></br>[
-                                  {routineData[program][day][idx].classCode}]
-                                </TableCell>
-                              ) : (
-                                // return an empty cell
-                                <TableCell
-                                  align="center"
-                                  className="border"
-                                  colSpan={1}
-                                >
-                                  {"-"}
-                                </TableCell>
-                              );
-                            })}
+                            <TableCell align="center">
+                              Period 2<br></br>(11:05-11:55)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 3<br></br>(11:55-12:45)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 4<br></br>(12:45-01:35)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 5<br></br>(01:35-02:25)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 6<br></br>(02:25-03:15)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 7<br></br>(03:15-04:05)
+                            </TableCell>
+                            <TableCell align="center">
+                              Period 8<br></br>(04:05-04:55)
+                            </TableCell>
                           </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </div>
-            );
-          })
-        : ""}
+                        </TableHead>
+                        <TableBody>
+                          {Object.keys(routineTable[program]).map((day) => {
+                            return (
+                              <TableRow className="relative">
+                                <TableCell
+                                  className="border"
+                                  style={{ backgroundColor: "#D3D3DF" }}
+                                >
+                                  {day.toUpperCase()}
+                                </TableCell>
+                                {routineTable[program][day].map((idx) => {
+                                  return routineData[program][day] &&
+                                    routineData[program][day][idx] ? (
+                                    // return cell with data
+                                    <TableCell
+                                      align="center"
+                                      className="border"
+                                      style={{ backgroundColor: "#F0F0F0" }}
+                                      colSpan={
+                                        routineData[program][day][idx]
+                                          .noOfPeriod
+                                      }
+                                    >
+                                      {
+                                        routineData[program][day][idx]
+                                          .subjectName
+                                      }
+                                      <br></br>(
+                                      {loopTeacher(
+                                        routineData[program][day][idx]
+                                          .teacherName
+                                      )}
+                                      )<br></br>[
+                                      {routineData[program][day][idx].classCode}
+                                      ]
+                                    </TableCell>
+                                  ) : (
+                                    // return an empty cell
+                                    <TableCell
+                                      align="center"
+                                      className="border"
+                                      colSpan={1}
+                                    >
+                                      {"-"}
+                                    </TableCell>
+                                  );
+                                })}
+                              </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </div>
+                </div>
+              );
+            })
+          : ""}
+      </div>
+      <div>
+        <button onClick={generatePDF} className="btn">
+          Generate PDF
+        </button>
+      </div>
     </div>
   );
 }

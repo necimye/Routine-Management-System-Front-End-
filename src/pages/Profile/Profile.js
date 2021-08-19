@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-//import { Link } from "react-router-dom";
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "../../components/Contexts/UserContext";
 import "./Profile.css";
-
 import profilePhoto from "./BibhaSthapit.jpeg";
 
 function ProfileCard() {
@@ -14,20 +13,24 @@ function ProfileCard() {
     <div className="ProfileCard">
       <div className="photograph-part">
         <div className="image-container">
-          <img src={profilePhoto} alt="" height="1200px" width="1200px" />
+          <img src={profilePhoto} alt="" height="800px" width="800px" />
         </div>
       </div>
 
       <div className="description-part">
         <h1>
-          <font color="#ff0000" />
-          Name
+          <font color="#2566bb" />
+          ID: BS
         </h1>
         <h2>Bibha Sthapit</h2>
-        <h3>Department of Computer and Electronics Engineering</h3>
+        <h3 id="dept">Department of Computer and Electronics Engineering</h3>
         <h1>{username}</h1>
 
-        <button className="btn">Close</button>
+        <Router>
+          <Link to="/routine">
+            <button className="btn">Close</button>
+          </Link>
+        </Router>
       </div>
     </div>
   );
