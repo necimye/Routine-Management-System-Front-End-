@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import axios from "axios";
 import "./Routine.css";
 import { Select } from "antd";
@@ -196,7 +197,6 @@ export default function SpanningTable() {
           </Select>
         </header>
       </div>
-
       <div id="tableBody">
         {routineData
           ? Object.keys(routineData).map((program) => {
@@ -310,7 +310,7 @@ export default function SpanningTable() {
           : ""}
       </div>
       <div>
-        <button onClick={generatePDF} id="#button-a">
+        <button onClick={generatePDF} className="btn">
           Generate PDF
         </button>
       </div>
