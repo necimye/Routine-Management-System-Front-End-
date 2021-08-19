@@ -117,7 +117,7 @@ export class Program extends Component {
 
     return (
       <div>
-        <Link to="/addProgram">
+        <Link to="/user/admin/addProgram">
           <Button type="primary">Add Program</Button>
         </Link>
         <Title className="input" level={3}>

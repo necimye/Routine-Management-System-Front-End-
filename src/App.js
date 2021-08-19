@@ -24,7 +24,7 @@ import LecturePage from "./pages/LecturePage/LecturePage";
 // import AddClass from './pages/AddClass/AddClass';
 import Class from "./pages/AddClass/AddClass";
 import AppHeader from "./components/Common/Header";
-import AppFooter from "./components/Common/Footer";
+// import AppFooter from "./components/Common/Footer";
 import AppHome from "./components/Home/Home";
 import { AddClassForm } from "./components/AddClassForm/AddClassForm";
 import Routine from "./pages/Routine/Routine";

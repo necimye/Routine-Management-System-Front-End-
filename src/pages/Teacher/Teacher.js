@@ -117,7 +117,7 @@ export class Teacher extends Component {
 
     return (
       <div>
-        <Link to="/addTeacher">
+        <Link to="/user/admin/addTeacher">
           <Button type="primary">Add Teacher</Button>
         </Link>
         <Title className="input" level={3}>
