@@ -39,7 +39,7 @@ import ReactGa from "react-ga";
 import "antd/dist/antd.css";
 import "./App.css";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 function App() {
   // const [user, setUser] = useState(null);

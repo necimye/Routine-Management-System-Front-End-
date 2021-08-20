@@ -458,7 +458,7 @@ class AddClassPopupForm extends Component {
   };
 
   onFinish = values => {
-    const { program, day, idx } = this.props;
+    const { program, day, index } = this.props;
 
     let programID;
     switch (program) {
@@ -484,13 +484,14 @@ class AddClassPopupForm extends Component {
         teacherName: values.teacherName,
         classCode: values.classCode,
         classGroup: values.classGroup,
-        startingPeriod: idx,
+        startingPeriod: index,
         noOfPeriod: values.noOfPeriod,
         courseCode: values.courseCode,
         link1: values.link1,
         weekDay: day,
       })
       .then(message.success("Class Added Sucessfully"));
+    window.location.reload();
   };
 
   handleTeacherSelection(teachers) {
